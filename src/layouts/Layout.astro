@@ -45,7 +45,7 @@ const imageUrl = resolveUrl(image);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="text-black dark" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,7 +65,10 @@ const imageUrl = resolveUrl(image);
     />
     <slot name="head" />
   </head>
-  <body>
+  <body class="bg-ploy-background-primary leading-normal decoration-white w-full h-full m-0 text-ploy-text-primary" style="
+      font-family:
+        Barlow, 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, Arial, Verdana, sans-serif;
+    ">
     <slot />
   </body>
 </html>

@@ -1,62 +1,39 @@
-import { MotionConfig, motion } from "motion/react";
+import Navbar from "../layout/navbar";
+import HeroSection from "../sections/hero-section";
+import Footer from "../layout/footer";
 
-/**
- * TODO: Replace this entire home page with workspace brand content.
- * This is a placeholder starter page - customize the layout, hero section,
- * background pattern, typography, and messaging to match the brand.
- */
-export function HomePage() {
+export default function Page() {
   return (
-    <MotionConfig reducedMotion="user">
-      <div className="min-h-screen bg-ploy-background-primary text-ploy-text-primary flex items-center justify-center">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.18,
-                delayChildren: 0.4,
-              },
-            },
-          }}
-          className="text-center space-y-6 px-6"
-        >
-          <motion.h1
-            variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-              visible: {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                transition: {
-                  duration: 0.7,
-                },
-              },
-            }}
-            className="font-heading typography-heading text-4xl md:text-6xl lg:text-7xl"
+    <>
+      <customhtml className="box-content inline">
+        <div className="box-content text-neutral-700 leading-[1.65] text-[0px] fixed z-[99] right-9 bottom-3.5 cargo_link">
+          {"Running on" + " "}
+          <a
+            href="http://cargocollective.com"
+            className="box-content text-ploy-neutral-primary-800 hover:text-ploy-text-primary"
           >
-            Ready to Ploy
-          </motion.h1>
-          <motion.p
-            variants={{
-              hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-              visible: {
-                opacity: 1,
-                y: 0,
-                filter: "blur(0px)",
-                transition: {
-                  duration: 0.7,
-                },
-              },
-            }}
-            className="text-lg md:text-xl lg:text-2xl text-ploy-text-secondary max-w-md mx-auto"
-          >
-            Make something amazing!
-          </motion.p>
-        </motion.div>
+            {" " + "Cargo"}
+          </a>
+        </div>
+      </customhtml>
+      <div className="box-content fixed z-[11] ml-9 header_img">
+        <a href="https://www.msdo.us" className="box-content">
+          <img
+            src="https://media.cargocollective.com/1/0/18737/headerimg/Logo_100.png"
+            height="107"
+            width="100"
+            className="box-content w-[6.25rem] h-[6.6875rem] max-w-none inline overflow-clip"
+          />
+        </a>
       </div>
-    </MotionConfig>
+      <img
+        src="https://msdo.us/_gfx/loadingAnim.gif"
+        id="nav_loadspin"
+        className="box-content max-w-none fixed z-[100] hidden left-5 top-10 overflow-clip"
+      />
+      <Navbar />
+      <HeroSection />
+      <Footer />
+    </>
   );
 }
