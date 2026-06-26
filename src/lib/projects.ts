@@ -17,13 +17,13 @@ const ASSET_BASE =
 export const PROJECTS: Project[] = [
   {
     name: "Rainfall Website",
-    href: "https://msdo.us/Rainfall-Website",
+    href: "/rainfall",
     tags: ["Website", "AI", "Web3"],
     image: `${ASSET_BASE}/4e6a6a97-slurp-prt-218x146-1774545511.webp`,
   },
   {
     name: "Rainfall Mobile",
-    href: "https://msdo.us/Rainfall-Mobile",
+    href: "/rainfall",
     tags: ["AI", "Web3"],
     image: `${ASSET_BASE}/9e439195-slurp-prt-218x146-1782021406.webp`,
   },

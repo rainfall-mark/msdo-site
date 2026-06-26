@@ -1,0 +1,33 @@
+---
+import Layout from "../layouts/Layout.astro";
+import RainfallPage from "../components/pages/rainfall";
+
+export const prerender = true;
+
+const title = "Rainfall — AI Coherence & Self-Sovereign Personal AI | MSDO Case Study";
+const description =
+  "How MSDO defined and designed Rainfall — a category-defining AI Coherence website and an on-device, privacy-first Personal AI mobile product (R.1) for the agentic era.";
+const ogImage =
+  "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/3516595f-ai-generated-1782451516981.png";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: "Rainfall — AI Coherence & Self-Sovereign Personal AI",
+  about: "Applied AI product strategy, branding, UX and product design for Rainfall",
+  creator: { "@type": "Organization", name: "MSDO" },
+  author: { "@type": "Person", name: "Mark Strehlow" },
+  dateCreated: "2023",
+  keywords:
+    "applied AI product design, self-sovereign AI, Personal AI, AI coherence, UX design case study, Web3",
+  url: "https://msdo.us/rainfall",
+};
+---
+
+<Layout title={title} description={description} type="article" image={ogImage} jsonLd={jsonLd}>
+  <Fragment slot="head">
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+  </Fragment>
+  <RainfallPage client:load />
+</Layout>
