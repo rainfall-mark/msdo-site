@@ -304,16 +304,16 @@
   --ploy-accent-secondary-900: oklch(0.395 0 1.6);
   --ploy-accent-secondary-950: oklch(0.28 0 2);
 
-  --font-heading: "Barlow", system-ui, -apple-system, sans-serif;
-  --font-body: "Barlow", system-ui, -apple-system, sans-serif;
+  --font-heading: "Archivo Variable", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter Variable", system-ui, -apple-system, sans-serif;
   --font-mono: ui-monospace, monospace;
-  --font-eyebrow: "Georgia", system-ui, -apple-system, sans-serif;
-  --font-button: "Barlow", system-ui, -apple-system, sans-serif;
+  --font-eyebrow: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-button: "Inter Variable", system-ui, -apple-system, sans-serif;
 
   /* Typography role weights, letter-spacing, line-height */
-  --font-heading-weight: 700;
-  --font-heading-letter-spacing: normal;
-  --font-heading-line-height: 1.5;
+  --font-heading-weight: 800;
+  --font-heading-letter-spacing: -0.02em;
+  --font-heading-line-height: 0.95;
   --font-body-weight: 400;
   --font-body-bold-weight: 700;
   --font-body-letter-spacing: normal;
@@ -329,11 +329,11 @@
 .dark {
   color-scheme: dark;
 
-  --ploy-neutral-primary: oklch(0.264 0 0);
-  --ploy-neutral-secondary: oklch(0.961 0 0);
+  --ploy-neutral-primary: oklch(0.145 0 0);
+  --ploy-neutral-secondary: oklch(0.205 0 0);
   --ploy-neutral-inverse: oklch(1 0 0);
   --ploy-neutral-light: oklch(1 0 0);
-  --ploy-neutral-dark: oklch(0.264 0 0);
+  --ploy-neutral-dark: oklch(0.145 0 0);
   --ploy-neutral-primary-s0: color-mix(
     in oklch,
     var(--ploy-neutral-primary) 88%,
@@ -382,9 +382,9 @@
     var(--ploy-neutral-inverse) 30%,
     var(--ploy-neutral-primary)
   );
-  --ploy-accent-primary: oklch(0.6 0.2 250);
-  --ploy-accent-secondary: oklch(0.264 0 0);
-  --ploy-accent-tertiary: oklch(0.264 0 0);
+  --ploy-accent-primary: oklch(0.55 0.225 264);
+  --ploy-accent-secondary: oklch(0.205 0 0);
+  --ploy-accent-tertiary: oklch(0.205 0 0);
   --ploy-text-primary: var(--ploy-neutral-inverse);
   --ploy-text-secondary: var(--ploy-neutral-inverse-500);
   --ploy-text-inverse: var(--ploy-neutral-primary);
@@ -396,9 +396,9 @@
   --ploy-text-on-accent-primary: oklch(0.264 0 0);
   --ploy-text-on-accent-secondary: oklch(1 0 0);
   --ploy-text-on-accent-tertiary: oklch(1 0 0);
-  --ploy-button-primary-background: oklch(0.6 0.2 250);
-  --ploy-button-primary-text: oklch(0.2 0 0);
-  --ploy-button-primary-border: oklch(0.6 0.2 250);
+  --ploy-button-primary-background: oklch(0.55 0.225 264);
+  --ploy-button-primary-text: oklch(1 0 0);
+  --ploy-button-primary-border: oklch(0.55 0.225 264);
   --ploy-button-secondary-background: var(--ploy-background-primary);
   --ploy-button-secondary-text: var(--ploy-background-inverse);
   --ploy-button-secondary-border: var(--ploy-border-primary);
