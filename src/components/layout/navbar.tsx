@@ -1,183 +1,57 @@
+import { ABOUT_HREF, CONTACT_HREF } from "@/lib/projects";
+
 /**
  * @ployComponent
  * @ployComponentId navbar
  * @ployComponentType component
  * @ployComponentPattern navbar
- * @ployComponentDescription Navigation bar with logo/link and a list of project, page, and social links
+ * @ployComponentDescription Fixed top navigation for the MSDO studio site. Slim MSDO wordmark on the left, minimal text links (Work anchors to #work, About/Contact preserve original msdo.us destinations), and a cobalt "Start a project" pill CTA. Dark theme, grotesk type. Replaced the original Cargo vertical project rail during the 2026 dark redesign.
+ * @ployComponentTags navbar header studio dark
+ * @ployComponentStatus stable
  */
-type LinkItemProps = {
-  id: string;
-  className: string;
-  href: string;
-  id_1: string;
-  linkClassName: string;
-  text: string;
-};
-
-function LinkItem({
-  id,
-  className,
-  href,
-  id_1,
-  linkClassName,
-  text,
-}: LinkItemProps) {
+export default function Navbar({
+  contactHref = CONTACT_HREF,
+  aboutHref = ABOUT_HREF,
+}: {
+  contactHref?: string;
+  aboutHref?: string;
+}) {
   return (
-    <div id={id} className={className}>
-      <a
-        href={href}
-        id={id_1}
-        rel="history"
-        name="msdo"
-        className={linkClassName}
-      >
-        {text}
-      </a>
-    </div>
-  );
-}
-
-export const links: LinkItemProps[] = [
-  {
-    id: "menu_14634126",
-    className: "box-content project_link",
-    href: "https://msdo.us/Rainfall-Website",
-    id_1: "p14634126",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Rainfall Website",
-  },
-  {
-    id: "menu_14275059",
-    className: "box-content project_link",
-    href: "https://msdo.us/Rainfall-Mobile",
-    id_1: "p14275059",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Rainfall Mobile",
-  },
-  {
-    id: "menu_12273661",
-    className: "box-content project_link",
-    href: "https://msdo.us/Econiscore",
-    id_1: "p12273661",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Econiscore",
-  },
-  {
-    id: "menu_13748387",
-    className: "box-content project_link",
-    href: "https://msdo.us/Coinboost",
-    id_1: "p13748387",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Coinboost",
-  },
-  {
-    id: "menu_13920929",
-    className: "box-content project_link",
-    href: "https://msdo.us/Truvalue-Website",
-    id_1: "p13920929",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Truvalue Website",
-  },
-  {
-    id: "menu_13920927",
-    className: "box-content project_link",
-    href: "https://msdo.us/Truvalue-Platform",
-    id_1: "p13920927",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Truvalue Platform",
-  },
-  {
-    id: "menu_13920931",
-    className: "box-content project_link",
-    href: "https://msdo.us/Truvalue-Wealth",
-    id_1: "p13920931",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Truvalue Wealth",
-  },
-  {
-    id: "menu_13920928",
-    className: "box-content project_link",
-    href: "https://msdo.us/Slalome",
-    id_1: "p13920928",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Slalome",
-  },
-  {
-    id: "menu_13923228",
-    className: "box-content project_link",
-    href: "https://msdo.us/LaterPay",
-    id_1: "p13923228",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "LaterPay",
-  },
-  {
-    id: "menu_13925015",
-    className: "box-content project_link",
-    href: "https://msdo.us/Wickr",
-    id_1: "p13925015",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-600 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-ploy-text-primary",
-    text: "Wickr",
-  },
-  {
-    id: "menu_1882725",
-    className: "box-content page_link",
-    href: "https://msdo.us/About",
-    id_1: "p1882725",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-800 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-yellow-600",
-    text: "About",
-  },
-  {
-    id: "menu_1882732",
-    className: "box-content page_link",
-    href: "https://msdo.us/Contact-Us-1",
-    id_1: "p1882732",
-    linkClassName:
-      "box-content text-ploy-neutral-primary-800 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:bg-transparent hover:text-yellow-600",
-    text: "Contact Us",
-  },
-];
-
-export default function Navbar({ items = links }: { items?: LinkItemProps[] }) {
-  return (
-    <div className="box-content leading-[1.4] fixed z-[12] left-[3.125rem] top-[6.25rem] nav_container">
-      <div id="nav_page_1" className="box-content">
-        {items.map((item, index) => (
-          <LinkItem key={index} {...item} />
-        ))}
-        <div id="menu_1882815" className="box-content link_link">
+    <header className="nav fixed inset-x-0 top-0 z-50 border-b border-ploy-border-primary bg-ploy-background-primary/80 backdrop-blur-md">
+      <nav className="nav__inner mx-auto flex h-16 max-w-[90rem] items-center justify-between px-5 sm:px-8">
+        <a
+          href="/"
+          className="nav__logo font-heading text-lg font-extrabold tracking-tight text-ploy-text-primary"
+        >
+          MSDO
+        </a>
+        <div className="nav__links flex items-center gap-6 sm:gap-8">
           <a
-            href="http://twitter.com/#!/mstrehlow"
-            target="_blank"
-            name="msdo"
-            id="p1882815"
-            className="box-content text-ploy-neutral-primary-800 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:text-yellow-300"
+            href="#work"
+            className="nav__link hidden text-sm text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline"
           >
-            {"Twitter"}
+            Work
+          </a>
+          <a
+            href="#services"
+            className="nav__link hidden text-sm text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline"
+          >
+            Services
+          </a>
+          <a
+            href={aboutHref}
+            className="nav__link hidden text-sm text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline"
+          >
+            About
+          </a>
+          <a
+            href={contactHref}
+            className="nav__cta inline-flex items-center rounded-full bg-ploy-accent-primary px-4 py-2 text-sm font-semibold text-ploy-text-on-accent-primary transition-opacity hover:opacity-90"
+          >
+            Start a project
           </a>
         </div>
-        <div id="menu_12273662" className="box-content link_link">
-          <a
-            href="https://www.linkedin.com/in/markstrehlow"
-            target="_blank"
-            name="msdo"
-            id="p12273662"
-            className="box-content text-ploy-neutral-primary-800 leading-7 text-sm pt-0.5 pb-0.5 px-0.5 hover:text-yellow-300"
-          >
-            {"LinkedIn"}
-          </a>
-        </div>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }
