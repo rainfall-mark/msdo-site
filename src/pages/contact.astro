@@ -1,0 +1,13 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactPage from "../components/pages/contact";
+
+export const prerender = true;
+
+const title = "Start a Project with MSDO";
+const description = "Contact MSDO about product strategy, UX, brand, applied AI, web, mobile, and emerging technology projects.";
+---
+
+<Layout title={title} description={description}>
+  <ContactPage client:load />
+</Layout>
