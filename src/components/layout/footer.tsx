@@ -23,8 +23,8 @@ export default function Footer({ contactHref = CONTACT_HREF, aboutHref = ABOUT_H
           </div>
           <nav className="footer__col flex flex-col gap-2 text-sm">
             <span className="mb-2 text-ploy-text-secondary">Studio</span>
-            <a href="#work" className="text-ploy-text-primary hover:text-ploy-text-secondary">Work</a>
-            <a href="#services" className="text-ploy-text-primary hover:text-ploy-text-secondary">Services</a>
+            <a href="/#work" className="text-ploy-text-primary hover:text-ploy-text-secondary">Work</a>
+            <a href="/#services" className="text-ploy-text-primary hover:text-ploy-text-secondary">Services</a>
             <a href={aboutHref} className="text-ploy-text-primary hover:text-ploy-text-secondary">About</a>
             <a href={contactHref} className="text-ploy-text-primary hover:text-ploy-text-secondary">Contact</a>
           </nav>
