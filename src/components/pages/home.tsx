@@ -4,15 +4,16 @@ import Footer from "../layout/footer";
 import HeroSection from "../sections/hero-section";
 import WorkIndexSection from "../sections/work-index-section";
 import ServicesSection from "../sections/services-section";
-import StudioSection from "../sections/studio-section";
+import AboutProfileSection from "../sections/about-profile-section";
 import ContactCtaSection from "../sections/contact-cta-section";
+import { ABOUT_LINKEDIN, ABOUT_PARAGRAPHS, ABOUT_PORTRAIT } from "@/lib/about-content";
 
 /**
  * @ployComponent
  * @ployComponentId home-page
  * @ployComponentType page
  * @ployComponentPattern landing
- * @ployComponentDescription MSDO homepage with a light editorial portfolio system: concise split hero, large rounded project stories, compact capability cards, studio proof, and a quiet contact close. Uses restrained load and scroll reveals while preserving real work, copy, and destinations.
+ * @ployComponentDescription MSDO homepage with three core editorial sections: selected work, services, and the complete founder About profile. Uses restrained reveals, large rounded imagery, and a quiet contact close while preserving real content and destinations.
  * @ployComponentTags homepage studio light editorial portfolio
  * @ployComponentStatus stable
  */
@@ -25,7 +26,7 @@ export default function Page() {
           <HeroSection />
           <WorkIndexSection />
           <ServicesSection />
-          <StudioSection />
+          <AboutProfileSection id="about" heading="About" portrait={ABOUT_PORTRAIT} paragraphs={ABOUT_PARAGRAPHS} linkedInHref={ABOUT_LINKEDIN} />
           <ContactCtaSection />
         </main>
         <Footer />
