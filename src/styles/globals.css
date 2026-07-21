@@ -634,6 +634,21 @@
   --ploy-accent-secondary-950: oklch(0.28 0 2);
 }
 
+/* Homepage-specific light editorial palette. Scoped so the existing dark case-study family remains unchanged. */
+.msdo-home.light {
+  color-scheme: light;
+  --ploy-background-primary: oklch(0.982 0.006 85);
+  --ploy-background-secondary: oklch(0.947 0.008 85);
+  --ploy-background-inverse: oklch(0.145 0 0);
+  --ploy-text-primary: oklch(0.145 0 0);
+  --ploy-text-secondary: oklch(0.48 0.006 85);
+  --ploy-text-inverse: oklch(0.982 0.006 85);
+  --ploy-border-primary: oklch(0.88 0.008 85);
+  --ploy-button-primary-background: oklch(0.145 0 0);
+  --ploy-button-primary-text: oklch(0.982 0.006 85);
+  --ploy-button-primary-border: oklch(0.145 0 0);
+}
+
 html {
   font-family: var(--font-body);
 }
