@@ -1,57 +1,24 @@
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/ui/reveal";
+
+interface NextProjectSectionProps { label?: string; name?: string; href?: string; tags?: string[]; indexLabel?: string; indexHref?: string; }
+
 /**
  * @ployComponent
  * @ployComponentId next-project-section
  * @ployComponentType section
  * @ployComponentPattern work-index
- * @ployComponentDescription Closing "next project" navigation for MSDO case-study pages. A single oversized grotesk row that mirrors the work-index anatomy (hairline rule, uppercase grotesk name, tags, hover-to-accent), linking to the next project and back to the full work index. Dark theme. Built for the 2026 redesign.
- * @ployComponentTags case-study next-project work-index studio dark
+ * @ployComponentDescription Light editorial next-project navigation with large sentence-case type, compact tags, and a secondary all-work link.
+ * @ployComponentTags case-study next-project work-index studio editorial
  * @ployComponentStatus stable
  */
-interface NextProjectSectionProps {
-  label?: string;
-  name?: string;
-  href?: string;
-  tags?: string[];
-  indexLabel?: string;
-  indexHref?: string;
-}
-
-export default function NextProjectSection({
-  label = "Next project",
-  name = "Selected work",
-  href = "/#work",
-  tags = [],
-  indexLabel = "All work",
-  indexHref = "/#work",
-}: NextProjectSectionProps) {
+export default function NextProjectSection({ label = "Next project", name = "Selected work", href = "/#work", tags = [], indexLabel = "All work", indexHref = "/#work" }: NextProjectSectionProps) {
   return (
-    <section className="next-project border-t border-ploy-border-primary bg-ploy-background-primary px-5 py-20 sm:px-8 sm:py-28">
-      <div className="next-project__inner mx-auto max-w-[90rem]">
-        <div className="next-project__head mb-8 flex items-end justify-between">
-          <p className="next-project__label font-eyebrow text-sm uppercase tracking-widest text-ploy-accent-primary">
-            {label}
-          </p>
-          <a
-            href={indexHref}
-            className="next-project__index text-sm text-ploy-text-secondary transition-colors hover:text-ploy-text-primary"
-          >
-            {indexLabel} →
-          </a>
-        </div>
-        <a
-          href={href}
-          className="next-project__row group flex items-center justify-between border-t border-b border-ploy-border-primary py-8"
-        >
-          <span className="next-project__name font-heading text-[clamp(2rem,5vw,4.5rem)] font-extrabold uppercase leading-none tracking-tight text-ploy-text-primary transition-colors duration-300 group-hover:text-ploy-accent-primary">
-            {name}
-          </span>
-          {tags.length > 0 && (
-            <span className="next-project__tags ml-6 hidden shrink-0 text-sm text-ploy-text-secondary lg:block">
-              {tags.join(" · ")}
-            </span>
-          )}
-        </a>
-      </div>
+    <section className="next-project bg-ploy-background-primary px-5 py-24 sm:px-8 sm:py-32 lg:px-10">
+      <Reveal className="mx-auto max-w-[92rem] border-t border-ploy-border-primary pt-8">
+        <div className="mb-8 flex justify-between"><p className="text-sm text-ploy-text-secondary">{label}</p><a href={indexHref} className="text-sm text-ploy-text-secondary hover:text-ploy-text-primary">{indexLabel} →</a></div>
+        <a href={href} className="group flex items-end justify-between gap-8 border-b border-ploy-border-primary pb-8"><div><span className="font-heading text-[clamp(3rem,7vw,7rem)] font-semibold leading-[.94] tracking-[-0.055em] text-ploy-text-primary">{name}</span>{tags.length > 0 && <p className="mt-4 text-sm text-ploy-text-secondary">{tags.join(" · ")}</p>}</div><ArrowUpRight className="mb-2 h-8 w-8 shrink-0 text-ploy-text-secondary transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" /></a>
+      </Reveal>
     </section>
   );
 }

@@ -1,78 +1,25 @@
+import { Reveal } from "@/components/ui/reveal";
+
+export interface CaseStudyMediaItem { src: string; alt: string; caption?: string; aspect?: string; fit?: "cover" | "contain"; }
+interface CaseStudyMediaSectionProps { label?: string; heading?: string; items?: CaseStudyMediaItem[]; columns?: 1 | 2; }
+
 /**
  * @ployComponent
  * @ployComponentId case-study-media-section
  * @ployComponentType section
  * @ployComponentPattern media
- * @ployComponentDescription Full-bleed case-study imagery band for MSDO project pages. Renders one large framed feature image or a set of framed image tiles (hairline border, rounded corners, near-black surface) with optional eyebrow heading and per-image captions. Reuses the site's existing project thumbnails / brand visuals rather than stock imagery. Dark theme. Built for the 2026 redesign.
- * @ployComponentTags case-study media imagery gallery studio dark
+ * @ployComponentDescription Large editorial project-media section for one or two columns. Supports full screenshots with contain fitting, image captions, soft 12px frames, lazy loading, and restrained reveals.
+ * @ployComponentTags case-study media imagery gallery studio editorial
  * @ployComponentStatus stable
  */
-export interface CaseStudyMediaItem {
-  src: string;
-  alt: string;
-  caption?: string;
-  aspect?: string;
-}
-
-interface CaseStudyMediaSectionProps {
-  label?: string;
-  heading?: string;
-  items?: CaseStudyMediaItem[];
-  columns?: 1 | 2;
-}
-
-export default function CaseStudyMediaSection({
-  label,
-  heading,
-  items = [],
-  columns = 2,
-}: CaseStudyMediaSectionProps) {
-  if (items.length === 0) return null;
-
+export default function CaseStudyMediaSection({ label, heading, items = [], columns = 1 }: CaseStudyMediaSectionProps) {
+  if (!items.length) return null;
   return (
-    <section className="cs-media border-t border-ploy-border-primary bg-ploy-background-primary px-5 py-24 sm:px-8 sm:py-32">
-      <div className="cs-media__inner mx-auto max-w-[90rem]">
-        {(label || heading) && (
-          <div className="cs-media__head mb-12 max-w-3xl">
-            {label && (
-              <p className="cs-media__label font-eyebrow text-sm uppercase tracking-widest text-ploy-accent-primary">
-                {label}
-              </p>
-            )}
-            {heading && (
-              <h2 className="cs-media__heading mt-4 font-heading text-3xl font-extrabold tracking-tight text-ploy-text-primary sm:text-5xl">
-                {heading}
-              </h2>
-            )}
-          </div>
-        )}
-
-        <div
-          className={`cs-media__grid grid grid-cols-1 gap-6 sm:gap-8 ${
-            columns === 2 ? "md:grid-cols-2" : ""
-          }`}
-        >
-          {items.map((item) => (
-            <figure key={item.src} className="cs-media__figure">
-              <div
-                className={`cs-media__frame overflow-hidden rounded-lg border border-ploy-border-primary bg-ploy-neutral-secondary ${
-                  item.aspect ?? "aspect-[16/10]"
-                }`}
-              >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  className="cs-media__img h-full w-full object-cover"
-                />
-              </div>
-              {item.caption && (
-                <figcaption className="cs-media__caption mt-4 text-sm leading-relaxed text-ploy-text-secondary">
-                  {item.caption}
-                </figcaption>
-              )}
-            </figure>
-          ))}
+    <section className="cs-media bg-ploy-background-primary px-5 py-16 sm:px-8 sm:py-24 lg:px-10 lg:py-28">
+      <div className="mx-auto max-w-[92rem]">
+        {(label || heading) && <Reveal className="mb-10 max-w-3xl">{label && <p className="text-sm text-ploy-text-secondary">{label}</p>}{heading && <h2 className="mt-4 font-heading text-4xl font-semibold tracking-[-0.045em] text-ploy-text-primary sm:text-6xl">{heading}</h2>}</Reveal>}
+        <div className={`grid grid-cols-1 gap-5 sm:gap-8 ${columns === 2 ? "md:grid-cols-2" : ""}`}>
+          {items.map((item, index) => <Reveal key={`${item.src}-${index}`}><figure><div className={`overflow-hidden rounded-xl bg-ploy-background-secondary ${item.aspect ?? "aspect-[16/10]"}`}><img src={item.src} alt={item.alt} loading="lazy" className={`h-full w-full ${item.fit === "contain" ? "object-contain" : "object-cover"}`} /></div>{item.caption && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">{item.caption}</figcaption>}</figure></Reveal>)}
         </div>
       </div>
     </section>
