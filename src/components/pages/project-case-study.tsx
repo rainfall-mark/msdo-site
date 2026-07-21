@@ -1,3 +1,4 @@
+import { MotionConfig } from "motion/react";
 import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
 import CaseStudyHeroSection, { type CaseStudyMeta } from "../sections/case-study-hero-section";
@@ -36,6 +37,7 @@ export interface ProjectCaseStudyContent {
  */
 export default function ProjectCaseStudyTemplate({ content }: { content: ProjectCaseStudyContent }) {
   return (
+    <MotionConfig reducedMotion="user">
     <div className="msdo-home light min-h-screen bg-ploy-background-primary text-ploy-text-primary">
       <Navbar aboutHref="/about" />
       <main>
@@ -51,5 +53,6 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
       </main>
       <Footer aboutHref="/about" />
     </div>
+    </MotionConfig>
   );
 }
