@@ -39,7 +39,7 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
               ))}
             </div>
           ) : (
-            <div className="max-w-3xl">
+            <div className="w-full max-w-none">
               {lead && <p className="cs-narrative__lead font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-ploy-text-primary sm:text-5xl">{lead}</p>}
               {paragraphs.length > 0 && <div className="cs-narrative__body mt-8 space-y-6">{paragraphs.map((paragraph, index) => <p key={index} className="text-lg leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
               {highlights && highlights.length > 0 && <div className="mt-12">{highlightsLabel && <p className="text-xs text-ploy-text-secondary">{highlightsLabel}</p>}<ul className="mt-5 border-t border-ploy-border-primary">{highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 text-base font-medium text-ploy-text-primary">{item}</li>)}</ul></div>}
