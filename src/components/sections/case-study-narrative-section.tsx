@@ -8,7 +8,7 @@ interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragr
  * @ployComponentId case-study-narrative-section
  * @ployComponentType section
  * @ployComponentPattern narrative
- * @ployComponentDescription Adaptive editorial narrative block for case studies and profile pages. Supports a focused single narrative or a compact two-part challenge-and-approach presentation with optional ruled highlights.
+ * @ployComponentDescription Adaptive editorial narrative block for case studies and profile pages. Supports a focused single narrative or a compact three-column challenge, approach, and deliverables presentation.
  * @ployComponentTags case-study narrative studio adaptive editorial
  * @ployComponentStatus stable
  */
@@ -21,7 +21,7 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
         <p className="cs-narrative__label text-sm text-ploy-text-secondary lg:sticky lg:top-24 lg:self-start">{label}</p>
         <div className="cs-narrative__main">
           {hasBlocks ? (
-            <div className="grid gap-12 md:grid-cols-2 md:gap-10 lg:gap-14">
+            <div className="grid gap-12 md:grid-cols-3 md:gap-8 lg:gap-10">
               {blocks.map((block) => (
                 <div key={block.heading}>
                   <h2 className="text-sm font-medium text-ploy-text-primary">{block.heading}</h2>
@@ -29,15 +29,22 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
                   {block.paragraphs && block.paragraphs.length > 0 && <div className="mt-6 space-y-5">{block.paragraphs.map((paragraph, index) => <p key={index} className="text-base leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
                 </div>
               ))}
+              {highlights && highlights.length > 0 && (
+                <div>
+                  <h2 className="text-sm font-medium text-ploy-text-primary">{highlightsLabel ?? "Deliverables"}</h2>
+                  <ul className="mt-5 border-t border-ploy-border-primary">
+                    {highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 text-base font-medium leading-snug text-ploy-text-primary">{item}</li>)}
+                  </ul>
+                </div>
+              )}
             </div>
           ) : (
             <div className="max-w-3xl">
               {lead && <p className="cs-narrative__lead font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-ploy-text-primary sm:text-5xl">{lead}</p>}
               {paragraphs.length > 0 && <div className="cs-narrative__body mt-8 space-y-6">{paragraphs.map((paragraph, index) => <p key={index} className="text-lg leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
+              {highlights && highlights.length > 0 && <div className="mt-12">{highlightsLabel && <p className="text-xs text-ploy-text-secondary">{highlightsLabel}</p>}<ul className="mt-5 border-t border-ploy-border-primary">{highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 text-base font-medium text-ploy-text-primary">{item}</li>)}</ul></div>}
             </div>
           )}
-
-          {highlights && highlights.length > 0 && <div className="mt-12">{highlightsLabel && <p className="text-xs text-ploy-text-secondary">{highlightsLabel}</p>}<ul className="mt-5 grid border-t border-ploy-border-primary md:grid-cols-2">{highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 pr-6 text-base font-medium text-ploy-text-primary">{item}</li>)}</ul></div>}
         </div>
       </Reveal>
     </section>
