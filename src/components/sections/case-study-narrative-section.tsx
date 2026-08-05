@@ -1,25 +1,43 @@
 import { Reveal } from "@/components/ui/reveal";
 
-interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragraphs?: readonly string[]; highlights?: string[]; highlightsLabel?: string; }
+export interface CaseStudyNarrativeBlock { heading: string; lead?: string; paragraphs?: readonly string[]; }
+interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragraphs?: readonly string[]; blocks?: CaseStudyNarrativeBlock[]; highlights?: string[]; highlightsLabel?: string; }
 
 /**
  * @ployComponent
  * @ployComponentId case-study-narrative-section
  * @ployComponentType section
  * @ployComponentPattern narrative
- * @ployComponentDescription Adaptive editorial narrative block for case studies and profile pages. Uses a compact sticky label, large lead, readable body copy, optional ruled highlights, and slow scroll reveal.
+ * @ployComponentDescription Adaptive editorial narrative block for case studies and profile pages. Supports a focused single narrative or a compact two-part challenge-and-approach presentation with optional ruled highlights.
  * @ployComponentTags case-study narrative studio adaptive editorial
  * @ployComponentStatus stable
  */
-export default function CaseStudyNarrativeSection({ label = "Challenge", lead, paragraphs = [], highlights, highlightsLabel }: CaseStudyNarrativeSectionProps) {
+export default function CaseStudyNarrativeSection({ label = "Challenge", lead, paragraphs = [], blocks, highlights, highlightsLabel }: CaseStudyNarrativeSectionProps) {
+  const hasBlocks = blocks && blocks.length > 0;
+
   return (
-    <section className="cs-narrative bg-ploy-background-primary px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
-      <Reveal className="cs-narrative__inner mx-auto grid max-w-[92rem] gap-10 border-t border-ploy-border-primary pt-8 lg:grid-cols-[.7fr_1.3fr] lg:gap-20">
+    <section className={`cs-narrative bg-ploy-background-primary px-5 sm:px-8 lg:px-10 ${hasBlocks ? "py-20 sm:py-24 lg:py-28" : "py-24 sm:py-32 lg:py-40"}`}>
+      <Reveal className="cs-narrative__inner mx-auto grid max-w-[92rem] gap-10 border-t border-ploy-border-primary pt-8 lg:grid-cols-[.45fr_1.55fr] lg:gap-16">
         <p className="cs-narrative__label text-sm text-ploy-text-secondary lg:sticky lg:top-24 lg:self-start">{label}</p>
-        <div className="cs-narrative__main max-w-3xl">
-          {lead && <p className="cs-narrative__lead font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-ploy-text-primary sm:text-5xl">{lead}</p>}
-          {paragraphs.length > 0 && <div className="cs-narrative__body mt-8 space-y-6">{paragraphs.map((paragraph, index) => <p key={index} className="text-lg leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
-          {highlights && highlights.length > 0 && <div className="mt-12">{highlightsLabel && <p className="text-xs text-ploy-text-secondary">{highlightsLabel}</p>}<ul className="mt-5 border-t border-ploy-border-primary">{highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 text-lg font-medium text-ploy-text-primary">{item}</li>)}</ul></div>}
+        <div className="cs-narrative__main">
+          {hasBlocks ? (
+            <div className="grid gap-12 md:grid-cols-2 md:gap-10 lg:gap-14">
+              {blocks.map((block) => (
+                <div key={block.heading}>
+                  <h2 className="text-sm font-medium text-ploy-text-primary">{block.heading}</h2>
+                  {block.lead && <p className="mt-5 font-heading text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-ploy-text-primary sm:text-3xl">{block.lead}</p>}
+                  {block.paragraphs && block.paragraphs.length > 0 && <div className="mt-6 space-y-5">{block.paragraphs.map((paragraph, index) => <p key={index} className="text-base leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="max-w-3xl">
+              {lead && <p className="cs-narrative__lead font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-ploy-text-primary sm:text-5xl">{lead}</p>}
+              {paragraphs.length > 0 && <div className="cs-narrative__body mt-8 space-y-6">{paragraphs.map((paragraph, index) => <p key={index} className="text-lg leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
+            </div>
+          )}
+
+          {highlights && highlights.length > 0 && <div className="mt-12">{highlightsLabel && <p className="text-xs text-ploy-text-secondary">{highlightsLabel}</p>}<ul className="mt-5 grid border-t border-ploy-border-primary md:grid-cols-2">{highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 pr-6 text-base font-medium text-ploy-text-primary">{item}</li>)}</ul></div>}
         </div>
       </Reveal>
     </section>
