@@ -13,7 +13,7 @@ export interface ProjectCaseStudyChapter {
   paragraphs?: string[];
   highlights?: string[];
   highlightsLabel?: string;
-  media?: { label?: string; heading?: string; items: CaseStudyMediaItem[]; columns?: 1 | 2 };
+  media?: { label?: string; heading?: string; items: CaseStudyMediaItem[]; };
 }
 
 export interface ProjectCaseStudyContent {
@@ -45,7 +45,7 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
         {content.chapters.map((chapter, index) => (
           <div key={`${chapter.label}-${index}`}>
             <CaseStudyNarrativeSection label={chapter.label} lead={chapter.lead} paragraphs={chapter.paragraphs} highlights={chapter.highlights} highlightsLabel={chapter.highlightsLabel} />
-            {chapter.media && <CaseStudyMediaSection label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} columns={chapter.media.columns} />}
+            {chapter.media && <CaseStudyMediaSection label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} />}
           </div>
         ))}
         <NextProjectSection name={content.nextProject.name} href={content.nextProject.href} tags={content.nextProject.tags} />

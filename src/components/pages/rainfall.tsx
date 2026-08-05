@@ -21,7 +21,7 @@ const CONTENT: ProjectCaseStudyContent = {
         "Rainfall set out to build the self-sovereign governance layer for the agentic era: AI Coherence and Personal AI that stays private, owned, and aligned to the individual it serves. The concept was genuinely new — and it didn't fit how people already thought about AI.",
         "Early website iterations leaned on familiar narratives around data privacy, ownership, and monetization. Those framings felt safe but blunted differentiation, and failed to convey Rainfall as foundational infrastructure for an autonomous-agent economy.",
       ],
-      media: { label: "Overview", heading: "A category-defining storytelling platform", columns: 1, items: [{ src: `${RAINFALL_ASSET}/Overview_1200_1200.png`, alt: "Overview of Rainfall website screens", aspect: "aspect-square", fit: "contain" }] },
+      media: { label: "Overview", heading: "A category-defining storytelling platform", items: [{ src: `${RAINFALL_ASSET}/Overview_1200_1200.png`, alt: "Overview of Rainfall website screens" }] },
     },
     {
       label: "Approach / 02",
@@ -32,13 +32,13 @@ const CONTENT: ProjectCaseStudyContent = {
       ],
       highlightsLabel: "What MSDO delivered",
       highlights: ["Positioning & category narrative — from data-centric to AI Coherence", "Brand & minimal visual system for rainfall.one", "Website design + development oversight (2023–2025)", "R.1 mobile product strategy, UX & product design", "On-device Personal AI design system & component library"],
-      media: { label: "Website system", heading: "A modular story from vision to product detail", columns: 2, items: [
-        { src: `${RAINFALL_ASSET}/01_Home_1000.png`, alt: "Rainfall homepage", aspect: "aspect-[10/16]", fit: "contain" },
-        { src: `${RAINFALL_ASSET}/02_About_1000.png`, alt: "Rainfall about page", aspect: "aspect-[10/16]", fit: "contain" },
-        { src: `${RAINFALL_ASSET}/03_News_1000.png`, alt: "Rainfall news page", aspect: "aspect-[10/16]", fit: "contain" },
-        { src: `${RAINFALL_ASSET}/04_Details_1000.png`, alt: "Rainfall product details page", aspect: "aspect-[10/16]", fit: "contain" },
-        { src: `${RAINFALL_ASSET}/05_Resources_1000.png`, alt: "Rainfall resources page", aspect: "aspect-[10/16]", fit: "contain" },
-        { src: `${RAINFALL_ASSET}/06_Contact_1000.png`, alt: "Rainfall contact page", aspect: "aspect-[10/16]", fit: "contain" },
+      media: { label: "Website system", heading: "A modular story from vision to product detail", items: [
+        { src: `${RAINFALL_ASSET}/01_Home_1000.png`, alt: "Rainfall homepage" },
+        { src: `${RAINFALL_ASSET}/02_About_1000.png`, alt: "Rainfall about page" },
+        { src: `${RAINFALL_ASSET}/03_News_1000.png`, alt: "Rainfall news page" },
+        { src: `${RAINFALL_ASSET}/04_Details_1000.png`, alt: "Rainfall product details page" },
+        { src: `${RAINFALL_ASSET}/05_Resources_1000.png`, alt: "Rainfall resources page" },
+        { src: `${RAINFALL_ASSET}/06_Contact_1000.png`, alt: "Rainfall contact page" },
       ] },
     },
     {
