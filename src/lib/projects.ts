@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: "Econiscore",
-    href: "https://msdo.us/Econiscore",
+    href: "/econiscore",
     tags: ["Web App"],
     image: `${ASSET_BASE}/257c1293-slurp-prt-218x146-1782199686.webp`,
   },
