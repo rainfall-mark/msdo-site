@@ -30,8 +30,8 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
         <motion.h1 initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.06 }} className={`cs-hero__title mt-5 max-w-[15ch] font-heading font-semibold leading-[0.94] tracking-[-0.055em] text-balance text-ploy-text-primary ${editorial ? "text-[clamp(4.25rem,9vw,9rem)]" : "text-[clamp(2.75rem,8vw,7rem)]"}`}>{title}</motion.h1>
         {summary && <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.14 }} className={`cs-hero__summary mt-8 leading-relaxed text-ploy-text-secondary ${editorial ? "w-full max-w-none text-xl sm:text-2xl" : "max-w-2xl text-lg"}`}>{summary}</motion.p>}
         {meta.length > 0 && (
-          <motion.dl initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.22 }} className="cs-hero__meta mt-12 grid border-t border-ploy-border-primary sm:grid-cols-2 lg:grid-cols-4">
-            {meta.map((item) => <div key={item.label} className="cs-hero__meta-item border-b border-ploy-border-primary py-5 sm:pr-8"><dt className="text-xs text-ploy-text-secondary">{item.label}</dt><dd className="mt-2 text-base font-medium text-ploy-text-primary">{item.href ? <a href={item.href} target="_blank" rel="noreferrer" className="hover:text-ploy-text-secondary">{item.value} ↗</a> : item.value}</dd></div>)}
+          <motion.dl initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.22 }} className="cs-hero__meta mt-12 grid border-t border-ploy-border-primary text-left sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-12">
+            {meta.map((item) => <div key={item.label} className="cs-hero__meta-item border-b border-ploy-border-primary py-5"><dt className="text-xs text-ploy-text-secondary">{item.label}</dt><dd className="mt-2 text-base font-medium text-ploy-text-primary">{item.href ? <a href={item.href} target="_blank" rel="noreferrer" className="hover:text-ploy-text-secondary">{item.value} ↗</a> : item.value}</dd></div>)}
           </motion.dl>
         )}
 
