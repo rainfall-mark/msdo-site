@@ -42,16 +42,52 @@ const CONTENT: ProjectCaseStudyContent = {
         "Scalable interface and design systems",
       ],
       media: {
-        items: [
-          { src: `${ECONISCORE_ASSET}/02_1200.png`, alt: "Econiscore company and vendor dashboard design directions" },
-          { src: `${ECONISCORE_ASSET}/03_1200.png`, alt: "Econiscore vendor visualization explorations" },
-          { src: `${ECONISCORE_ASSET}/04_1000.png`, alt: "Econiscore company summary dashboard" },
-          { src: `${ECONISCORE_ASSET}/05_1000.png`, alt: "Econiscore company chart view" },
-          { src: `${ECONISCORE_ASSET}/06_1000.png`, alt: "Econiscore company vendor analysis" },
-          { src: `${ECONISCORE_ASSET}/07_1000.png`, alt: "Econiscore company network request analysis" },
-          { src: `${ECONISCORE_ASSET}/08_1000.png`, alt: "Econiscore vendor summary dashboard" },
-          { src: `${ECONISCORE_ASSET}/09_1000.png`, alt: "Econiscore reporting and comparison screens" },
-          { src: `${ECONISCORE_ASSET}/10_1200.png`, alt: "Econiscore design system and supporting brand explorations" },
+        groups: [
+          {
+            heading: "Design Exploration",
+            description: "Early company and vendor dashboard directions explored hierarchy, comparison, and how performance signals could become immediately legible.",
+            items: [{ src: `${ECONISCORE_ASSET}/02_1200.png`, alt: "Econiscore company and vendor dashboard design directions" }],
+          },
+          {
+            heading: "Vendor Visualization Exploration",
+            description: "Alternative chart forms tested how third-party vendor impact could be compared without losing technical context.",
+            items: [{ src: `${ECONISCORE_ASSET}/03_1200.png`, alt: "Econiscore vendor visualization explorations" }],
+          },
+          {
+            heading: "Dashboard",
+            description: "A consolidated dashboard brought rankings, movement, vendor performance, and improvement opportunities into one view.",
+            items: [{ src: `${ECONISCORE_ASSET}/04_1000.png`, alt: "Econiscore dashboard overview" }],
+          },
+          {
+            heading: "Company — Summary",
+            description: "The company summary paired performance grades with trends, metrics, and peer context.",
+            items: [{ src: `${ECONISCORE_ASSET}/05_1000.png`, alt: "Econiscore company summary dashboard" }],
+          },
+          {
+            heading: "Company — Chart",
+            description: "Focused chart views made changes over time and comparison points easier to investigate.",
+            items: [{ src: `${ECONISCORE_ASSET}/06_1000.png`, alt: "Econiscore company chart view" }],
+          },
+          {
+            heading: "Company — Vendor",
+            description: "Vendor analysis connected third-party services to measurable performance impact.",
+            items: [{ src: `${ECONISCORE_ASSET}/07_1000.png`, alt: "Econiscore company vendor analysis" }],
+          },
+          {
+            heading: "Company — Network Request",
+            description: "Network-request views exposed the technical contributors behind a site’s overall score.",
+            items: [{ src: `${ECONISCORE_ASSET}/08_1000.png`, alt: "Econiscore company network request analysis" }],
+          },
+          {
+            heading: "Vendor — Summary",
+            description: "Vendor summaries provided consistent cross-company visibility into third-party performance.",
+            items: [{ src: `${ECONISCORE_ASSET}/09_1000.png`, alt: "Econiscore vendor summary and reporting screens" }],
+          },
+          {
+            heading: "Design Spec",
+            description: "The final specification documented interface patterns and supporting visual-system decisions.",
+            items: [{ src: `${ECONISCORE_ASSET}/10_1200.png`, alt: "Econiscore design specification and supporting brand explorations" }],
+          },
         ],
       },
     },
