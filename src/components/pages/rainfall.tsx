@@ -34,7 +34,7 @@ const CONTENT: ProjectCaseStudyContent = {
           ],
         },
       ],
-      highlightsLabel: "What MSDO delivered",
+      highlightsLabel: "Deliverables",
       highlights: [
         "Positioning and category narrative",
         "Website brand, design system, and development oversight",
