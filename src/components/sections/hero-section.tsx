@@ -22,7 +22,7 @@ interface HeroSectionProps {
 export default function HeroSection({
   headline = "Product design for ambitious ideas and emerging technology.",
   subcopy = "MSDO is a strategic product and design studio building applied AI products for the real world — from product strategy and UX through end-to-end design across web, mobile, and emerging platforms.",
-  primaryCtaLabel = "Start a project",
+  primaryCtaLabel = "Let's talk",
   primaryCtaHref = CONTACT_HREF,
   secondaryCtaLabel = "Explore selected work",
   secondaryCtaHref = "#work",

@@ -27,7 +27,7 @@ export default function Navbar({
           <a href="/#services" className="nav__link hidden text-sm text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline">Services</a>
           <a href={aboutHref} className="nav__link hidden text-sm text-ploy-text-secondary transition-colors hover:text-ploy-text-primary md:inline">About</a>
           <a href={contactHref} className="nav__cta inline-flex min-h-9 items-center rounded-full bg-ploy-button-primary-background px-4 text-sm font-medium text-ploy-button-primary-text transition-transform duration-300 hover:scale-[1.03]">
-            Start a project
+            Let's talk
           </a>
         </div>
       </nav>

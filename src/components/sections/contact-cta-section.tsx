@@ -12,7 +12,7 @@ import { Reveal } from "@/components/ui/reveal";
  */
 interface ContactCtaSectionProps { heading?: string; ctaLabel?: string; href?: string; }
 
-export default function ContactCtaSection({ heading = "Have an ambitious idea? Let's make it real.", ctaLabel = "Start a project", href = CONTACT_HREF }: ContactCtaSectionProps) {
+export default function ContactCtaSection({ heading = "Have an ambitious idea? Let's make it real.", ctaLabel = "Let's talk", href = CONTACT_HREF }: ContactCtaSectionProps) {
   return (
     <section className="contact bg-ploy-background-primary px-5 py-10 sm:px-8 lg:px-10">
       <Reveal className="contact__inner mx-auto flex min-h-[70vh] max-w-[92rem] flex-col items-center justify-center rounded-xl bg-ploy-background-secondary px-6 py-24 text-center sm:px-10">

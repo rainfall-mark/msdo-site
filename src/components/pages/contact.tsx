@@ -19,7 +19,7 @@ export default function ContactPage() {
       <div className="msdo-home light min-h-screen bg-ploy-background-primary text-ploy-text-primary">
         <Navbar aboutHref="/about" contactHref="/contact" />
         <main>
-          <CaseStudyHeroSection eyebrow="Start a project / MSDO" title="Let’s make something real." summary="Tell me a little about what you’re building, where you are in the process, and how MSDO might help." variant="editorial" />
+          <CaseStudyHeroSection eyebrow="Let's talk / MSDO" title="Let’s make something real." summary="Tell me a little about what you’re building, where you are in the process, and how MSDO might help." variant="editorial" />
           <ContactFormSection />
         </main>
         <Footer aboutHref="/about" contactHref="/contact" />
