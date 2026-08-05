@@ -42,13 +42,19 @@ const CONTENT: ProjectCaseStudyContent = {
         "R.1 mobile product strategy, UX, and component system",
       ],
       media: {
-        items: [
-          { src: `${RAINFALL_ASSET}/01_Home_1000.png`, alt: "Rainfall homepage" },
-          { src: `${RAINFALL_ASSET}/02_About_1000.png`, alt: "Rainfall about page" },
-          { src: `${RAINFALL_ASSET}/03_News_1000.png`, alt: "Rainfall news page" },
-          { src: `${RAINFALL_ASSET}/04_Details_1000.png`, alt: "Rainfall product details page" },
-          { src: `${RAINFALL_ASSET}/05_Resources_1000.png`, alt: "Rainfall resources page" },
-          { src: `${RAINFALL_ASSET}/06_Contact_1000.png`, alt: "Rainfall contact page" },
+        groups: [
+          {
+            heading: "Website",
+            description: "The website carried Rainfall’s AI Coherence story from its core vision into company context, product detail, resources, news, and contact pathways.",
+            items: [
+              { src: `${RAINFALL_ASSET}/01_Home_1000.png`, alt: "Rainfall homepage" },
+              { src: `${RAINFALL_ASSET}/02_About_1000.png`, alt: "Rainfall about page" },
+              { src: `${RAINFALL_ASSET}/03_News_1000.png`, alt: "Rainfall news page" },
+              { src: `${RAINFALL_ASSET}/04_Details_1000.png`, alt: "Rainfall product details page" },
+              { src: `${RAINFALL_ASSET}/05_Resources_1000.png`, alt: "Rainfall resources page" },
+              { src: `${RAINFALL_ASSET}/06_Contact_1000.png`, alt: "Rainfall contact page" },
+            ],
+          },
         ],
       },
     },

@@ -9,7 +9,7 @@ interface CaseStudyMediaSectionProps { label?: string; heading?: string; items?:
  * @ployComponentId case-study-media-section
  * @ployComponentType section
  * @ployComponentPattern media
- * @ployComponentDescription Natural-height project-media section that supports one continuous image stack or titled media chapters with short descriptions, responsive columns, and no artificial framing.
+ * @ployComponentDescription Natural-height project-media section that supports one continuous image stack or titled media chapters with short descriptions, a consistent single-column layout, and no artificial framing.
  * @ployComponentTags case-study media imagery gallery studio editorial
  * @ployComponentStatus stable
  */
@@ -17,9 +17,9 @@ export default function CaseStudyMediaSection({ label, heading, items = [], grou
   if (!items.length && !groups.length) return null;
 
   const renderItems = (mediaItems: CaseStudyMediaItem[]) => (
-    <div className={mediaItems.length > 1 ? "columns-1 gap-5 md:columns-2 lg:gap-8" : ""}>
+    <div className="space-y-12 sm:space-y-16 lg:space-y-20">
       {mediaItems.map((item, index) => (
-        <Reveal key={`${item.src}-${index}`} className={mediaItems.length > 1 ? "mb-12 break-inside-avoid sm:mb-16 lg:mb-20" : ""}>
+        <Reveal key={`${item.src}-${index}`}>
           <figure>
             <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
             {item.caption && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">{item.caption}</figcaption>}
