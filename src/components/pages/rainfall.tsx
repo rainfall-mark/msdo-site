@@ -24,6 +24,7 @@ const CONTENT: ProjectCaseStudyContent = {
           lead: "A new AI category without an existing mental model.",
           paragraphs: [
             "Rainfall combined Personal AI, privacy, ownership, and agent governance. The challenge was explaining it without reducing the idea to another assistant, privacy app, or Web3 product.",
+            "The story also needed to work for users, developers, and investors while connecting an abstract governance layer to tangible experiences across web and mobile.",
           ],
         },
         {
