@@ -6,7 +6,7 @@ const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Applied AI",
   title: "Rainfall",
   summary: "Defining and designing a new category — AI Coherence and self-sovereign Personal AI — across a category-defining website and an on-device, privacy-first mobile product for the agentic era.",
-  heroImage: `${RAINFALL_ASSET}/Overview_1200_1200.png`,
+  heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/4e6a6a97-slurp-prt-218x146-1774545511.webp",
   meta: [
     { label: "Role", value: "Strategy, Branding, UX & Product Design, Design Systems" },
     { label: "Timeline", value: "2023 – 2025" },
