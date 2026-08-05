@@ -17,9 +17,9 @@ export default function CaseStudyMediaSection({ label, heading, items = [] }: Ca
 
   return (
     <section className="cs-media bg-ploy-background-primary py-16 sm:py-24 lg:py-28">
-      <div className="mx-auto max-w-[100rem]">
+      <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-10">
         {(label || heading) && (
-          <Reveal className="mb-10 max-w-3xl px-5 sm:px-8 lg:px-10">
+          <Reveal className="mb-10 max-w-3xl">
             {label && <p className="text-sm text-ploy-text-secondary">{label}</p>}
             {heading && <h2 className="mt-4 font-heading text-4xl font-semibold tracking-[-0.045em] text-ploy-text-primary sm:text-6xl">{heading}</h2>}
           </Reveal>
@@ -29,7 +29,7 @@ export default function CaseStudyMediaSection({ label, heading, items = [] }: Ca
             <Reveal key={`${item.src}-${index}`}>
               <figure>
                 <img src={item.src} alt={item.alt} loading="lazy" className="block h-auto w-full" />
-                {item.caption && <figcaption className="mx-auto mt-4 max-w-[92rem] px-5 text-sm leading-relaxed text-ploy-text-secondary sm:px-8 lg:px-10">{item.caption}</figcaption>}
+                {item.caption && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">{item.caption}</figcaption>}
               </figure>
             </Reveal>
           ))}
