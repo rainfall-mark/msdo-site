@@ -2,15 +2,16 @@ import { MotionConfig } from "motion/react";
 import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
 import CaseStudyHeroSection, { type CaseStudyMeta } from "../sections/case-study-hero-section";
-import CaseStudyNarrativeSection from "../sections/case-study-narrative-section";
+import CaseStudyNarrativeSection, { type CaseStudyNarrativeBlock } from "../sections/case-study-narrative-section";
 import CaseStudyMediaSection, { type CaseStudyMediaItem } from "../sections/case-study-media-section";
-import NextProjectSection from "../sections/next-project-section";
+import NextProjectSection, { type RelatedProject } from "../sections/next-project-section";
 import ContactCtaSection from "../sections/contact-cta-section";
 
 export interface ProjectCaseStudyChapter {
   label: string;
   lead?: string;
   paragraphs?: string[];
+  blocks?: CaseStudyNarrativeBlock[];
   highlights?: string[];
   highlightsLabel?: string;
   media?: { label?: string; heading?: string; items: CaseStudyMediaItem[]; };
@@ -23,7 +24,7 @@ export interface ProjectCaseStudyContent {
   heroImage?: string;
   meta: CaseStudyMeta[];
   chapters: ProjectCaseStudyChapter[];
-  nextProject: { name: string; href: string; tags: string[] };
+  relatedProjects: RelatedProject[];
 }
 
 /**
@@ -31,28 +32,28 @@ export interface ProjectCaseStudyContent {
  * @ployComponentId project-case-study-template
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Reusable light editorial MSDO project template. Accepts typed hero metadata, alternating narrative and large-media chapters, next-project navigation, shared contact CTA, and adaptive site chrome.
+ * @ployComponentDescription Reusable light editorial MSDO project template with project-first hero content, compact narrative chapters, natural-height media stacks, related-project thumbnails, shared contact CTA, and adaptive site chrome.
  * @ployComponentTags project case-study portfolio template light editorial
  * @ployComponentStatus stable
  */
 export default function ProjectCaseStudyTemplate({ content }: { content: ProjectCaseStudyContent }) {
   return (
     <MotionConfig reducedMotion="user">
-    <div className="msdo-home light min-h-screen bg-ploy-background-primary text-ploy-text-primary">
-      <Navbar aboutHref="/about" />
-      <main>
-        <CaseStudyHeroSection eyebrow={content.eyebrow} title={content.title} summary={content.summary} backgroundImage={content.heroImage} meta={content.meta} variant="editorial" />
-        {content.chapters.map((chapter, index) => (
-          <div key={`${chapter.label}-${index}`}>
-            <CaseStudyNarrativeSection label={chapter.label} lead={chapter.lead} paragraphs={chapter.paragraphs} highlights={chapter.highlights} highlightsLabel={chapter.highlightsLabel} />
-            {chapter.media && <CaseStudyMediaSection label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} />}
-          </div>
-        ))}
-        <NextProjectSection name={content.nextProject.name} href={content.nextProject.href} tags={content.nextProject.tags} />
-        <ContactCtaSection />
-      </main>
-      <Footer aboutHref="/about" />
-    </div>
+      <div className="msdo-home light min-h-screen bg-ploy-background-primary text-ploy-text-primary">
+        <Navbar aboutHref="/about" />
+        <main>
+          <CaseStudyHeroSection eyebrow={content.eyebrow} title={content.title} summary={content.summary} backgroundImage={content.heroImage} meta={content.meta} variant="editorial" />
+          {content.chapters.map((chapter, index) => (
+            <div key={`${chapter.label}-${index}`}>
+              <CaseStudyNarrativeSection label={chapter.label} lead={chapter.lead} paragraphs={chapter.paragraphs} blocks={chapter.blocks} highlights={chapter.highlights} highlightsLabel={chapter.highlightsLabel} />
+              {chapter.media && <CaseStudyMediaSection label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} />}
+            </div>
+          ))}
+          <NextProjectSection projects={content.relatedProjects} />
+          <ContactCtaSection />
+        </main>
+        <Footer aboutHref="/about" />
+      </div>
     </MotionConfig>
   );
 }
