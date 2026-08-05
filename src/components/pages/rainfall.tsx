@@ -7,7 +7,7 @@ const RELATED_PROJECT_NAMES = new Set(["Econiscore", "Coinboost", "Truvalue Webs
 const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Applied AI",
   title: "Rainfall",
-  summary: "Defining and designing a new category — AI Coherence and self-sovereign Personal AI — across a category-defining website and an on-device, privacy-first mobile product for the agentic era.",
+  summary: "Positioning and designing Rainfall’s AI Coherence platform across a category-defining website and privacy-first mobile product.",
   heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/4e6a6a97-slurp-prt-218x146-1774545511.webp",
   meta: [
     { label: "Role", value: "Strategy, Branding, UX & Product Design, Design Systems" },
@@ -21,28 +21,24 @@ const CONTENT: ProjectCaseStudyContent = {
       blocks: [
         {
           heading: "Challenge",
-          lead: "Rainfall introduced a category that didn't map to any existing mental model — neither AI assistant, data-privacy app, nor Web3 wallet.",
+          lead: "A new AI category without an existing mental model.",
           paragraphs: [
-            "Rainfall set out to build the self-sovereign governance layer for the agentic era: AI Coherence and Personal AI that stays private, owned, and aligned to the individual it serves. The concept was genuinely new — and it didn't fit how people already thought about AI.",
-            "Early website iterations leaned on familiar narratives around data privacy, ownership, and monetization. Those framings felt safe but blunted differentiation, and failed to convey Rainfall as foundational infrastructure for an autonomous-agent economy.",
+            "Rainfall combined Personal AI, privacy, ownership, and agent governance. The challenge was explaining it without reducing the idea to another assistant, privacy app, or Web3 product.",
           ],
         },
         {
           heading: "Approach",
-          lead: "Distill a complex, evolving concept into one clear, future-facing story — then express it consistently from high-level vision down to product architecture.",
+          lead: "Turn a complex system into one clear story.",
           paragraphs: [
-            "The work evolved through multiple iterations into a focused storytelling platform. Each version simplified the story and shifted positioning away from a data-centric message toward a category-defining AI Coherence narrative — strengthening the case around reliability, identity, and governance for autonomous systems.",
-            "The final design introduced a more opinionated, future-facing narrative supported by a clean, minimal visual system and a modular structure — enabling clear communication from the high-level vision through to the product architecture, and establishing Rainfall as foundational infrastructure for the agentic era.",
+            "We focused the positioning around AI Coherence, then created a minimal visual and modular design system that could carry the idea from high-level vision to product detail.",
           ],
         },
       ],
       highlightsLabel: "What MSDO delivered",
       highlights: [
-        "Positioning & category narrative — from data-centric to AI Coherence",
-        "Brand & minimal visual system for rainfall.one",
-        "Website design + development oversight (2023–2025)",
-        "R.1 mobile product strategy, UX & product design",
-        "On-device Personal AI design system & component library",
+        "Positioning and category narrative",
+        "Website brand, design system, and development oversight",
+        "R.1 mobile product strategy, UX, and component system",
       ],
       media: {
         label: "Selected screens",
@@ -59,10 +55,9 @@ const CONTENT: ProjectCaseStudyContent = {
     },
     {
       label: "Outcome / 02",
-      lead: "A clear, ownable story and a shipping product that prove a private, self-sovereign alternative to cloud-centric AI is real.",
+      lead: "A clear story and product foundation for self-sovereign AI.",
       paragraphs: [
-        "The website now communicates a single, confident narrative — AI Coherence for the agentic era — that holds up across users, developers, and investors, and positions Rainfall as a governance layer rather than another privacy app.",
-        "Together the work gave Rainfall a coherent identity and product foundation to keep building on as it scales self-sovereign AI coherence for autonomous systems.",
+        "Rainfall now has a coherent identity, focused AI Coherence narrative, and scalable foundation across web and mobile.",
       ],
     },
   ],
