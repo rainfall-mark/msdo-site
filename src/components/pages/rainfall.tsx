@@ -35,7 +35,7 @@ const CONTENT: ProjectCaseStudyContent = {
           ],
         },
       ],
-      highlightsLabel: "Deliverables",
+      highlightsLabel: "The work included:",
       highlights: [
         "Positioning and category narrative",
         "Website brand, design system, and development oversight",

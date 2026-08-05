@@ -28,10 +28,10 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
                   {block.lead && <p className="mt-5 font-heading text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-ploy-text-primary sm:text-3xl">{block.lead}</p>}
                   {block.paragraphs && block.paragraphs.length > 0 && <div className="mt-6 space-y-5">{block.paragraphs.map((paragraph, index) => <p key={index} className="text-base leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
                   {blockIndex === blocks.length - 1 && highlights && highlights.length > 0 && (
-                    <div className="mt-8">
-                      <h3 className="text-sm font-medium text-ploy-text-primary">{highlightsLabel ?? "Deliverables"}</h3>
-                      <ul className="mt-4 border-t border-ploy-border-primary">
-                        {highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-3 text-base font-medium leading-snug text-ploy-text-primary">{item}</li>)}
+                    <div className="mt-6 text-base leading-relaxed text-ploy-text-secondary">
+                      <p>{highlightsLabel ?? "The work included:"}</p>
+                      <ul className="mt-3 list-disc space-y-2 pl-5">
+                        {highlights.map((item) => <li key={item}>{item}</li>)}
                       </ul>
                     </div>
                   )}
