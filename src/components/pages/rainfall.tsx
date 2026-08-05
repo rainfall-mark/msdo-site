@@ -17,7 +17,7 @@ const CONTENT: ProjectCaseStudyContent = {
   ],
   chapters: [
     {
-      label: "Challenge + Approach / 01",
+      label: "Challenge + Approach",
       blocks: [
         {
           heading: "Challenge",
@@ -42,8 +42,6 @@ const CONTENT: ProjectCaseStudyContent = {
         "R.1 mobile product strategy, UX, and component system",
       ],
       media: {
-        label: "Selected screens",
-        heading: "A modular story from vision to product detail",
         items: [
           { src: `${RAINFALL_ASSET}/01_Home_1000.png`, alt: "Rainfall homepage" },
           { src: `${RAINFALL_ASSET}/02_About_1000.png`, alt: "Rainfall about page" },
@@ -55,7 +53,7 @@ const CONTENT: ProjectCaseStudyContent = {
       },
     },
     {
-      label: "Outcome / 02",
+      label: "Outcome",
       lead: "A clear story and product foundation for self-sovereign AI.",
       paragraphs: [
         "Rainfall now has a coherent identity, focused AI Coherence narrative, and scalable foundation across web and mobile.",
