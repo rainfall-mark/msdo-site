@@ -26,9 +26,9 @@ export default function CaseStudyMediaSection({ label, heading, items = [] }: Ca
         )}
         <div className="columns-1 gap-5 md:columns-2 lg:gap-8">
           {items.map((item, index) => (
-            <Reveal key={`${item.src}-${index}`} className="mb-5 break-inside-avoid lg:mb-8">
+            <Reveal key={`${item.src}-${index}`} className="mb-12 break-inside-avoid sm:mb-16 lg:mb-20">
               <figure>
-                <img src={item.src} alt={item.alt} loading="lazy" className="block h-auto w-full" />
+                <img src={item.src} alt={item.alt} loading="lazy" className="block h-auto w-full rounded-xl" />
                 {item.caption && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">{item.caption}</figcaption>}
               </figure>
             </Reveal>
