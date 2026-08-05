@@ -23,7 +23,7 @@ export default function NextProjectSection({ label = "More projects", projects =
           {projects.slice(0, 3).map((project) => (
             <a key={project.name} href={project.href} className="group block">
               <div className="aspect-[4/3] overflow-hidden rounded-xl bg-ploy-background-secondary">
-                <img src={project.image} alt={`${project.name} project preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
+                <img src={project.image} alt={`${project.name} project preview`} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" />
               </div>
               <h2 className="mt-4 font-heading text-2xl font-semibold tracking-[-0.03em] text-ploy-text-primary">{project.name}</h2>
               <p className="mt-1 text-sm text-ploy-text-secondary">{project.tags.join(" · ")}</p>

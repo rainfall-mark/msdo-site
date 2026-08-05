@@ -20,7 +20,7 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
     <section className={`cs-hero relative overflow-hidden bg-ploy-background-primary px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:px-10 ${editorial ? "" : "flex min-h-screen items-end"}`}>
       {backgroundImage && !editorial && (
         <div className="cs-hero__visual absolute inset-0">
-          <img src={backgroundImage} alt="" aria-hidden="true" className="h-full w-full object-cover opacity-70" />
+          <img src={backgroundImage} alt="" aria-hidden="true" decoding="async" className="h-full w-full object-cover opacity-70" />
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ploy-background-primary via-ploy-background-primary/70 to-ploy-background-primary/30" />
         </div>
       )}
@@ -37,7 +37,7 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
 
         {backgroundImage && editorial && (
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.28 }} className="cs-hero__cover mt-12 aspect-[16/7] w-full overflow-hidden rounded-xl bg-ploy-background-secondary sm:mt-16">
-            <img src={backgroundImage} alt="" aria-hidden="true" className="h-full w-full object-cover" />
+            <img src={backgroundImage} alt="" aria-hidden="true" decoding="async" fetchPriority="high" className="h-full w-full object-cover" />
           </motion.div>
         )}
       </div>
