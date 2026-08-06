@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../layouts/CaseStudyRouteLayout.astro";
+import RainfallMobilePage from "../components/pages/rainfall-mobile";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="Rainfall Mobile — Self-Sovereign Personal Intelligence | MSDO Case Study"
+  description="How MSDO designed Rainfall R.1 Beta, a privacy-first Personal Intelligence mobile platform built from a user's own data and kept entirely on-device."
+  image="https://payload.cargocollective.com/1/0/18737/14275059/R.1_01_1200.png"
+  name="Rainfall Mobile — Self-Sovereign Personal Intelligence"
+  about="Product strategy, UX design, product design, and design systems for Rainfall R.1 Beta"
+  dateCreated="2024"
+  keywords="personal AI product design, on-device AI, privacy-first AI, mobile UX, self-sovereign AI"
+  path="/rainfall-mobile"
+>
+  <RainfallMobilePage client:load />
+</CaseStudyRouteLayout>
