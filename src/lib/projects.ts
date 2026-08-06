@@ -23,7 +23,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: "Rainfall Mobile",
-    href: "/rainfall",
+    href: "https://msdo.us/Rainfall-Mobile",
     tags: ["AI", "Web3"],
     image: `${ASSET_BASE}/9e439195-slurp-prt-218x146-1782021406.webp`,
   },
