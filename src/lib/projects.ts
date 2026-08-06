@@ -77,6 +77,13 @@ export const PROJECTS: Project[] = [
   },
 ];
 
+const HIDDEN_PROJECT_NAMES = new Set(["Rainfall Website", "Truvalue Website"]);
+
+/** Projects currently shown in portfolio grids and related-work sections. */
+export const VISIBLE_PROJECTS = PROJECTS.filter(
+  (project) => !HIDDEN_PROJECT_NAMES.has(project.name),
+);
+
 /** Primary contact destination, preserved from the original site nav. */
 export const CONTACT_HREF = "/contact";
 export const ABOUT_HREF = "/about";

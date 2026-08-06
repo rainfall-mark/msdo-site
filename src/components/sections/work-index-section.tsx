@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { VISIBLE_PROJECTS, type Project } from "@/lib/projects";
 import { Reveal } from "@/components/ui/reveal";
 
 /**
@@ -16,7 +16,7 @@ interface WorkIndexSectionProps {
   projects?: Project[];
 }
 
-export default function WorkIndexSection({ heading = "Selected work", projects = PROJECTS }: WorkIndexSectionProps) {
+export default function WorkIndexSection({ heading = "Selected work", projects = VISIBLE_PROJECTS }: WorkIndexSectionProps) {
   return (
     <section id="work" className="work scroll-mt-20 bg-ploy-background-primary px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
       <div className="work__inner mx-auto max-w-[92rem]">

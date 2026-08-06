@@ -1,9 +1,9 @@
-import { PROJECTS } from "@/lib/projects";
+import { VISIBLE_PROJECTS } from "@/lib/projects";
 import type { ProjectCaseStudyContent } from "./project-case-study";
 
 const relatedProjects = (names: string[]) => {
   const selected = new Set(names);
-  return PROJECTS.filter((project) => selected.has(project.name));
+  return VISIBLE_PROJECTS.filter((project) => selected.has(project.name));
 };
 
 export const PORTFOLIO_CASE_STUDIES = {
@@ -107,7 +107,7 @@ export const PORTFOLIO_CASE_STUDIES = {
         paragraphs: ["The website brought Truvalue’s solutions, products, thought leadership, and ESG expertise into one coherent system."],
       },
     ],
-    relatedProjects: relatedProjects(["Truvalue Platform", "Econiscore", "Rainfall Website", "Truvalue Wealth"]),
+    relatedProjects: relatedProjects(["Truvalue Platform", "Econiscore", "Coinboost", "Truvalue Wealth"]),
   },
 
   truvaluePlatform: {
@@ -158,7 +158,7 @@ export const PORTFOLIO_CASE_STUDIES = {
         paragraphs: ["The system made timely ESG signals easier to explore across companies, sectors, and portfolios."],
       },
     ],
-    relatedProjects: relatedProjects(["Truvalue Website", "Truvalue Wealth", "Econiscore", "Coinboost"]),
+    relatedProjects: relatedProjects(["Rainfall Mobile", "Truvalue Wealth", "Econiscore", "Coinboost"]),
   },
 
   truvalueWealth: {
@@ -189,7 +189,7 @@ export const PORTFOLIO_CASE_STUDIES = {
       },
       { label: "Outcome", lead: "A cohesive concept for values-aligned wealth conversations.", paragraphs: ["The experience connected ESG intelligence, portfolio context, investable products, and education in one advisory tool." ] },
     ],
-    relatedProjects: relatedProjects(["Truvalue Platform", "Coinboost", "LaterPay", "Truvalue Website"]),
+    relatedProjects: relatedProjects(["Truvalue Platform", "Coinboost", "LaterPay", "Rainfall Mobile"]),
   },
 
   slalome: {
