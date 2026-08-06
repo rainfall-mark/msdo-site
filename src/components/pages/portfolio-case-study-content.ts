@@ -11,7 +11,7 @@ export const PORTFOLIO_CASE_STUDIES = {
     eyebrow: "Case study · Crypto portfolio management",
     title: "Coinboost",
     summary: "Designing a mobile trading experience that made diversified crypto portfolio management more approachable.",
-    heroImage: "https://payload.cargocollective.com/1/0/18737/13748387/cover_1200_5_1200.png",
+    heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/974704c3-coinboost-hero.webp",
     meta: [
       { label: "Role", value: "Product Strategy, UX/UI Design, Prototyping" },
       { label: "Date", value: "2021" },
@@ -44,7 +44,7 @@ export const PORTFOLIO_CASE_STUDIES = {
             {
               heading: "Mobile App",
               description: "The concept covered onboarding, fund selection, portfolio performance, allocation, activity, and account controls.",
-              items: [{ src: "https://payload.cargocollective.com/1/0/18737/13748387/Coinboost_all_1200_1200.png", alt: "Coinboost mobile application screens" }],
+              items: [{ src: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/9c7d8930-coinboost-core.webp", alt: "Coinboost mobile application screens" }],
             },
           ],
         },

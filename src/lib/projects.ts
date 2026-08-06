@@ -7,7 +7,7 @@ export interface Project {
   name: string;
   href: string;
   tags: string[];
-  /** Slurped project thumbnail (218x146 source), reused as the hover preview. */
+  /** Project thumbnail reused across portfolio and related-project previews. */
   image: string;
 }
 
@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     name: "Coinboost",
     href: "/coinboost",
     tags: ["Mobile", "Blockchain", "Cryptocurrency"],
-    image: `${ASSET_BASE}/a574d938-slurp-prt-218x146-1566081304.webp`,
+    image: `${ASSET_BASE}/763b234d-coinboost-thumbnail.webp`,
   },
   {
     name: "Truvalue Website",
