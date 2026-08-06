@@ -31,7 +31,7 @@ export const PROJECTS: Project[] = [
     name: "Econiscore",
     href: "/econiscore",
     tags: ["Web App"],
-    image: `${ASSET_BASE}/88c3c0f1-econify-performance.webp`,
+    image: `${ASSET_BASE}/fa5ed38d-econify-performance.webp`,
   },
   {
     name: "Coinboost",
