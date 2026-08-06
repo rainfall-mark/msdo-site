@@ -2,7 +2,7 @@ import { PROJECTS } from "@/lib/projects";
 import ProjectCaseStudyTemplate, { type ProjectCaseStudyContent } from "./project-case-study";
 
 const RAINFALL_ASSET = "https://payload.cargocollective.com/1/0/18737/14634126";
-const RELATED_PROJECT_NAMES = new Set(["Econiscore", "Coinboost", "Truvalue Website"]);
+const RELATED_PROJECT_NAMES = new Set(["Econiscore", "Coinboost", "Truvalue Website", "Truvalue Platform"]);
 
 const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Applied AI",

@@ -55,7 +55,7 @@ export const PORTFOLIO_CASE_STUDIES = {
         paragraphs: ["The experience connected portfolio selection, monitoring, and rebalancing guidance in one approachable system."],
       },
     ],
-    relatedProjects: relatedProjects(["Econiscore", "Truvalue Wealth", "Slalome"]),
+    relatedProjects: relatedProjects(["Econiscore", "Truvalue Wealth", "Slalome", "LaterPay"]),
   },
 
   truvalueWebsite: {
@@ -107,7 +107,7 @@ export const PORTFOLIO_CASE_STUDIES = {
         paragraphs: ["The website brought Truvalue’s solutions, products, thought leadership, and ESG expertise into one coherent system."],
       },
     ],
-    relatedProjects: relatedProjects(["Truvalue Platform", "Econiscore", "Rainfall Website"]),
+    relatedProjects: relatedProjects(["Truvalue Platform", "Econiscore", "Rainfall Website", "Truvalue Wealth"]),
   },
 
   truvaluePlatform: {
@@ -158,7 +158,7 @@ export const PORTFOLIO_CASE_STUDIES = {
         paragraphs: ["The system made timely ESG signals easier to explore across companies, sectors, and portfolios."],
       },
     ],
-    relatedProjects: relatedProjects(["Truvalue Website", "Truvalue Wealth", "Econiscore"]),
+    relatedProjects: relatedProjects(["Truvalue Website", "Truvalue Wealth", "Econiscore", "Coinboost"]),
   },
 
   truvalueWealth: {
@@ -189,7 +189,7 @@ export const PORTFOLIO_CASE_STUDIES = {
       },
       { label: "Outcome", lead: "A cohesive concept for values-aligned wealth conversations.", paragraphs: ["The experience connected ESG intelligence, portfolio context, investable products, and education in one advisory tool." ] },
     ],
-    relatedProjects: relatedProjects(["Truvalue Platform", "Coinboost", "LaterPay"]),
+    relatedProjects: relatedProjects(["Truvalue Platform", "Coinboost", "LaterPay", "Truvalue Website"]),
   },
 
   slalome: {
@@ -220,7 +220,7 @@ export const PORTFOLIO_CASE_STUDIES = {
       },
       { label: "Outcome", lead: "A collaboration concept with the goal always in view.", paragraphs: ["The experience gave teams one contextual flow for planning, communication, progress, and shared acknowledgment of completed work."] },
     ],
-    relatedProjects: relatedProjects(["LaterPay", "Wickr", "Coinboost"]),
+    relatedProjects: relatedProjects(["LaterPay", "Wickr", "Coinboost", "Truvalue Wealth"]),
   },
 
   laterpay: {
@@ -255,7 +255,7 @@ export const PORTFOLIO_CASE_STUDIES = {
       },
       { label: "Outcome", lead: "A streamlined mobile concept for monetized publishing.", paragraphs: ["The experience extended the LaterPay brand into a clear workflow for creating, distributing, and managing paid content."] },
     ],
-    relatedProjects: relatedProjects(["Slalome", "Wickr", "Truvalue Wealth"]),
+    relatedProjects: relatedProjects(["Slalome", "Wickr", "Truvalue Wealth", "Coinboost"]),
   },
 
   wickr: {
@@ -288,6 +288,6 @@ export const PORTFOLIO_CASE_STUDIES = {
       },
       { label: "Outcome", lead: "Three distinct paths to mainstream private communication.", paragraphs: ["The concepts demonstrated how Wickr’s secure foundation could support publishing, photo sharing, and messaging without giving up user control."] },
     ],
-    relatedProjects: relatedProjects(["Slalome", "LaterPay", "Coinboost"]),
+    relatedProjects: relatedProjects(["Slalome", "LaterPay", "Coinboost", "Truvalue Wealth"]),
   },
 } satisfies Record<string, ProjectCaseStudyContent>;
