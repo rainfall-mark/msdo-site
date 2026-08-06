@@ -9,6 +9,8 @@ const description =
   "How MSDO defined and designed Rainfall — a category-defining AI Coherence website and an on-device, privacy-first Personal AI mobile product (R.1) for the agentic era.";
 const ogImage =
   "https://payload.cargocollective.com/1/0/18737/14634126/Overview_1200_1200.png";
+const heroImage =
+  "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/4e6a6a97-slurp-prt-218x146-1774545511.webp";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -26,6 +28,7 @@ const jsonLd = {
 
 <Layout title={title} description={description} type="article" image={ogImage} jsonLd={jsonLd}>
   <Fragment slot="head">
+    <link rel="preload" as="image" href={heroImage} fetchpriority="high" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
   </Fragment>
