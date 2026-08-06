@@ -8,7 +8,7 @@ const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Applied AI",
   title: "Rainfall",
   summary: "Positioning and designing Rainfall’s AI Coherence platform across a category-defining website and privacy-first mobile product.",
-  heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/4e6a6a97-slurp-prt-218x146-1774545511.webp",
+  heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/d297aa17-rainfall-website.webp",
   meta: [
     { label: "Role", value: "Strategy, Branding, UX & Product Design, Design Systems" },
     { label: "Timeline", value: "2023 – 2025" },

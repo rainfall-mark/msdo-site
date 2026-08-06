@@ -1,6 +1,6 @@
 /**
  * MSDO selected work. Preserved from the original msdo.us site (project names,
- * links, tags, and slurped thumbnail images) so the redesigned homepage stays
+ * links, tags, and high-resolution project thumbnails) so the redesigned homepage stays
  * factually true to the studio's real portfolio.
  */
 export interface Project {
@@ -19,61 +19,61 @@ export const PROJECTS: Project[] = [
     name: "Rainfall Website",
     href: "/rainfall",
     tags: ["Website", "AI", "Web3"],
-    image: `${ASSET_BASE}/4e6a6a97-slurp-prt-218x146-1774545511.webp`,
+    image: `${ASSET_BASE}/d297aa17-rainfall-website.webp`,
   },
   {
     name: "Rainfall Mobile",
     href: "https://msdo.us/Rainfall-Mobile",
     tags: ["AI", "Web3"],
-    image: `${ASSET_BASE}/9e439195-slurp-prt-218x146-1782021406.webp`,
+    image: `${ASSET_BASE}/e1421a7d-rainfall-mobile.webp`,
   },
   {
     name: "Econiscore",
     href: "/econiscore",
     tags: ["Web App"],
-    image: `${ASSET_BASE}/257c1293-slurp-prt-218x146-1782199686.webp`,
+    image: `${ASSET_BASE}/88c3c0f1-econify-performance.webp`,
   },
   {
     name: "Coinboost",
     href: "/coinboost",
     tags: ["Mobile", "Blockchain", "Cryptocurrency"],
-    image: `${ASSET_BASE}/6ab4513f-prt-218x146-1566081304-2x-3.webp`,
+    image: `${ASSET_BASE}/713ac62a-coinboost.webp`,
   },
   {
     name: "Truvalue Website",
     href: "/truvalue-website",
     tags: ["Web", "AI", "Finance"],
-    image: `${ASSET_BASE}/924e85b0-slurp-prt-218x146-1566081425.webp`,
+    image: `${ASSET_BASE}/48350719-truvalue-website.webp`,
   },
   {
     name: "Truvalue Platform",
     href: "/truvalue-platform",
     tags: ["Web", "AI", "Finance"],
-    image: `${ASSET_BASE}/3b32dc80-slurp-prt-218x146-1566081455.webp`,
+    image: `${ASSET_BASE}/c8bd8ef0-truvalue-platform.webp`,
   },
   {
     name: "Truvalue Wealth",
     href: "/truvalue-wealth",
     tags: ["Mobile", "AI", "Finance"],
-    image: "https://payload.cargocollective.com/1/0/18737/13920931/Wealth_cover_1200_2_1200.png",
+    image: `${ASSET_BASE}/a321b267-truvalue-wealth.webp`,
   },
   {
     name: "Slalome",
     href: "/slalome",
     tags: ["Mobile", "Collaboration"],
-    image: `${ASSET_BASE}/dbe2df1d-slurp-prt-218x146-1566081299.webp`,
+    image: `${ASSET_BASE}/ca8baf5a-slalome.webp`,
   },
   {
     name: "LaterPay",
     href: "/laterpay",
     tags: ["Mobile", "Social"],
-    image: `${ASSET_BASE}/88f708ce-slurp-prt-218x146-1566081241.webp`,
+    image: `${ASSET_BASE}/40de33d1-laterpay.webp`,
   },
   {
     name: "Wickr",
     href: "/wickr",
     tags: ["Mobile", "Social"],
-    image: `${ASSET_BASE}/0047fde1-slurp-prt-218x146-1566081348.webp`,
+    image: `${ASSET_BASE}/fc757ab3-wickr.webp`,
   },
 ];
 
