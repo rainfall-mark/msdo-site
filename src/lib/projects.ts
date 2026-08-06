@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     name: "Truvalue Wealth",
     href: "/truvalue-wealth",
     tags: ["Mobile", "AI", "Finance"],
-    image: `${ASSET_BASE}/8c605c3f-slurp-prt-218x146-1566081254.webp`,
+    image: "https://payload.cargocollective.com/1/0/18737/13920931/Wealth_cover_1200_2_1200.png",
   },
   {
     name: "Slalome",
