@@ -37,7 +37,7 @@ export const PROJECTS: Project[] = [
     name: "Coinboost",
     href: "/coinboost",
     tags: ["Mobile", "Blockchain", "Cryptocurrency"],
-    image: `${ASSET_BASE}/763b234d-coinboost-thumbnail.webp`,
+    image: `${ASSET_BASE}/6ab4513f-prt-218x146-1566081304-2x-3.webp`,
   },
   {
     name: "Truvalue Website",
