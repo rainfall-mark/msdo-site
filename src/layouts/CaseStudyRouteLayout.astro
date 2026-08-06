@@ -28,6 +28,7 @@ const jsonLd = {
 
 <Layout title={title} description={description} type="article" image={image} jsonLd={jsonLd}>
   <Fragment slot="head">
+    <link rel="preload" as="image" href={image} fetchpriority="high" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
   </Fragment>

@@ -1,6 +1,6 @@
 ---
 import "@fontsource-variable/inter";
-import "@fontsource-variable/archivo";
+import interLatinUrl from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2";
 import "../styles/globals.css";
 import { STARTER_VERSION } from "../starter-version";
 import { SEO } from "@/components/seo";
@@ -52,6 +52,7 @@ const imageUrl = resolveUrl(image);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preload" href={interLatinUrl} as="font" type="font/woff2" crossorigin="anonymous" />
     <meta name="generator" content={Astro.generator} />
     <meta name="ploy-astro-starter-version" content={STARTER_VERSION} />
     <SEO

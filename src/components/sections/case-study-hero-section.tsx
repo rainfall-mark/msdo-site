@@ -1,5 +1,3 @@
-import { motion } from "motion/react";
-
 export interface CaseStudyMeta { label: string; value: string; href?: string; }
 interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?: string; backgroundImage?: string; meta?: CaseStudyMeta[]; variant?: "dark" | "editorial"; }
 
@@ -14,7 +12,6 @@ interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?
  */
 export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "Project", summary, backgroundImage, meta = [], variant = "dark" }: CaseStudyHeroSectionProps) {
   const editorial = variant === "editorial";
-  const transition = { duration: 1.2, ease: [0.22, 1, 0.36, 1] as const };
 
   return (
     <section className={`cs-hero relative overflow-hidden bg-ploy-background-primary px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:px-10 ${editorial ? "" : "flex min-h-screen items-end"}`}>
@@ -36,9 +33,9 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
         )}
 
         {backgroundImage && editorial && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.28 }} className="cs-hero__cover mt-12 aspect-[16/7] w-full overflow-hidden rounded-xl bg-ploy-background-secondary sm:mt-16">
-            <img src={backgroundImage} alt="" aria-hidden="true" decoding="async" fetchPriority="high" className="h-full w-full object-cover" />
-          </motion.div>
+          <div className="cs-hero__cover mt-12 aspect-[16/7] w-full overflow-hidden rounded-xl bg-ploy-background-secondary sm:mt-16">
+            <img src={backgroundImage} alt="" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" className="h-full w-full object-cover" />
+          </div>
         )}
       </div>
     </section>
