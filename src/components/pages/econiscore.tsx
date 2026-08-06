@@ -1,8 +1,8 @@
-import { PROJECTS } from "@/lib/projects";
+import { VISIBLE_PROJECTS } from "@/lib/projects";
 import ProjectCaseStudyTemplate, { type ProjectCaseStudyContent } from "./project-case-study";
 
 const ECONISCORE_ASSET = "https://payload.cargocollective.com/1/0/18737/12273661";
-const RELATED_PROJECT_NAMES = new Set(["Rainfall Website", "Coinboost", "Truvalue Website", "Truvalue Platform"]);
+const RELATED_PROJECT_NAMES = new Set(["Rainfall Mobile", "Coinboost", "Truvalue Platform", "Truvalue Wealth"]);
 
 const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Web performance intelligence",
@@ -99,7 +99,7 @@ const CONTENT: ProjectCaseStudyContent = {
       ],
     },
   ],
-  relatedProjects: PROJECTS.filter((project) => RELATED_PROJECT_NAMES.has(project.name)),
+  relatedProjects: VISIBLE_PROJECTS.filter((project) => RELATED_PROJECT_NAMES.has(project.name)),
 };
 
 /**

@@ -1,8 +1,8 @@
-import { PROJECTS } from "@/lib/projects";
+import { VISIBLE_PROJECTS } from "@/lib/projects";
 import ProjectCaseStudyTemplate, { type ProjectCaseStudyContent } from "./project-case-study";
 
 const RAINFALL_ASSET = "https://payload.cargocollective.com/1/0/18737/14634126";
-const RELATED_PROJECT_NAMES = new Set(["Econiscore", "Coinboost", "Truvalue Website", "Truvalue Platform"]);
+const RELATED_PROJECT_NAMES = new Set(["Econiscore", "Coinboost", "Rainfall Mobile", "Truvalue Platform"]);
 
 const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Applied AI",
@@ -66,7 +66,7 @@ const CONTENT: ProjectCaseStudyContent = {
       ],
     },
   ],
-  relatedProjects: PROJECTS.filter((project) => RELATED_PROJECT_NAMES.has(project.name)),
+  relatedProjects: VISIBLE_PROJECTS.filter((project) => RELATED_PROJECT_NAMES.has(project.name)),
 };
 
 /**
