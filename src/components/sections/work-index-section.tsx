@@ -7,7 +7,7 @@ import { Reveal } from "@/components/ui/reveal";
  * @ployComponentId work-index-section
  * @ployComponentType section
  * @ployComponentPattern editorial-project-grid
- * @ployComponentDescription Uniform editorial portfolio grid using the real MSDO project imagery. Every project uses the same card width and 4:3 media ratio with soft 12px corners, restrained metadata, and slow image reveals.
+ * @ployComponentDescription Uniform editorial portfolio grid using the real MSDO project imagery. Every project uses the same card width while preserving each source image’s natural proportions, with soft 12px corners, restrained metadata, and slow image reveals.
  * @ployComponentTags work portfolio light editorial imagery
  * @ployComponentStatus stable
  */
@@ -33,8 +33,8 @@ export default function WorkIndexSection({ heading = "Selected work", projects =
             return (
               <Reveal key={`${project.name}-${index}`} className="work__item">
                 <a href={project.href} className="work__card group block">
-                  <div className="work__media aspect-[4/3] overflow-hidden rounded-xl bg-ploy-background-secondary">
-                    <img src={project.image} alt={`${project.name} project preview`} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]" loading={index > 2 ? "lazy" : "eager"} />
+                  <div className="work__media overflow-hidden rounded-xl bg-ploy-background-secondary">
+                    <img src={project.image} alt={`${project.name} project preview`} className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.025]" loading={index > 2 ? "lazy" : "eager"} />
                   </div>
                   <div className="work__meta mt-4 flex items-start justify-between gap-6">
                     <div>
