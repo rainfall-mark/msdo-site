@@ -1,5 +1,5 @@
 export interface CaseStudyMeta { label: string; value: string; href?: string; }
-interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?: string; backgroundImage?: string; meta?: CaseStudyMeta[]; variant?: "dark" | "editorial"; }
+interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?: string; backgroundImage?: string; meta?: CaseStudyMeta[]; variant?: "dark" | "editorial"; prominentCover?: boolean; }
 
 /**
  * @ployComponent
@@ -10,7 +10,7 @@ interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?
  * @ployComponentTags case-study hero studio adaptive editorial
  * @ployComponentStatus stable
  */
-export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "Project", summary, backgroundImage, meta = [], variant = "dark" }: CaseStudyHeroSectionProps) {
+export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "Project", summary, backgroundImage, meta = [], variant = "dark", prominentCover = false }: CaseStudyHeroSectionProps) {
   const editorial = variant === "editorial";
 
   return (
@@ -33,7 +33,7 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
         )}
 
         {backgroundImage && editorial && (
-          <div className="cs-hero__cover mt-12 aspect-[16/7] w-full overflow-hidden rounded-xl bg-ploy-background-secondary sm:mt-16">
+          <div className={`cs-hero__cover mt-12 w-full overflow-hidden rounded-xl bg-ploy-background-secondary sm:mt-16 ${prominentCover ? "aspect-[4/3] sm:aspect-[16/9]" : "aspect-[16/7]"}`}>
             <img src={backgroundImage} alt="" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" className="h-full w-full object-cover" />
           </div>
         )}
