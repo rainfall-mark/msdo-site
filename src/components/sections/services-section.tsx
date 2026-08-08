@@ -9,25 +9,29 @@ import { Reveal } from "@/components/ui/reveal";
  * @ployComponentTags services studio light cards
  * @ployComponentStatus stable
  */
-interface Service { name: string; description: string; }
+interface Service { name: string; titleLines?: [string, string]; description: string; }
 interface ServicesSectionProps { heading?: string; services?: Service[]; }
 
 const DEFAULT_SERVICES: Service[] = [
   {
     name: "AI-driven Product Strategy",
-    description: "Turn emerging AI capabilities into a focused product vision, prioritized use cases, and a practical roadmap aligned with user, operational, and business goals.",
+    titleLines: ["AI-driven", "Product Strategy"],
+    description: "Find the right AI opportunities, define the product vision, and create a practical roadmap.",
   },
   {
-    name: "UI/UX Design",
-    description: "Design clear, trustworthy interfaces and workflows for AI-powered web, mobile, and internal tools—from early concepts through production-ready UX and UI.",
+    name: "Product UI/UX Design",
+    titleLines: ["Product UI/UX", "Design"],
+    description: "Create clear, trustworthy product experiences for AI-powered web, mobile, and internal tools.",
   },
   {
     name: "Rapid Prototyping & User Research",
-    description: "Prototype with AI-native tools, test critical assumptions with users, and turn evidence into faster product and engineering decisions.",
+    titleLines: ["Rapid Prototyping &", "User Research"],
+    description: "Prototype quickly, test key assumptions with users, and turn evidence into confident decisions.",
   },
   {
     name: "AI-Native Design Systems",
-    description: "Create agent-centric design systems, reusable patterns, and workflows that help human and AI teams design, build, and maintain products consistently.",
+    titleLines: ["AI-Native", "Design Systems"],
+    description: "Build reusable systems and workflows that help people and AI teams ship consistent products.",
   },
 ];
 
@@ -48,8 +52,10 @@ export default function ServicesSection({ heading = "From AI opportunity to work
               <div className="services__card flex min-h-72 flex-col justify-between rounded-xl bg-ploy-background-secondary p-6 sm:p-8">
                 <span className="text-sm text-ploy-text-secondary">0{index + 1}</span>
                 <div>
-                  <h3 className="services__name max-w-[18ch] font-heading text-2xl font-semibold tracking-[-0.03em] text-ploy-text-primary sm:text-3xl">{service.name}</h3>
-                  <p className="services__desc mt-4 max-w-lg text-base leading-relaxed text-ploy-text-secondary">{service.description}</p>
+                  <h3 className="services__name min-h-[2.1em] max-w-[18ch] font-heading text-2xl font-semibold leading-[1.05] tracking-[-0.03em] text-ploy-text-primary sm:text-3xl">
+                    {service.titleLines ? service.titleLines.map((line) => <span key={line} className="block">{line}</span>) : service.name}
+                  </h3>
+                  <p className="services__desc mt-4 max-w-[48ch] text-base leading-relaxed text-ploy-text-secondary sm:min-h-[3.25rem]">{service.description}</p>
                 </div>
               </div>
             </Reveal>
