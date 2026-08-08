@@ -14,7 +14,7 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
   const editorial = variant === "editorial";
 
   return (
-    <section className={`cs-hero relative overflow-hidden bg-ploy-background-primary px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32 lg:px-10 ${editorial ? "" : "flex min-h-screen items-end"}`}>
+    <section className={`cs-hero relative overflow-hidden bg-ploy-background-primary px-5 pb-8 pt-28 sm:px-8 sm:pb-10 sm:pt-32 lg:px-10 ${editorial ? "" : "flex min-h-screen items-end"}`}>
       {backgroundImage && !editorial && (
         <div className="cs-hero__visual absolute inset-0">
           <img src={backgroundImage} alt="" aria-hidden="true" decoding="async" className="h-full w-full object-cover opacity-70" />
