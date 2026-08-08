@@ -1,6 +1,6 @@
 import { Reveal } from "@/components/ui/reveal";
 
-export interface CaseStudyMediaItem { src: string; alt: string; caption?: string; backgroundColor?: string; }
+export interface CaseStudyMediaItem { src: string; alt: string; caption?: string; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
 interface CaseStudyMediaSectionProps { label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
 
@@ -21,14 +21,7 @@ export default function CaseStudyMediaSection({ label, heading, items = [], grou
       {mediaItems.map((item, index) => (
         <Reveal key={`${item.src}-${index}`}>
           <figure>
-            <img
-              src={item.src}
-              alt={item.alt}
-              loading="lazy"
-              decoding="async"
-              className="block h-auto w-full rounded-xl"
-              style={item.backgroundColor ? { backgroundColor: item.backgroundColor } : undefined}
-            />
+            <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
             {item.caption && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">{item.caption}</figcaption>}
           </figure>
         </Reveal>

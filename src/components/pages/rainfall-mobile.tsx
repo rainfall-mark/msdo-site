@@ -53,7 +53,6 @@ const CONTENT = {
               {
                 src: `${RAINFALL_MOBILE_ASSET}/R.1_02_1200.png`,
                 alt: "Rainfall R.1 Beta mobile app screens showing onboarding, dashboard, timeline, activity details, insights, and saved items",
-                backgroundColor: "#252525",
               },
             ],
           },
