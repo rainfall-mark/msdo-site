@@ -8,7 +8,7 @@ const CONTENT = {
   eyebrow: "Case study · Personal AI",
   title: "Rainfall Mobile",
   summary: "Designing Rainfall R.1 Beta, a privacy-first Personal Intelligence platform built from a user’s own data and kept entirely on-device.",
-  heroImage: `${RAINFALL_MOBILE_ASSET}/R.1_01_1200.png`,
+  heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/8c5d9d6d-rainfall-mobile-hero.webp",
   meta: [
     { label: "Role", value: "Product Strategy, UX Design, Product Design, Design Systems" },
     { label: "Date", value: "2024" },
