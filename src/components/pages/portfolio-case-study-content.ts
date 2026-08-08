@@ -114,7 +114,7 @@ export const PORTFOLIO_CASE_STUDIES = {
     eyebrow: "Case study · AI-powered ESG analytics",
     title: "Truvalue Platform",
     summary: "Designing an ESG research platform that turned timely alternative data into actionable investment workflows.",
-    heroImage: "https://payload.cargocollective.com/1/0/18737/13920927/01_Platform_top_1200_1200.png",
+    heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/41891a18-truvalue-platform-hero.webp",
     meta: [
       { label: "Role", value: "Design Thinking, Product Strategy, Design Direction, UX/UI Design, Development Oversight" },
       { label: "Date", value: "2020" },
