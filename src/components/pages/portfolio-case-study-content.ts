@@ -114,7 +114,8 @@ export const PORTFOLIO_CASE_STUDIES = {
     eyebrow: "Case study · AI-powered ESG analytics",
     title: "Truvalue Platform",
     summary: "Designing an ESG research platform that turned timely alternative data into actionable investment workflows.",
-    heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/41891a18-truvalue-platform-hero.webp",
+    heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/8e27b840-truvalue-platform-monitor-hero.webp",
+    naturalHero: true,
     meta: [
       { label: "Role", value: "Design Thinking, Product Strategy, Design Direction, UX/UI Design, Development Oversight" },
       { label: "Date", value: "2020" },
