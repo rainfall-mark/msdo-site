@@ -41,7 +41,7 @@ export default function ServicesSection({ heading = "From AI opportunity to work
       <div className="services__inner mx-auto max-w-[92rem]">
         <Reveal className="services__head mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
           <div>
-            <p className="services__eyebrow mb-3 text-sm text-ploy-text-secondary">Services / 02</p>
+            <p className="services__eyebrow mb-3 text-sm text-ploy-text-secondary">Services</p>
             <h2 className="services__title max-w-[14ch] font-heading text-4xl font-semibold leading-[1] tracking-[-0.045em] text-ploy-text-primary sm:text-6xl">{heading}</h2>
           </div>
           <p className="services__intro max-w-lg text-base leading-relaxed text-ploy-text-secondary lg:justify-self-end">MSDO helps teams identify where AI creates real value, shape the right experience, and establish the systems and workflows needed to move from exploration to production.</p>

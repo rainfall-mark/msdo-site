@@ -21,7 +21,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({
   headline = "Product design for ambitious ideas and emerging technology.",
-  subcopy = "MSDO is a strategic product and design studio building applied AI products for the real world — from product strategy and UX through end-to-end design across web, mobile, and emerging platforms.",
+  subcopy = "MSDO is a strategic product and design studio building applied AI products for the real world — from UX/UI through product development across web, mobile, and emerging platforms.",
   primaryCtaLabel = "Let's talk",
   primaryCtaHref = CONTACT_HREF,
   secondaryCtaLabel = "Explore selected work",
@@ -34,7 +34,7 @@ export default function HeroSection({
       <div className="hero__inner mx-auto grid w-full max-w-[92rem] gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
         <div>
           <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={transition} className="hero__eyebrow mb-7 text-sm text-ploy-text-secondary">
-            Independent studio · San Francisco · Working globally
+            Independent studio · San Francisco & Zurich · Working globally
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ ...transition, delay: 0.08 }} className="hero__title max-w-[18ch] font-heading text-[clamp(3.25rem,7.2vw,7.4rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-balance text-ploy-text-primary">
             {headline}

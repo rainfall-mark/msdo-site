@@ -22,7 +22,7 @@ export default function WorkIndexSection({ heading = "Selected work", projects =
       <div className="work__inner mx-auto max-w-[92rem]">
         <Reveal className="work__head mb-12 flex items-end justify-between sm:mb-16">
           <div>
-            <p className="work__eyebrow mb-3 text-sm text-ploy-text-secondary">Portfolio / 01</p>
+            <p className="work__eyebrow mb-3 text-sm text-ploy-text-secondary">Portfolio</p>
             <h2 className="work__title font-heading text-4xl font-semibold tracking-[-0.045em] text-ploy-text-primary sm:text-6xl">{heading}</h2>
           </div>
           <span className="work__count hidden text-sm text-ploy-text-secondary sm:block">{String(projects.length).padStart(2, "0")} projects</span>
