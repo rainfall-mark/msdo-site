@@ -8,7 +8,7 @@ const CONTENT: ProjectCaseStudyContent = {
   eyebrow: "Case study · Web performance intelligence",
   title: "Econiscore",
   summary: "Designing a transparent benchmarking platform that turned complex website-performance data into clear, comparable decisions for media organizations.",
-  heroImage: `${ECONISCORE_ASSET}/01_header_1200.png`,
+  heroImage: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/554cd1ae-econify-performance-hero.webp",
   meta: [
     { label: "Role", value: "Product Strategy, UX Strategy, Product Design, Data Visualization, Design Systems" },
     { label: "Date", value: "2022" },
