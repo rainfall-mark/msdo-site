@@ -51,7 +51,7 @@ const CONTENT = {
             description: "The mobile experience connected onboarding, personal memory, timeline capture, contextual insights, saved items, and activity details in one privacy-first product.",
             items: [
               {
-                src: `${RAINFALL_MOBILE_ASSET}/R.1_02_1200.png`,
+                src: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/9fb11c5e-rainfall-mobile-core.webp",
                 alt: "Rainfall R.1 Beta mobile app screens showing onboarding, dashboard, timeline, activity details, insights, and saved items",
               },
             ],
