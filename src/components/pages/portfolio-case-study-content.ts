@@ -44,7 +44,7 @@ export const PORTFOLIO_CASE_STUDIES = {
             {
               heading: "Mobile App",
               description: "The concept covered onboarding, fund selection, portfolio performance, allocation, activity, and account controls.",
-              items: [{ src: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/861b0fb6-vector.webp", alt: "Coinboost mobile application screens" }],
+              items: [{ src: "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/236264d5-coinboost-core-screens.webp", alt: "Coinboost mobile application screens" }],
             },
           ],
         },
