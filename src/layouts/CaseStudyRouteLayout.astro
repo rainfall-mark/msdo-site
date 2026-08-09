@@ -1,0 +1,36 @@
+---
+import Layout from "./Layout.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  image: string;
+  name: string;
+  about: string;
+  dateCreated: string;
+  keywords: string;
+  path: string;
+}
+
+const { title, description, image, name, about, dateCreated, keywords, path } = Astro.props;
+const jsonLd = {
+  "@context": "https://schema.org" as const,
+  "@type": "CreativeWork",
+  name,
+  about,
+  creator: { "@type": "Organization", name: "MSDO" },
+  author: { "@type": "Person", name: "Mark Strehlow" },
+  dateCreated,
+  keywords,
+  url: `https://msdo.us${path}`,
+};
+---
+
+<Layout title={title} description={description} type="article" image={image} jsonLd={jsonLd}>
+  <Fragment slot="head">
+    <link rel="preload" as="image" href={image} fetchpriority="high" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+  </Fragment>
+  <slot />
+</Layout>

@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Page from "../components/pages/home";
+
+export const prerender = true;
+---
+
+<Layout
+  title="MSDO — Applied AI Product Design Studio"
+  description="MSDO is a strategic product and design studio building applied AI products for the real world — from UX/UI through product development across web, mobile, and emerging platforms."
+>
+  <Fragment slot="head">
+    <meta name="keywords" content="applied AI product design studio, AI product design, UX design consultancy, product strategy" />
+    <meta property="og:title" content="MSDO — Applied AI Product Design Studio" />
+    <meta property="og:description" content="A strategic product and design studio building applied AI products for the real world." />
+  </Fragment>
+  <Page client:load />
+</Layout>

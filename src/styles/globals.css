@@ -1,0 +1,737 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Color bindings (auto-generated from THEME_COLOR_KEYS) */
+  --color-ploy-neutral-primary: var(--ploy-neutral-primary);
+  --color-ploy-neutral-secondary: var(--ploy-neutral-secondary);
+  --color-ploy-neutral-inverse: var(--ploy-neutral-inverse);
+  --color-ploy-neutral-light: var(--ploy-neutral-light);
+  --color-ploy-neutral-dark: var(--ploy-neutral-dark);
+  --color-ploy-neutral-primary-s0: var(--ploy-neutral-primary-s0);
+  --color-ploy-neutral-primary-s1: var(--ploy-neutral-primary-s1);
+  --color-ploy-neutral-primary-s2: var(--ploy-neutral-primary-s2);
+  --color-ploy-neutral-primary-s3: var(--ploy-neutral-primary-s3);
+  --color-ploy-neutral-primary-s4: var(--ploy-neutral-primary-s4);
+  --color-ploy-neutral-primary-s5: var(--ploy-neutral-primary-s5);
+  --color-ploy-neutral-inverse-s0: var(--ploy-neutral-inverse-s0);
+  --color-ploy-neutral-inverse-s1: var(--ploy-neutral-inverse-s1);
+  --color-ploy-neutral-inverse-s2: var(--ploy-neutral-inverse-s2);
+  --color-ploy-neutral-inverse-s3: var(--ploy-neutral-inverse-s3);
+  --color-ploy-neutral-inverse-s4: var(--ploy-neutral-inverse-s4);
+  --color-ploy-neutral-inverse-s5: var(--ploy-neutral-inverse-s5);
+  --color-ploy-accent-primary: var(--ploy-accent-primary);
+  --color-ploy-accent-secondary: var(--ploy-accent-secondary);
+  --color-ploy-accent-tertiary: var(--ploy-accent-tertiary);
+  --color-ploy-text-primary: var(--ploy-text-primary);
+  --color-ploy-text-secondary: var(--ploy-text-secondary);
+  --color-ploy-text-inverse: var(--ploy-text-inverse);
+  --color-ploy-text-inverse-secondary: var(--ploy-text-inverse-secondary);
+  --color-ploy-text-on-accent-primary: var(--ploy-text-on-accent-primary);
+  --color-ploy-text-on-accent-secondary: var(--ploy-text-on-accent-secondary);
+  --color-ploy-text-on-accent-tertiary: var(--ploy-text-on-accent-tertiary);
+  --color-ploy-button-primary-background: var(--ploy-button-primary-background);
+  --color-ploy-button-primary-text: var(--ploy-button-primary-text);
+  --color-ploy-button-primary-border: var(--ploy-button-primary-border);
+  --color-ploy-button-secondary-background: var(
+    --ploy-button-secondary-background
+  );
+  --color-ploy-button-secondary-text: var(--ploy-button-secondary-text);
+  --color-ploy-button-secondary-border: var(--ploy-button-secondary-border);
+  --color-ploy-background-primary: var(--ploy-background-primary);
+  --color-ploy-background-secondary: var(--ploy-background-secondary);
+  --color-ploy-background-accent-primary: var(--ploy-background-accent-primary);
+  --color-ploy-background-accent-secondary: var(
+    --ploy-background-accent-secondary
+  );
+  --color-ploy-background-accent-tertiary: var(
+    --ploy-background-accent-tertiary
+  );
+  --color-ploy-background-inverse: var(--ploy-background-inverse);
+  --color-ploy-border-primary: var(--ploy-border-primary);
+  --color-ploy-border-inverse: var(--ploy-border-inverse);
+  --color-ploy-input-background: var(--ploy-input-background);
+  --color-ploy-input-border: var(--ploy-input-border);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Color scale bindings (primary-50 to primary-950, etc.) */
+  --color-ploy-neutral-primary-50: var(--ploy-neutral-primary-50);
+  --color-ploy-neutral-primary-100: var(--ploy-neutral-primary-100);
+  --color-ploy-neutral-primary-200: var(--ploy-neutral-primary-200);
+  --color-ploy-neutral-primary-300: var(--ploy-neutral-primary-300);
+  --color-ploy-neutral-primary-400: var(--ploy-neutral-primary-400);
+  --color-ploy-neutral-primary-500: var(--ploy-neutral-primary-500);
+  --color-ploy-neutral-primary-600: var(--ploy-neutral-primary-600);
+  --color-ploy-neutral-primary-700: var(--ploy-neutral-primary-700);
+  --color-ploy-neutral-primary-800: var(--ploy-neutral-primary-800);
+  --color-ploy-neutral-primary-900: var(--ploy-neutral-primary-900);
+  --color-ploy-neutral-primary-950: var(--ploy-neutral-primary-950);
+  --color-ploy-neutral-inverse-50: var(--ploy-neutral-inverse-50);
+  --color-ploy-neutral-inverse-100: var(--ploy-neutral-inverse-100);
+  --color-ploy-neutral-inverse-200: var(--ploy-neutral-inverse-200);
+  --color-ploy-neutral-inverse-300: var(--ploy-neutral-inverse-300);
+  --color-ploy-neutral-inverse-400: var(--ploy-neutral-inverse-400);
+  --color-ploy-neutral-inverse-500: var(--ploy-neutral-inverse-500);
+  --color-ploy-neutral-inverse-600: var(--ploy-neutral-inverse-600);
+  --color-ploy-neutral-inverse-700: var(--ploy-neutral-inverse-700);
+  --color-ploy-neutral-inverse-800: var(--ploy-neutral-inverse-800);
+  --color-ploy-neutral-inverse-900: var(--ploy-neutral-inverse-900);
+  --color-ploy-neutral-inverse-950: var(--ploy-neutral-inverse-950);
+  --color-ploy-accent-primary-50: var(--ploy-accent-primary-50);
+  --color-ploy-accent-primary-100: var(--ploy-accent-primary-100);
+  --color-ploy-accent-primary-200: var(--ploy-accent-primary-200);
+  --color-ploy-accent-primary-300: var(--ploy-accent-primary-300);
+  --color-ploy-accent-primary-400: var(--ploy-accent-primary-400);
+  --color-ploy-accent-primary-500: var(--ploy-accent-primary-500);
+  --color-ploy-accent-primary-600: var(--ploy-accent-primary-600);
+  --color-ploy-accent-primary-700: var(--ploy-accent-primary-700);
+  --color-ploy-accent-primary-800: var(--ploy-accent-primary-800);
+  --color-ploy-accent-primary-900: var(--ploy-accent-primary-900);
+  --color-ploy-accent-primary-950: var(--ploy-accent-primary-950);
+  --color-ploy-accent-secondary-50: var(--ploy-accent-secondary-50);
+  --color-ploy-accent-secondary-100: var(--ploy-accent-secondary-100);
+  --color-ploy-accent-secondary-200: var(--ploy-accent-secondary-200);
+  --color-ploy-accent-secondary-300: var(--ploy-accent-secondary-300);
+  --color-ploy-accent-secondary-400: var(--ploy-accent-secondary-400);
+  --color-ploy-accent-secondary-500: var(--ploy-accent-secondary-500);
+  --color-ploy-accent-secondary-600: var(--ploy-accent-secondary-600);
+  --color-ploy-accent-secondary-700: var(--ploy-accent-secondary-700);
+  --color-ploy-accent-secondary-800: var(--ploy-accent-secondary-800);
+  --color-ploy-accent-secondary-900: var(--ploy-accent-secondary-900);
+  --color-ploy-accent-secondary-950: var(--ploy-accent-secondary-950);
+
+  /* Fonts */
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+  --font-eyebrow: var(--font-eyebrow, var(--font-body));
+  --font-button: var(--font-button, var(--font-body));
+
+  /* Typography weight bindings */
+  --font-heading-weight: var(--font-heading-weight, 700);
+  --font-body-weight: var(--font-body-weight, 400);
+
+  /* Font size scale (maps --font-size-* vars to Tailwind text-* utilities) */
+  --text-xs: var(--font-size-xs, 0.75rem);
+  --text-sm: var(--font-size-sm, 0.875rem);
+  --text-base: var(--font-size-base, 1rem);
+  --text-lg: var(--font-size-lg, 1.125rem);
+  --text-xl: var(--font-size-xl, 1.25rem);
+  --text-2xl: var(--font-size-2xl, 1.5rem);
+  --text-3xl: var(--font-size-3xl, 1.875rem);
+  --text-4xl: var(--font-size-4xl, 2.25rem);
+  --text-5xl: var(--font-size-5xl, 3rem);
+  --text-6xl: var(--font-size-6xl, 3.75rem);
+  --text-7xl: var(--font-size-7xl, 4.5rem);
+  --text-8xl: var(--font-size-8xl, 6rem);
+  --text-9xl: var(--font-size-9xl, 8rem);
+
+  /* Radius tokens */
+  --radius-button: var(--radius);
+  --radius-card: var(--radius);
+  --radius-input: var(--radius);
+}
+
+:root {
+  --radius: 0.75rem;
+  --ploy-shadow-color: var(--ploy-border-primary);
+  --border-width: 1px;
+  --border-style: solid;
+  --ploy-neutral-primary: oklch(0.736 0 0);
+  --ploy-neutral-secondary: oklch(0.039 0 0);
+  --ploy-neutral-inverse: oklch(0 0 0);
+  --ploy-neutral-light: oklch(0.736 0 0);
+  --ploy-neutral-dark: oklch(0.372 0 1.8);
+  --ploy-neutral-primary-s0: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 88%,
+    white
+  );
+  --ploy-neutral-primary-s1: var(--ploy-neutral-primary);
+  --ploy-neutral-primary-s2: var(--ploy-neutral-secondary);
+  --ploy-neutral-primary-s3: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 95%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-primary-s4: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 88%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-primary-s5: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 76%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-inverse-s0: black;
+  --ploy-neutral-inverse-s1: var(--ploy-neutral-inverse);
+  --ploy-neutral-inverse-s2: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 84%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s3: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 66%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s4: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 48%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s5: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 30%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-accent-primary: oklch(0.4 0.2 250);
+  --ploy-accent-secondary: oklch(0.736 0 0);
+  --ploy-accent-tertiary: oklch(0.736 0 0);
+  --ploy-text-primary: var(--ploy-neutral-inverse-700);
+  --ploy-text-secondary: var(--ploy-neutral-inverse-800);
+  --ploy-text-inverse: var(--ploy-neutral-primary);
+  --ploy-text-inverse-secondary: color-mix(
+    in srgb,
+    var(--ploy-neutral-primary) 60%,
+    transparent
+  );
+  --ploy-text-on-accent-primary: oklch(0.736 0 0);
+  --ploy-text-on-accent-secondary: oklch(0 0 0);
+  --ploy-text-on-accent-tertiary: oklch(0.372 0 1.8);
+  --ploy-button-primary-background: oklch(0.4 0.2 250);
+  --ploy-button-primary-text: var(--ploy-neutral-primary-400);
+  --ploy-button-primary-border: oklch(0.4 0.2 250);
+  --ploy-button-secondary-background: var(--ploy-background-primary);
+  --ploy-button-secondary-text: var(--ploy-background-inverse);
+  --ploy-button-secondary-border: var(--ploy-border-primary);
+  --ploy-background-primary: var(--ploy-neutral-primary-s1);
+  --ploy-background-secondary: var(--ploy-neutral-secondary);
+  --ploy-background-accent-primary: var(--ploy-accent-primary);
+  --ploy-background-accent-secondary: var(--ploy-accent-secondary);
+  --ploy-background-accent-tertiary: var(--ploy-accent-tertiary);
+  --ploy-background-inverse: var(--ploy-neutral-inverse-s1);
+  --ploy-border-primary: var(--ploy-neutral-primary-s3);
+  --ploy-border-inverse: color-mix(
+    in srgb,
+    var(--ploy-neutral-inverse-s3) 20%,
+    transparent
+  );
+  --ploy-input-background: var(--ploy-neutral-primary);
+  --ploy-input-border: var(--ploy-neutral-primary-s3);
+  --destructive: oklch(0.49 0 0);
+  --border: var(--ploy-border-primary);
+  --background: var(--ploy-background-primary);
+  --foreground: var(--ploy-text-primary);
+  --card: var(--ploy-background-secondary);
+  --card-foreground: var(--ploy-text-primary);
+  --popover: var(--ploy-background-secondary);
+  --popover-foreground: var(--ploy-text-primary);
+  --primary: oklch(0.4 0.2 250);
+  --primary-foreground: var(--ploy-text-inverse);
+  --secondary: var(--ploy-background-secondary);
+  --secondary-foreground: var(--ploy-text-primary);
+  --muted: var(--ploy-background-secondary);
+  --muted-foreground: var(--ploy-text-secondary);
+  --accent: var(--ploy-background-primary);
+  --accent-foreground: var(--ploy-text-secondary);
+  --input: var(--ploy-input-border);
+  --ring: oklch(0.4 0.2 250);
+
+  /* Color scales */
+  --ploy-neutral-primary-50: oklch(0.98 0 352);
+  --ploy-neutral-primary-100: oklch(0.954 0 353.6);
+  --ploy-neutral-primary-200: oklch(0.912 0 355.2);
+  --ploy-neutral-primary-300: oklch(0.86 0 356.8);
+  --ploy-neutral-primary-400: oklch(0.801 0 358.4);
+  --ploy-neutral-primary-500: oklch(0.735 0 0);
+  --ploy-neutral-primary-600: oklch(0.679 0 0.4);
+  --ploy-neutral-primary-700: oklch(0.597 0 0.8);
+  --ploy-neutral-primary-800: oklch(0.501 0 1.2);
+  --ploy-neutral-primary-900: oklch(0.395 0 1.6);
+  --ploy-neutral-primary-950: oklch(0.28 0 2);
+  --ploy-neutral-inverse-50: oklch(0.98 0 352);
+  --ploy-neutral-inverse-100: oklch(0.941 0 352.8);
+  --ploy-neutral-inverse-200: oklch(0.877 0 353.6);
+  --ploy-neutral-inverse-300: oklch(0.798 0 354.4);
+  --ploy-neutral-inverse-400: oklch(0.708 0 355.2);
+  --ploy-neutral-inverse-500: oklch(0.609 0 356);
+  --ploy-neutral-inverse-600: oklch(0.501 0 356.8);
+  --ploy-neutral-inverse-700: oklch(0.385 0 357.6);
+  --ploy-neutral-inverse-800: oklch(0.263 0 358.4);
+  --ploy-neutral-inverse-900: oklch(0.134 0 359.2);
+  --ploy-neutral-inverse-950: oklch(0 0 0);
+  --ploy-accent-primary-50: oklch(0.98 0.011 270.04);
+  --ploy-accent-primary-100: oklch(0.949 0.027 268.92);
+  --ploy-accent-primary-200: oklch(0.899 0.055 267.79);
+  --ploy-accent-primary-300: oklch(0.837 0.091 266.67);
+  --ploy-accent-primary-400: oklch(0.767 0.132 265.54);
+  --ploy-accent-primary-500: oklch(0.688 0.178 264.42);
+  --ploy-accent-primary-600: oklch(0.604 0.204 263.29);
+  --ploy-accent-primary-700: oklch(0.513 0.199 262.17);
+  --ploy-accent-primary-800: oklch(0.417 0.181 261.04);
+  --ploy-accent-primary-900: oklch(0.361 0.129 258.54);
+  --ploy-accent-primary-950: oklch(0.28 0.084 256.04);
+  --ploy-accent-secondary-50: oklch(0.98 0 352);
+  --ploy-accent-secondary-100: oklch(0.954 0 353.6);
+  --ploy-accent-secondary-200: oklch(0.912 0 355.2);
+  --ploy-accent-secondary-300: oklch(0.86 0 356.8);
+  --ploy-accent-secondary-400: oklch(0.801 0 358.4);
+  --ploy-accent-secondary-500: oklch(0.735 0 0);
+  --ploy-accent-secondary-600: oklch(0.679 0 0.4);
+  --ploy-accent-secondary-700: oklch(0.597 0 0.8);
+  --ploy-accent-secondary-800: oklch(0.501 0 1.2);
+  --ploy-accent-secondary-900: oklch(0.395 0 1.6);
+  --ploy-accent-secondary-950: oklch(0.28 0 2);
+
+  --font-heading: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, monospace;
+  --font-eyebrow: "Inter Variable", system-ui, -apple-system, sans-serif;
+  --font-button: "Inter Variable", system-ui, -apple-system, sans-serif;
+
+  /* Typography role weights, letter-spacing, line-height */
+  --font-heading-weight: 600;
+  --font-heading-letter-spacing: -0.035em;
+  --font-heading-line-height: 1;
+  --font-body-weight: 400;
+  --font-body-bold-weight: 700;
+  --font-body-letter-spacing: normal;
+  --font-body-line-height: 1.5;
+  --font-eyebrow-weight: 400;
+  --font-eyebrow-letter-spacing: normal;
+  --font-eyebrow-line-height: 0.75;
+  --font-button-weight: 500;
+  --font-button-letter-spacing: normal;
+  --font-button-line-height: 1;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --ploy-neutral-primary: oklch(0.145 0 0);
+  --ploy-neutral-secondary: oklch(0.205 0 0);
+  --ploy-neutral-inverse: oklch(1 0 0);
+  --ploy-neutral-light: oklch(1 0 0);
+  --ploy-neutral-dark: oklch(0.145 0 0);
+  --ploy-neutral-primary-s0: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 88%,
+    black
+  );
+  --ploy-neutral-primary-s1: var(--ploy-neutral-primary);
+  --ploy-neutral-primary-s2: var(--ploy-neutral-secondary);
+  --ploy-neutral-primary-s3: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 95%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-primary-s4: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 88%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-primary-s5: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 76%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-inverse-s0: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 88%,
+    white
+  );
+  --ploy-neutral-inverse-s1: var(--ploy-neutral-inverse);
+  --ploy-neutral-inverse-s2: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 84%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s3: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 66%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s4: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 48%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s5: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 30%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-accent-primary: oklch(0.55 0.225 264);
+  --ploy-accent-secondary: oklch(0.205 0 0);
+  --ploy-accent-tertiary: oklch(0.205 0 0);
+  --ploy-text-primary: var(--ploy-neutral-inverse);
+  --ploy-text-secondary: var(--ploy-neutral-inverse-500);
+  --ploy-text-inverse: var(--ploy-neutral-primary);
+  --ploy-text-inverse-secondary: color-mix(
+    in srgb,
+    var(--ploy-neutral-primary) 60%,
+    transparent
+  );
+  --ploy-text-on-accent-primary: oklch(0.264 0 0);
+  --ploy-text-on-accent-secondary: oklch(1 0 0);
+  --ploy-text-on-accent-tertiary: oklch(1 0 0);
+  --ploy-button-primary-background: oklch(0.55 0.225 264);
+  --ploy-button-primary-text: oklch(1 0 0);
+  --ploy-button-primary-border: oklch(0.55 0.225 264);
+  --ploy-button-secondary-background: var(--ploy-background-primary);
+  --ploy-button-secondary-text: var(--ploy-background-inverse);
+  --ploy-button-secondary-border: var(--ploy-border-primary);
+  --ploy-background-primary: var(--ploy-neutral-primary-s1);
+  --ploy-background-secondary: var(--ploy-neutral-secondary);
+  --ploy-background-accent-primary: var(--ploy-accent-primary);
+  --ploy-background-accent-secondary: var(--ploy-accent-secondary);
+  --ploy-background-accent-tertiary: var(--ploy-accent-tertiary);
+  --ploy-background-inverse: var(--ploy-neutral-inverse-s1);
+  --ploy-border-primary: var(--ploy-neutral-primary-s3);
+  --ploy-border-inverse: color-mix(
+    in srgb,
+    var(--ploy-neutral-inverse-s5) 20%,
+    transparent
+  );
+  --ploy-input-background: var(--ploy-neutral-primary);
+  --ploy-input-border: var(--ploy-neutral-primary-s3);
+  --destructive: oklch(0.51 0 0);
+  --border: var(--ploy-border-primary);
+  --background: var(--ploy-background-primary);
+  --foreground: var(--ploy-text-primary);
+  --card: var(--ploy-background-secondary);
+  --card-foreground: var(--ploy-text-primary);
+  --popover: var(--ploy-background-secondary);
+  --popover-foreground: var(--ploy-text-primary);
+  --primary: oklch(0.6 0.2 250);
+  --primary-foreground: var(--ploy-text-inverse);
+  --secondary: var(--ploy-background-secondary);
+  --secondary-foreground: var(--ploy-text-primary);
+  --muted: var(--ploy-background-secondary);
+  --muted-foreground: var(--ploy-text-secondary);
+  --accent: var(--ploy-background-primary);
+  --accent-foreground: var(--ploy-text-primary);
+  --input: var(--ploy-input-border);
+  --ring: oklch(0.6 0.2 250);
+
+  /* Color scales */
+  --ploy-neutral-primary-50: oklch(0.98 0 352);
+  --ploy-neutral-primary-100: oklch(0.952 0 352.8);
+  --ploy-neutral-primary-200: oklch(0.905 0 353.6);
+  --ploy-neutral-primary-300: oklch(0.847 0 354.4);
+  --ploy-neutral-primary-400: oklch(0.782 0 355.2);
+  --ploy-neutral-primary-500: oklch(0.709 0 356);
+  --ploy-neutral-primary-600: oklch(0.63 0 356.8);
+  --ploy-neutral-primary-700: oklch(0.546 0 357.6);
+  --ploy-neutral-primary-800: oklch(0.456 0 358.4);
+  --ploy-neutral-primary-900: oklch(0.363 0 359.2);
+  --ploy-neutral-primary-950: oklch(0.264 0 0);
+  --ploy-neutral-inverse-50: oklch(1 0 0);
+  --ploy-neutral-inverse-100: oklch(0.964 0 0.2);
+  --ploy-neutral-inverse-200: oklch(0.911 0 0.4);
+  --ploy-neutral-inverse-300: oklch(0.849 0 0.6);
+  --ploy-neutral-inverse-400: oklch(0.781 0 0.8);
+  --ploy-neutral-inverse-500: oklch(0.708 0 1);
+  --ploy-neutral-inverse-600: oklch(0.629 0 1.2);
+  --ploy-neutral-inverse-700: oklch(0.547 0 1.4);
+  --ploy-neutral-inverse-800: oklch(0.461 0 1.6);
+  --ploy-neutral-inverse-900: oklch(0.372 0 1.8);
+  --ploy-neutral-inverse-950: oklch(0.28 0 2);
+  --ploy-accent-primary-50: oklch(0.98 0.01 254.85);
+  --ploy-accent-primary-100: oklch(0.941 0.029 254.65);
+  --ploy-accent-primary-200: oklch(0.877 0.063 254.45);
+  --ploy-accent-primary-300: oklch(0.798 0.108 254.25);
+  --ploy-accent-primary-400: oklch(0.707 0.159 254.05);
+  --ploy-accent-primary-500: oklch(0.607 0.192 253.85);
+  --ploy-accent-primary-600: oklch(0.567 0.17 253.85);
+  --ploy-accent-primary-700: oklch(0.508 0.154 253.85);
+  --ploy-accent-primary-800: oklch(0.439 0.127 253.85);
+  --ploy-accent-primary-900: oklch(0.362 0.099 253.85);
+  --ploy-accent-primary-950: oklch(0.28 0.072 253.85);
+  --ploy-accent-secondary-50: oklch(0.98 0 352);
+  --ploy-accent-secondary-100: oklch(0.952 0 352.8);
+  --ploy-accent-secondary-200: oklch(0.905 0 353.6);
+  --ploy-accent-secondary-300: oklch(0.847 0 354.4);
+  --ploy-accent-secondary-400: oklch(0.782 0 355.2);
+  --ploy-accent-secondary-500: oklch(0.709 0 356);
+  --ploy-accent-secondary-600: oklch(0.63 0 356.8);
+  --ploy-accent-secondary-700: oklch(0.546 0 357.6);
+  --ploy-accent-secondary-800: oklch(0.456 0 358.4);
+  --ploy-accent-secondary-900: oklch(0.363 0 359.2);
+  --ploy-accent-secondary-950: oklch(0.264 0 0);
+}
+
+.light {
+  color-scheme: light;
+
+  --ploy-neutral-primary: oklch(0.736 0 0);
+  --ploy-neutral-secondary: oklch(0.039 0 0);
+  --ploy-neutral-inverse: oklch(0 0 0);
+  --ploy-neutral-light: oklch(0.736 0 0);
+  --ploy-neutral-dark: oklch(0.372 0 1.8);
+  --ploy-neutral-primary-s0: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 88%,
+    white
+  );
+  --ploy-neutral-primary-s1: var(--ploy-neutral-primary);
+  --ploy-neutral-primary-s2: var(--ploy-neutral-secondary);
+  --ploy-neutral-primary-s3: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 95%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-primary-s4: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 88%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-primary-s5: color-mix(
+    in oklch,
+    var(--ploy-neutral-primary) 76%,
+    var(--ploy-neutral-inverse)
+  );
+  --ploy-neutral-inverse-s0: black;
+  --ploy-neutral-inverse-s1: var(--ploy-neutral-inverse);
+  --ploy-neutral-inverse-s2: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 84%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s3: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 66%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s4: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 48%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-neutral-inverse-s5: color-mix(
+    in oklch,
+    var(--ploy-neutral-inverse) 30%,
+    var(--ploy-neutral-primary)
+  );
+  --ploy-accent-primary: oklch(0.4 0.2 250);
+  --ploy-accent-secondary: oklch(0.736 0 0);
+  --ploy-accent-tertiary: oklch(0.736 0 0);
+  --ploy-text-primary: var(--ploy-neutral-inverse-700);
+  --ploy-text-secondary: var(--ploy-neutral-inverse-800);
+  --ploy-text-inverse: var(--ploy-neutral-primary);
+  --ploy-text-inverse-secondary: color-mix(
+    in srgb,
+    var(--ploy-neutral-primary) 60%,
+    transparent
+  );
+  --ploy-text-on-accent-primary: oklch(0.736 0 0);
+  --ploy-text-on-accent-secondary: oklch(0 0 0);
+  --ploy-text-on-accent-tertiary: oklch(0.372 0 1.8);
+  --ploy-button-primary-background: oklch(0.4 0.2 250);
+  --ploy-button-primary-text: var(--ploy-neutral-primary-400);
+  --ploy-button-primary-border: oklch(0.4 0.2 250);
+  --ploy-button-secondary-background: var(--ploy-background-primary);
+  --ploy-button-secondary-text: var(--ploy-background-inverse);
+  --ploy-button-secondary-border: var(--ploy-border-primary);
+  --ploy-background-primary: var(--ploy-neutral-primary-s1);
+  --ploy-background-secondary: var(--ploy-neutral-secondary);
+  --ploy-background-accent-primary: var(--ploy-accent-primary);
+  --ploy-background-accent-secondary: var(--ploy-accent-secondary);
+  --ploy-background-accent-tertiary: var(--ploy-accent-tertiary);
+  --ploy-background-inverse: var(--ploy-neutral-inverse-s1);
+  --ploy-border-primary: var(--ploy-neutral-primary-s3);
+  --ploy-border-inverse: color-mix(
+    in srgb,
+    var(--ploy-neutral-inverse-s3) 20%,
+    transparent
+  );
+  --ploy-input-background: var(--ploy-neutral-primary);
+  --ploy-input-border: var(--ploy-neutral-primary-s3);
+  --destructive: oklch(0.49 0 0);
+  --border: var(--ploy-border-primary);
+  --background: var(--ploy-background-primary);
+  --foreground: var(--ploy-text-primary);
+  --card: var(--ploy-background-secondary);
+  --card-foreground: var(--ploy-text-primary);
+  --popover: var(--ploy-background-secondary);
+  --popover-foreground: var(--ploy-text-primary);
+  --primary: oklch(0.4 0.2 250);
+  --primary-foreground: var(--ploy-text-inverse);
+  --secondary: var(--ploy-background-secondary);
+  --secondary-foreground: var(--ploy-text-primary);
+  --muted: var(--ploy-background-secondary);
+  --muted-foreground: var(--ploy-text-secondary);
+  --accent: var(--ploy-background-primary);
+  --accent-foreground: var(--ploy-text-secondary);
+  --input: var(--ploy-input-border);
+  --ring: oklch(0.4 0.2 250);
+
+  /* Color scales */
+  --ploy-neutral-primary-50: oklch(0.98 0 352);
+  --ploy-neutral-primary-100: oklch(0.954 0 353.6);
+  --ploy-neutral-primary-200: oklch(0.912 0 355.2);
+  --ploy-neutral-primary-300: oklch(0.86 0 356.8);
+  --ploy-neutral-primary-400: oklch(0.801 0 358.4);
+  --ploy-neutral-primary-500: oklch(0.735 0 0);
+  --ploy-neutral-primary-600: oklch(0.679 0 0.4);
+  --ploy-neutral-primary-700: oklch(0.597 0 0.8);
+  --ploy-neutral-primary-800: oklch(0.501 0 1.2);
+  --ploy-neutral-primary-900: oklch(0.395 0 1.6);
+  --ploy-neutral-primary-950: oklch(0.28 0 2);
+  --ploy-neutral-inverse-50: oklch(0.98 0 352);
+  --ploy-neutral-inverse-100: oklch(0.941 0 352.8);
+  --ploy-neutral-inverse-200: oklch(0.877 0 353.6);
+  --ploy-neutral-inverse-300: oklch(0.798 0 354.4);
+  --ploy-neutral-inverse-400: oklch(0.708 0 355.2);
+  --ploy-neutral-inverse-500: oklch(0.609 0 356);
+  --ploy-neutral-inverse-600: oklch(0.501 0 356.8);
+  --ploy-neutral-inverse-700: oklch(0.385 0 357.6);
+  --ploy-neutral-inverse-800: oklch(0.263 0 358.4);
+  --ploy-neutral-inverse-900: oklch(0.134 0 359.2);
+  --ploy-neutral-inverse-950: oklch(0 0 0);
+  --ploy-accent-primary-50: oklch(0.98 0.011 270.04);
+  --ploy-accent-primary-100: oklch(0.949 0.027 268.92);
+  --ploy-accent-primary-200: oklch(0.899 0.055 267.79);
+  --ploy-accent-primary-300: oklch(0.837 0.091 266.67);
+  --ploy-accent-primary-400: oklch(0.767 0.132 265.54);
+  --ploy-accent-primary-500: oklch(0.688 0.178 264.42);
+  --ploy-accent-primary-600: oklch(0.604 0.204 263.29);
+  --ploy-accent-primary-700: oklch(0.513 0.199 262.17);
+  --ploy-accent-primary-800: oklch(0.417 0.181 261.04);
+  --ploy-accent-primary-900: oklch(0.361 0.129 258.54);
+  --ploy-accent-primary-950: oklch(0.28 0.084 256.04);
+  --ploy-accent-secondary-50: oklch(0.98 0 352);
+  --ploy-accent-secondary-100: oklch(0.954 0 353.6);
+  --ploy-accent-secondary-200: oklch(0.912 0 355.2);
+  --ploy-accent-secondary-300: oklch(0.86 0 356.8);
+  --ploy-accent-secondary-400: oklch(0.801 0 358.4);
+  --ploy-accent-secondary-500: oklch(0.735 0 0);
+  --ploy-accent-secondary-600: oklch(0.679 0 0.4);
+  --ploy-accent-secondary-700: oklch(0.597 0 0.8);
+  --ploy-accent-secondary-800: oklch(0.501 0 1.2);
+  --ploy-accent-secondary-900: oklch(0.395 0 1.6);
+  --ploy-accent-secondary-950: oklch(0.28 0 2);
+}
+
+/* Homepage-specific light editorial palette. Scoped so the existing dark case-study family remains unchanged. */
+.msdo-home.light {
+  color-scheme: light;
+  --ploy-background-primary: oklch(0.982 0.006 85);
+  --ploy-background-secondary: oklch(0.947 0.008 85);
+  --ploy-background-inverse: oklch(0.145 0 0);
+  --ploy-text-primary: oklch(0.145 0 0);
+  --ploy-text-secondary: oklch(0.48 0.006 85);
+  --ploy-text-inverse: oklch(0.982 0.006 85);
+  --ploy-border-primary: oklch(0.88 0.008 85);
+  --ploy-button-primary-background: oklch(0.145 0 0);
+  --ploy-button-primary-text: oklch(0.982 0.006 85);
+  --ploy-button-primary-border: oklch(0.145 0 0);
+}
+
+html {
+  font-family: var(--font-body);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-ploy-background-primary text-ploy-text-primary;
+  }
+  :where(mark) {
+    background-color: transparent;
+    color: inherit;
+  }
+
+  /* Descendant selectors */
+  #slideshow_container img {
+    margin: 0px;
+  }
+  #following_header #following_loadspin img {
+    margin-top: 20px;
+  }
+  #freshbox img {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 109;
+  }
+  /* Keyframe animations */
+  @keyframes spinner {
+    0% {
+      background: rgb(0, 0, 0);
+    }
+    80% {
+      background: rgb(178, 178, 178);
+    }
+    100% {
+      background: rgb(0, 0, 0);
+    }
+  }
+  @-webkit-keyframes spinner {
+    0% {
+      background: rgb(0, 0, 0);
+    }
+    80% {
+      background: rgb(178, 178, 178);
+    }
+    100% {
+      background: rgb(0, 0, 0);
+    }
+  }
+  @-webkit-keyframes rotation {
+    0% {
+      transform: rotate(359deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @-webkit-keyframes tracemark_spark {
+    0% {
+      fill: rgb(51, 51, 51);
+    }
+    100% {
+      fill: rgb(0, 0, 0);
+    }
+  }
+  @keyframes developer_error_missing {
+    0% {
+      color: rgb(255, 255, 255);
+    }
+    50% {
+      color: rgb(22, 193, 112);
+    }
+  }
+  @-webkit-keyframes developer_error_missing {
+    0% {
+      color: rgb(255, 255, 255);
+    }
+    50% {
+      color: rgb(22, 193, 112);
+    }
+  }
+}

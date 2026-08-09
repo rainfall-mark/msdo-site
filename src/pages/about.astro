@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AboutPage from "../components/pages/about";
+
+export const prerender = true;
+
+const title = "About Mark Strehlow & MSDO — Product and Design Leadership";
+const description = "Mark Strehlow brings over 20 years of product, design, and brand leadership across applied AI, startups, large-scale product organizations, and category-defining products.";
+const portrait = "https://payload.cargocollective.com/1/0/18737/1882725/Mark_900.png";
+---
+
+<Layout title={title} description={description} image={portrait} imageAlt="Mark Strehlow, Founder and Principal of MSDO">
+  <AboutPage client:load />
+</Layout>
