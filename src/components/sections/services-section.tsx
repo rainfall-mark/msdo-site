@@ -21,7 +21,7 @@ const DEFAULT_SERVICES: Service[] = [
   {
     name: "Product UI/UX Design",
     titleLines: ["Product UI/UX", "Design"],
-    description: "Create clear, trustworthy product experiences for AI-powered web, mobile, and internal tools.",
+    description: "Create clear, trustworthy product experiences for AI-powered web, mobile, and data driven solutions.",
   },
   {
     name: "Rapid Prototyping & User Research",
