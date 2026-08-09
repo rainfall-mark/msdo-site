@@ -29,8 +29,8 @@ const DEFAULT_SERVICES: Service[] = [
     description: "Prototype quickly, test key assumptions with users, and turn evidence into confident decisions.",
   },
   {
-    name: "AI-Native Design Systems",
-    titleLines: ["AI-Native", "Design Systems"],
+    name: "AI-Native Process & Design Systems",
+    titleLines: ["AI-Native Process &", "Design Systems"],
     description: "Build reusable systems and workflows that help people and AI teams ship consistent products.",
   },
 ];
