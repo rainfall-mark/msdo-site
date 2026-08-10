@@ -2,6 +2,7 @@ import { VISIBLE_PROJECTS } from "@/lib/projects";
 import ProjectCaseStudyTemplate, { type ProjectCaseStudyContent } from "./project-case-study";
 
 const ECONISCORE_ASSET = "https://payload.cargocollective.com/1/0/18737/12273661";
+const ECONISCORE_CORE_IMAGE = "https://storage.googleapis.com/ployai/ac8de608-c1da-40c7-bb89-c3998502b072/user/3eb7e3ce-econify-performance-core.webp";
 const RELATED_PROJECT_NAMES = new Set(["Rainfall Mobile", "Coinboost", "Truvalue Platform", "Truvalue Wealth"]);
 
 const CONTENT: ProjectCaseStudyContent = {
@@ -54,34 +55,9 @@ const CONTENT: ProjectCaseStudyContent = {
             items: [{ src: `${ECONISCORE_ASSET}/03_1200.png`, alt: "Econiscore vendor visualization explorations" }],
           },
           {
-            heading: "Dashboard",
-            description: "A consolidated dashboard brought rankings, movement, vendor performance, and improvement opportunities into one view.",
-            items: [{ src: `${ECONISCORE_ASSET}/04_1000.png`, alt: "Econiscore dashboard overview" }],
-          },
-          {
-            heading: "Company — Summary",
-            description: "The company summary paired performance grades with trends, metrics, and peer context.",
-            items: [{ src: `${ECONISCORE_ASSET}/05_1000.png`, alt: "Econiscore company summary dashboard" }],
-          },
-          {
-            heading: "Company — Chart",
-            description: "Focused chart views made changes over time and comparison points easier to investigate.",
-            items: [{ src: `${ECONISCORE_ASSET}/06_1000.png`, alt: "Econiscore company chart view" }],
-          },
-          {
-            heading: "Company — Vendor",
-            description: "Vendor analysis connected third-party services to measurable performance impact.",
-            items: [{ src: `${ECONISCORE_ASSET}/07_1000.png`, alt: "Econiscore company vendor analysis" }],
-          },
-          {
-            heading: "Company — Network Request",
-            description: "Network-request views exposed the technical contributors behind a site’s overall score.",
-            items: [{ src: `${ECONISCORE_ASSET}/08_1000.png`, alt: "Econiscore company network request analysis" }],
-          },
-          {
-            heading: "Vendor — Summary",
-            description: "Vendor summaries provided consistent cross-company visibility into third-party performance.",
-            items: [{ src: `${ECONISCORE_ASSET}/09_1000.png`, alt: "Econiscore vendor summary and reporting screens" }],
+            heading: "Core Product Experience",
+            description: "The consolidated product system brings the dashboard, company summary, performance chart, vendor analysis, network requests, and vendor summary into one continuous view.",
+            items: [{ src: ECONISCORE_CORE_IMAGE, alt: "Consolidated Econiscore dashboard, company analysis, network request, and vendor summary screens" }],
           },
           {
             heading: "Design Spec",
@@ -107,7 +83,7 @@ const CONTENT: ProjectCaseStudyContent = {
  * @ployComponentId econiscore-case-study-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Econiscore instance of the reusable light editorial project template, using the original web-performance platform strategy, scope, and nine high-resolution design artifacts.
+ * @ployComponentDescription Econiscore instance of the reusable light editorial project template, using the original web-performance platform strategy, scope, and four high-resolution design artifacts.
  * @ployComponentTags case-study econiscore portfolio web-app data-visualization editorial
  * @ployComponentStatus stable
  */
