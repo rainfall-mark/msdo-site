@@ -37,3 +37,4 @@ lost+found/
 ploy.astro.config.mjs
 ploy.ploydb-client.mjs
 ploy.ploydb-auth-adapter.mjs
+ploy.ploydb-richtext.mjs
