@@ -2,10 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import { NotFoundPage } from "@/components/pages/not-found";
 
-// Exception to prerender-by-default (AGENTS.md): must stay SSR so middleware
-// runs on unmatched routes. A prerendered 404 makes the Cloudflare adapter
-// short-circuit to static 404.html before middleware, breaking `/` redirects.
-export const prerender = false;
+// Static 404: Astro emits dist/404.html, which GitHub Pages serves for any
+// unknown route.
+export const prerender = true;
 ---
 
 <Layout

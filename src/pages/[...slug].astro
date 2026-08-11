@@ -1,18 +1,22 @@
 ---
-import { getEntry, render } from "astro:content";
+import { getCollection, render } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import type { Article, WithContext } from "schema-dts";
 
-// SSR: resolve the entry at request time instead of prerendering every page
-// via getStaticPaths(), so build time stays flat as pages grow. Sitemap slugs
-// are wired in via src/lib/sitemap/get-sitemap-paths.ts.
-const { slug } = Astro.params;
-const entry = slug ? await getEntry("pages", slug) : undefined;
-
-if (!entry || (import.meta.env.PROD && entry.data.draft)) {
-  return new Response(null, { status: 404 });
+// Static build: prerender one page per Markdown entry in the `pages` collection.
+// There is currently no src/content/pages directory, so this generates nothing
+// until you add Markdown pages there (see src/content.config.ts for the format).
+export async function getStaticPaths() {
+  const pages = await getCollection("pages", ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true,
+  );
+  return pages.map((entry) => ({
+    params: { slug: entry.data.slug ?? entry.id },
+    props: { entry },
+  }));
 }
 
+const { entry } = Astro.props;
 const { Content } = await render(entry);
 const canonicalUrl = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).toString()

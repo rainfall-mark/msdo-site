@@ -1,20 +1,9 @@
 // @ts-check
-import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { defineConfig, sessionDrivers } from "astro/config";
+import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import cloudflare from "@astrojs/cloudflare";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import { sitemapWithCustomPages } from "./src/lib/sitemap/sitemap-with-custom-pages-plugin.ts";
-
-// Ploy generates the wrangler config at deploy time; it isn't checked in. Only
-// pass configPath to the Cloudflare adapter when one of the supported wrangler
-// config files actually exists so local `astro dev` works without one.
-// Also see: https://developers.cloudflare.com/workers/wrangler/configuration/
-const wranglerConfig = ["./wrangler.toml", "./wrangler.jsonc", "./wrangler.json"].find(
-  (path) => existsSync(fileURLToPath(new URL(path, import.meta.url))),
-);
 
 // Separate vite cache dirs so `astro dev` and `astro build`/`check` don't conflict.
 const astroCommand = process.argv.slice(2).find((arg) => !arg.startsWith("-"));
@@ -24,52 +13,19 @@ const viteCacheDir =
     : "node_modules/.vite-build";
 
 // https://astro.build/config
+// Converted from Ploy's Cloudflare (server) setup to a static build for
+// GitHub Pages hosting. See DEPLOY-NOTES.md.
 export default defineConfig({
-  // Patched at deploy time by Ploy — must remain a string literal. See AGENTS.md "Sitemap".
-  site: "https://example.com",
-  output: "server",
-  trailingSlash: "never",
-  // Disable automatic Cloudflare KV session provisioning. Ploy sites don't
-  // use Astro sessions; without this the adapter auto-creates a KV namespace
-  // per deploy. The in-memory driver tells the adapter no KV binding is needed.
-  session: {
-    driver: sessionDrivers.lruCache(),
-  },
-  build: {
-    // Ploy-reserved directory so tenant assets don't collide with a `defaultFallback`
-    // origin that serves its own `/_astro/`. Keep in sync with
-    // WELL_KNOWN_ASSET_ROUTES in ploy-world.
-    assets: "_ploy_static/_astro",
-  },
-  adapter: cloudflare({
-    imageService: "compile",
-    ...(wranglerConfig && { configPath: wranglerConfig }),
-  }),
-  integrations: [
-    mdx(),
-    react(),
-    // For SSR-only dynamic routes, edit src/lib/sitemap/get-sitemap-paths.ts.
-    ...sitemapWithCustomPages(),
-  ],
+  // Live site host — used for canonical URLs, sitemap, and robots.txt.
+  site: "https://www.msdo.us",
+  output: "static",
+  // Astro defaults (directory format, trailingSlash "ignore"): emits
+  // dist/about/index.html served at /about/ on GitHub Pages, with canonical
+  // URLs and the sitemap consistently using the trailing-slash form.
+  integrations: [mdx(), react(), ...sitemapWithCustomPages()],
   vite: {
     cacheDir: viteCacheDir,
     plugins: [tailwindcss()],
-    resolve: {
-      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
-      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
-      alias: import.meta.env.PROD
-        ? { "react-dom/server": "react-dom/server.edge" }
-        : undefined,
-    },
-    ssr: {
-      noExternal: ["xxhash-wasm"],
-      ...(import.meta.env.PROD && {
-        resolve: {
-          conditions: ["workerd", "worker", "node"],
-          externalConditions: ["workerd", "worker", "node"],
-        },
-      }),
-    },
     server: {
       strictPort: true,
     },
