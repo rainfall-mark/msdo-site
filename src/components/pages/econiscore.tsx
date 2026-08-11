@@ -45,6 +45,11 @@ const CONTENT: ProjectCaseStudyContent = {
       media: {
         groups: [
           {
+            heading: "Core Product Experience",
+            description: "The consolidated product system brings the dashboard, company summary, performance chart, vendor analysis, network requests, and vendor summary into one continuous view.",
+            items: [{ src: ECONISCORE_CORE_IMAGE, alt: "Consolidated Econiscore dashboard, company analysis, network request, and vendor summary screens" }],
+          },
+          {
             heading: "Design Exploration",
             description: "Early company and vendor dashboard directions explored hierarchy, comparison, and how performance signals could become immediately legible.",
             items: [{ src: `${ECONISCORE_ASSET}/02_1200.png`, alt: "Econiscore company and vendor dashboard design directions" }],
@@ -53,11 +58,6 @@ const CONTENT: ProjectCaseStudyContent = {
             heading: "Vendor Visualization Exploration",
             description: "Alternative chart forms tested how third-party vendor impact could be compared without losing technical context.",
             items: [{ src: `${ECONISCORE_ASSET}/03_1200.png`, alt: "Econiscore vendor visualization explorations" }],
-          },
-          {
-            heading: "Core Product Experience",
-            description: "The consolidated product system brings the dashboard, company summary, performance chart, vendor analysis, network requests, and vendor summary into one continuous view.",
-            items: [{ src: ECONISCORE_CORE_IMAGE, alt: "Consolidated Econiscore dashboard, company analysis, network request, and vendor summary screens" }],
           },
           {
             heading: "Design Spec",
