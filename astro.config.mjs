@@ -19,6 +19,12 @@ export default defineConfig({
   // Live site host — used for canonical URLs, sitemap, and robots.txt.
   site: "https://www.msdo.us",
   output: "static",
+  // About lives on the homepage as the /#about section, like Services and
+  // Work. The old standalone /about page is kept alive as a redirect so
+  // existing links and search results land on the section, not a 404.
+  redirects: {
+    "/about": "/#about",
+  },
   // Astro defaults (directory format, trailingSlash "ignore"): emits
   // dist/about/index.html served at /about/ on GitHub Pages, with canonical
   // URLs and the sitemap consistently using the trailing-slash form.

@@ -42,7 +42,7 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
   return (
     <MotionConfig reducedMotion="user">
       <div className="msdo-home light min-h-screen bg-ploy-background-primary text-ploy-text-primary">
-        <Navbar aboutHref="/about" />
+        <Navbar aboutHref="/#about" />
         <main>
           <CaseStudyHeroSection eyebrow={content.eyebrow} title={content.title} summary={content.summary} backgroundImage={content.heroImage} meta={content.meta} variant="editorial" prominentCover={content.prominentHero} naturalCover={content.naturalHero} />
           {content.chapters.map((chapter, index) => (
@@ -54,7 +54,7 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
           <NextProjectSection projects={content.relatedProjects} />
           <ContactCtaSection />
         </main>
-        <Footer aboutHref="/about" />
+        <Footer aboutHref="/#about" />
       </div>
     </MotionConfig>
   );

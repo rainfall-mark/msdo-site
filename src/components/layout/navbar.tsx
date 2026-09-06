@@ -25,7 +25,7 @@ export default function Navbar({
         <div className="nav__links flex items-center gap-5 sm:gap-7">
           <a href="/#services" className="nav__link hidden text-base text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline">Services</a>
           <a href="/#work" className="nav__link hidden text-base text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline">Work</a>
-          <a href={aboutHref} className="nav__link hidden text-base text-ploy-text-secondary transition-colors hover:text-ploy-text-primary md:inline">About</a>
+          <a href={aboutHref} className="nav__link hidden text-base text-ploy-text-secondary transition-colors hover:text-ploy-text-primary sm:inline">About</a>
           <a href={contactHref} className="nav__cta inline-flex min-h-9 items-center rounded-full bg-ploy-button-primary-background px-4 text-base font-medium text-ploy-button-primary-text transition-transform duration-300 hover:scale-[1.03]">
             Let's talk
           </a>
