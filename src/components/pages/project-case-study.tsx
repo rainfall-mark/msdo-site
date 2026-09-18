@@ -25,6 +25,8 @@ export interface ProjectCaseStudyContent {
   heroImage?: string;
   prominentHero?: boolean;
   naturalHero?: boolean;
+  heroWidth?: number;
+  heroHeight?: number;
   meta: CaseStudyMeta[];
   chapters: ProjectCaseStudyChapter[];
   relatedProjects: RelatedProject[];
@@ -45,7 +47,7 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
       <div className="msdo-home light min-h-screen bg-ploy-background-primary text-ploy-text-primary">
         <Navbar aboutHref="/#about" />
         <main>
-          <CaseStudyHeroSection eyebrow={content.eyebrow} title={content.title} summary={content.summary} backgroundImage={content.heroImage} meta={content.meta} variant="editorial" prominentCover={content.prominentHero} naturalCover={content.naturalHero} />
+          <CaseStudyHeroSection eyebrow={content.eyebrow} title={content.title} summary={content.summary} backgroundImage={content.heroImage} meta={content.meta} variant="editorial" prominentCover={content.prominentHero} naturalCover={content.naturalHero} coverWidth={content.heroWidth} coverHeight={content.heroHeight} />
           {content.chapters.map((chapter, index) => (
             <div key={`${chapter.label}-${index}`}>
               {(chapter.lead || chapter.paragraphs?.length || chapter.blocks?.length) && (

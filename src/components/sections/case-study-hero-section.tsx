@@ -1,5 +1,5 @@
 export interface CaseStudyMeta { label: string; value: string; href?: string; }
-interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?: string; backgroundImage?: string; meta?: CaseStudyMeta[]; variant?: "dark" | "editorial"; prominentCover?: boolean; naturalCover?: boolean; }
+interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?: string; backgroundImage?: string; meta?: CaseStudyMeta[]; variant?: "dark" | "editorial"; prominentCover?: boolean; naturalCover?: boolean; coverWidth?: number; coverHeight?: number; }
 
 /**
  * @ployComponent
@@ -10,7 +10,7 @@ interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?
  * @ployComponentTags case-study hero studio adaptive editorial
  * @ployComponentStatus stable
  */
-export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "Project", summary, backgroundImage, meta = [], variant = "dark", prominentCover = false, naturalCover = false }: CaseStudyHeroSectionProps) {
+export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "Project", summary, backgroundImage, meta = [], variant = "dark", prominentCover = false, naturalCover = false, coverWidth, coverHeight }: CaseStudyHeroSectionProps) {
   const editorial = variant === "editorial";
 
   return (
@@ -34,7 +34,7 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
 
         {backgroundImage && editorial && (
           <div className={`cs-hero__cover mt-12 w-full overflow-hidden rounded-xl bg-ploy-background-secondary sm:mt-16 ${naturalCover ? "" : prominentCover ? "aspect-[4/3] sm:aspect-[16/9]" : "aspect-[16/7]"}`}>
-            <img src={backgroundImage} alt="" aria-hidden="true" loading="eager" decoding="async" fetchPriority="high" className={naturalCover ? "h-auto w-full" : "h-full w-full object-cover"} />
+            <img src={backgroundImage} alt="" aria-hidden="true" width={coverWidth} height={coverHeight} loading="eager" decoding="async" fetchPriority="high" className={naturalCover ? "h-auto w-full" : "h-full w-full object-cover"} />
           </div>
         )}
       </div>

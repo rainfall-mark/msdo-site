@@ -5,7 +5,7 @@ import { Reveal } from "@/components/ui/reveal";
 // Rainfall Studio case study to show the working Ask The Two Robbies app.
 export interface CaseStudyMediaEmbed { src: string; title: string; ratio?: string; }
 export interface CaseStudyMediaLink { href: string; label: string; }
-export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; }
+export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
 interface CaseStudyMediaSectionProps { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
 
@@ -29,7 +29,7 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
             {item.embed ? (
               <LazyEmbed embed={item.embed} />
             ) : (
-              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
+              <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
             )}
             {(item.caption || item.link) && (
               <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">

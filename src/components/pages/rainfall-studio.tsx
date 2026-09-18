@@ -11,6 +11,8 @@ const CONTENT = {
   summary: "Designing Rainfall Studio, a no-code workspace where teams describe an AI app in plain English, then review, test, and deploy it as a governed Coherent App.",
   heroImage: `${RAINFALL_STUDIO_ASSET}/hero.webp`,
   naturalHero: true,
+  heroWidth: 2880,
+  heroHeight: 2160,
   meta: [
     { label: "Role", value: "Product Strategy, UX Design, Product Design, Design Systems" },
     { label: "Date", value: "September 2026" },
@@ -60,6 +62,8 @@ const CONTENT = {
               {
                 src: `${RAINFALL_STUDIO_ASSET}/studio-01.webp`,
                 alt: "Rainfall Studio screens showing the start page, a described app, the authoring conversation gathering guardrails and sources, and the generated Design and choreograph",
+                width: 2880,
+                height: 10726,
               },
             ],
           },
@@ -70,6 +74,8 @@ const CONTENT = {
               {
                 src: `${RAINFALL_STUDIO_ASSET}/studio-02.webp`,
                 alt: "Rainfall Studio screens showing the choreograph canvas with actor library, pre-flight check results, the generated Design document, and the deploy sign-approve-publish flow",
+                width: 2880,
+                height: 8798,
               },
             ],
           },
@@ -104,6 +110,8 @@ const CONTENT = {
               {
                 src: `${RAINFALL_STUDIO_ASSET}/robbies-mobile.webp`,
                 alt: "Ask The Two Robbies mobile screens showing the prompt suggestions home, an answer with episode citations, follow-up chips, and the chat history drawer",
+                width: 2880,
+                height: 1628,
               },
             ],
           },
