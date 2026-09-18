@@ -50,7 +50,7 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
           )}
           {footnote && (
             <div className="mt-14 border-t border-ploy-border-primary pt-6 sm:mt-16">
-              <p className="text-sm text-ploy-text-secondary">{footnote.label}</p>
+              <p className="text-sm font-medium text-ploy-text-primary">{footnote.label}</p>
               <div className="mt-5 grid gap-5 md:grid-cols-2 md:items-start md:gap-10 lg:gap-14">
                 <div>
                   <p className="font-heading text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-ploy-text-primary sm:text-3xl">{footnote.lead}</p>

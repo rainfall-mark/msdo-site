@@ -14,24 +14,24 @@ interface ServicesSectionProps { heading?: string; services?: Service[]; }
 
 const DEFAULT_SERVICES: Service[] = [
   {
-    name: "AI-driven Product Strategy",
-    titleLines: ["AI-driven", "Product Strategy"],
-    description: "Find the right AI opportunities, define the product vision, and create a practical roadmap.",
-  },
-  {
-    name: "Product UI/UX Design",
-    titleLines: ["Product UI/UX", "Design"],
-    description: "Create clear, trustworthy product experiences for AI-powered web, mobile, and data driven solutions.",
+    name: "AI Transformation Product Strategy",
+    titleLines: ["AI Transformation", "Product Strategy"],
+    description: "Audit key business workflows, identify where AI creates value, and turn it into an actionable roadmap.",
   },
   {
     name: "Rapid Prototyping & User Research",
     titleLines: ["Rapid Prototyping &", "User Research"],
-    description: "Prototype quickly, test key assumptions with users, and turn evidence into confident decisions.",
+    description: "Concept and build working prototypes, test them with real users, and use the learnings to build what matters.",
   },
   {
-    name: "AI-Native Process & Design Systems",
-    titleLines: ["AI-Native Process &", "Design Systems"],
-    description: "Build reusable systems and workflows that help people and AI teams ship consistent products.",
+    name: "AI-Driven Product Design",
+    titleLines: ["AI-Driven", "Product Design"],
+    description: "Design, build, and ship AI-native product experiences for web, mobile, and data-driven platforms.",
+  },
+  {
+    name: "AI-First Process & Design Systems",
+    titleLines: ["AI-First Process &", "Design Systems"],
+    description: "Build scalable design systems and help your team adopt AI-first design processes.",
   },
 ];
 
@@ -44,7 +44,7 @@ export default function ServicesSection({ heading = "From AI opportunity to work
             <p className="services__eyebrow mb-3 text-sm text-ploy-text-secondary">Services</p>
             <h2 className="services__title max-w-[14ch] font-heading text-4xl font-semibold leading-[1] tracking-[-0.045em] text-ploy-text-primary sm:text-6xl">{heading}</h2>
           </div>
-          <p className="services__intro max-w-lg text-base leading-relaxed text-ploy-text-secondary lg:justify-self-end">MSDO helps teams identify where AI creates real value, shape the right experience, and establish the systems and workflows needed to move from exploration to production.</p>
+          <p className="services__intro max-w-lg text-base leading-relaxed text-ploy-text-secondary lg:justify-self-end">MSDO helps teams find the right AI opportunities, test them with users, design and build the product, and adopt AI-first design processes.</p>
         </Reveal>
         <div className="services__grid grid gap-3 md:grid-cols-2">
           {services.map((service, index) => (
