@@ -1,7 +1,10 @@
 import { Reveal } from "@/components/ui/reveal";
 
 export interface CaseStudyNarrativeBlock { heading: string; lead?: string; paragraphs?: readonly string[]; }
-interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragraphs?: readonly string[]; blocks?: CaseStudyNarrativeBlock[]; highlights?: string[]; highlightsLabel?: string; }
+// MSDO fork: an optional callout under the blocks, used by Rainfall Studio to
+// point at the example app the product produced.
+export interface CaseStudyNarrativeFootnote { label: string; lead: string; description?: string; link?: { href: string; label: string }; }
+interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragraphs?: readonly string[]; blocks?: CaseStudyNarrativeBlock[]; highlights?: string[]; highlightsLabel?: string; footnote?: CaseStudyNarrativeFootnote; }
 
 /**
  * @ployComponent
@@ -12,7 +15,7 @@ interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragr
  * @ployComponentTags case-study narrative studio adaptive editorial
  * @ployComponentStatus stable
  */
-export default function CaseStudyNarrativeSection({ label = "Challenge", lead, paragraphs = [], blocks, highlights, highlightsLabel }: CaseStudyNarrativeSectionProps) {
+export default function CaseStudyNarrativeSection({ label = "Challenge", lead, paragraphs = [], blocks, highlights, highlightsLabel, footnote }: CaseStudyNarrativeSectionProps) {
   const hasBlocks = blocks && blocks.length > 0;
 
   return (
@@ -43,6 +46,22 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
               {lead && <p className="cs-narrative__lead font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] text-ploy-text-primary sm:text-5xl">{lead}</p>}
               {paragraphs.length > 0 && <div className="cs-narrative__body mt-8 space-y-6">{paragraphs.map((paragraph, index) => <p key={index} className="text-lg leading-relaxed text-ploy-text-secondary">{paragraph}</p>)}</div>}
               {highlights && highlights.length > 0 && <div className="mt-12">{highlightsLabel && <p className="text-xs text-ploy-text-secondary">{highlightsLabel}</p>}<ul className="mt-5 border-t border-ploy-border-primary">{highlights.map((item) => <li key={item} className="border-b border-ploy-border-primary py-4 text-base font-medium text-ploy-text-primary">{item}</li>)}</ul></div>}
+            </div>
+          )}
+          {footnote && (
+            <div className="mt-14 border-t border-ploy-border-primary pt-6 sm:mt-16">
+              <p className="text-sm text-ploy-text-secondary">{footnote.label}</p>
+              <div className="mt-5 grid gap-5 md:grid-cols-2 md:items-start md:gap-10 lg:gap-14">
+                <div>
+                  <p className="font-heading text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-ploy-text-primary sm:text-3xl">{footnote.lead}</p>
+                  {footnote.description && <p className="mt-4 text-base leading-relaxed text-ploy-text-secondary">{footnote.description}</p>}
+                </div>
+                {footnote.link && (
+                  <a href={footnote.link.href} {...(footnote.link.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})} className="justify-self-start text-base font-medium text-ploy-text-primary underline underline-offset-4 md:mt-1">
+                    {footnote.link.label}
+                  </a>
+                )}
+              </div>
             </div>
           )}
         </div>

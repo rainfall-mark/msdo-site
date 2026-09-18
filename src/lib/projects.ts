@@ -22,6 +22,13 @@ export const PROJECTS: Project[] = [
     image: `${ASSET_BASE}/d297aa17-rainfall-website.webp`,
   },
   {
+    name: "Rainfall Studio",
+    href: "/rainfall-studio",
+    tags: ["Web App", "AI", "Agents"],
+    // MSDO fork: served from public/images rather than Ploy storage.
+    image: "/images/rainfall-studio/thumb.webp",
+  },
+  {
     name: "Rainfall Mobile",
     href: "/rainfall-mobile",
     tags: ["AI", "Web3"],

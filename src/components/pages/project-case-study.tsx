@@ -2,7 +2,7 @@ import { MotionConfig } from "motion/react";
 import Navbar from "../layout/navbar";
 import Footer from "../layout/footer";
 import CaseStudyHeroSection, { type CaseStudyMeta } from "../sections/case-study-hero-section";
-import CaseStudyNarrativeSection, { type CaseStudyNarrativeBlock } from "../sections/case-study-narrative-section";
+import CaseStudyNarrativeSection, { type CaseStudyNarrativeBlock, type CaseStudyNarrativeFootnote } from "../sections/case-study-narrative-section";
 import CaseStudyMediaSection, { type CaseStudyMediaGroup, type CaseStudyMediaItem } from "../sections/case-study-media-section";
 import NextProjectSection, { type RelatedProject } from "../sections/next-project-section";
 import ContactCtaSection from "../sections/contact-cta-section";
@@ -14,7 +14,8 @@ export interface ProjectCaseStudyChapter {
   blocks?: CaseStudyNarrativeBlock[];
   highlights?: string[];
   highlightsLabel?: string;
-  media?: { label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; };
+  footnote?: CaseStudyNarrativeFootnote;
+  media?: { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; };
 }
 
 export interface ProjectCaseStudyContent {
@@ -47,8 +48,10 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
           <CaseStudyHeroSection eyebrow={content.eyebrow} title={content.title} summary={content.summary} backgroundImage={content.heroImage} meta={content.meta} variant="editorial" prominentCover={content.prominentHero} naturalCover={content.naturalHero} />
           {content.chapters.map((chapter, index) => (
             <div key={`${chapter.label}-${index}`}>
-              <CaseStudyNarrativeSection label={chapter.label} lead={chapter.lead} paragraphs={chapter.paragraphs} blocks={chapter.blocks} highlights={chapter.highlights} highlightsLabel={chapter.highlightsLabel} />
-              {chapter.media && <CaseStudyMediaSection label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} groups={chapter.media.groups} />}
+              {(chapter.lead || chapter.paragraphs?.length || chapter.blocks?.length) && (
+                <CaseStudyNarrativeSection label={chapter.label} lead={chapter.lead} paragraphs={chapter.paragraphs} blocks={chapter.blocks} highlights={chapter.highlights} highlightsLabel={chapter.highlightsLabel} footnote={chapter.footnote} />
+              )}
+              {chapter.media && <CaseStudyMediaSection id={chapter.media.id} label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} groups={chapter.media.groups} />}
             </div>
           ))}
           <NextProjectSection projects={content.relatedProjects} />

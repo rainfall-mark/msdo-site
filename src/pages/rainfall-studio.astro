@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../layouts/CaseStudyRouteLayout.astro";
+import RainfallStudioPage from "../components/pages/rainfall-studio";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="Rainfall Studio — No-Code Builder for Coherent AI Agents | MSDO Case Study"
+  description="How MSDO designed Rainfall Studio, a no-code workspace for describing, testing, and deploying governed AI agents that behave consistently across any model."
+  image="https://www.msdo.us/images/rainfall-studio/hero.webp"
+  name="Rainfall Studio — No-Code Builder for Coherent AI Agents"
+  about="Product strategy, UX design, product design, and design systems for Rainfall Studio"
+  dateCreated="2026-09-01"
+  keywords="agentic AI product design, no-code AI agent builder, AI governance, AI coherence, web app UX"
+  path="/rainfall-studio"
+>
+  <RainfallStudioPage client:load />
+</CaseStudyRouteLayout>

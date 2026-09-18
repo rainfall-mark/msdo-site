@@ -1,8 +1,12 @@
 import { Reveal } from "@/components/ui/reveal";
 
-export interface CaseStudyMediaItem { src: string; alt: string; caption?: string; }
+// MSDO fork: media items can also be a live embed (iframe), used by the
+// Rainfall Studio case study to show the working Ask The Two Robbies app.
+export interface CaseStudyMediaEmbed { src: string; title: string; ratio?: string; }
+export interface CaseStudyMediaLink { href: string; label: string; }
+export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
-interface CaseStudyMediaSectionProps { label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
+interface CaseStudyMediaSectionProps { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
 
 /**
  * @ployComponent
@@ -13,16 +17,32 @@ interface CaseStudyMediaSectionProps { label?: string; heading?: string; items?:
  * @ployComponentTags case-study media imagery gallery studio editorial
  * @ployComponentStatus stable
  */
-export default function CaseStudyMediaSection({ label, heading, items = [], groups = [] }: CaseStudyMediaSectionProps) {
+export default function CaseStudyMediaSection({ id, label, heading, items = [], groups = [] }: CaseStudyMediaSectionProps) {
   if (!items.length && !groups.length) return null;
 
   const renderItems = (mediaItems: CaseStudyMediaItem[]) => (
     <div className="space-y-12 sm:space-y-16 lg:space-y-20">
       {mediaItems.map((item, index) => (
-        <Reveal key={`${item.src}-${index}`}>
+        <Reveal key={`${item.src ?? item.embed?.src}-${index}`}>
           <figure>
-            <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
-            {item.caption && <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">{item.caption}</figcaption>}
+            {item.embed ? (
+              <div className="w-full overflow-hidden rounded-xl p-[5%]" style={{ aspectRatio: item.embed.ratio ?? "16 / 10", backgroundColor: "#18191D" }}>
+                <iframe src={item.embed.src} title={item.embed.title} loading="lazy" className="block h-full w-full rounded-lg border-0" allow="autoplay" />
+              </div>
+            ) : (
+              <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
+            )}
+            {(item.caption || item.link) && (
+              <figcaption className="mt-4 max-w-2xl text-sm leading-relaxed text-ploy-text-secondary">
+                {item.caption}
+                {item.link && (
+                  <>
+                    {item.caption ? " " : null}
+                    <a href={item.link.href} target="_blank" rel="noreferrer" className="text-ploy-text-primary underline underline-offset-4">{item.link.label}</a>
+                  </>
+                )}
+              </figcaption>
+            )}
           </figure>
         </Reveal>
       ))}
@@ -30,7 +50,7 @@ export default function CaseStudyMediaSection({ label, heading, items = [], grou
   );
 
   return (
-    <section className="cs-media bg-ploy-background-primary py-12 sm:py-16 lg:py-20">
+    <section id={id} className="cs-media scroll-mt-24 bg-ploy-background-primary py-12 sm:py-16 lg:py-20">
       <div className="mx-auto max-w-[92rem] px-5 sm:px-8 lg:px-10">
         {(label || heading) && (
           <Reveal className="mb-10 max-w-3xl">

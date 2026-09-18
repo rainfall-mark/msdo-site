@@ -45,3 +45,14 @@ Everything else works without this; only the "Start a Project" form needs it.
 
 Requires [Bun](https://bun.sh). `bun install` then `bun run build`
 (output in `dist/`), or `bun run dev` for a local preview at localhost:3000.
+
+## MSDO fork: Rainfall Studio case study
+
+Rainfall Studio (`/rainfall-studio`) is an MSDO-only page. Its images are
+served from `public/images/rainfall-studio/` rather than Ploy storage, and the
+working Ask The Two Robbies demo is a self-contained page at
+`public/demos/ask-the-two-robbies/index.html`, embedded in the case study.
+
+The shared `src/components/sections/case-study-media-section.tsx` carries a
+fork patch: media items may be `{ embed: { src, title, ratio } }` and render as
+a responsive iframe instead of an image. Keep this when rebasing onto Ploy.
