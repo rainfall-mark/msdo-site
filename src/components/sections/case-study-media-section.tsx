@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "@/components/ui/reveal";
 
 // MSDO fork: media items can also be a live embed (iframe), used by the
@@ -26,9 +27,7 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
         <Reveal key={`${item.src ?? item.embed?.src}-${index}`}>
           <figure>
             {item.embed ? (
-              <div className="w-full overflow-hidden rounded-xl p-[5%]" style={{ aspectRatio: item.embed.ratio ?? "16 / 10", backgroundColor: "#18191D" }}>
-                <iframe src={item.embed.src} title={item.embed.title} loading="lazy" className="block h-full w-full rounded-lg border-0" allow="autoplay" />
-              </div>
+              <LazyEmbed embed={item.embed} />
             ) : (
               <img src={item.src} alt={item.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
             )}
@@ -74,5 +73,44 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
         ) : renderItems(items)}
       </div>
     </section>
+  );
+}
+
+/**
+ * MSDO fork: an embed that only mounts its iframe once it scrolls into view,
+ * so a self-playing demo does not run while it is still off screen.
+ */
+function LazyEmbed({ embed }: { embed: CaseStudyMediaEmbed }) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const node = frameRef.current;
+    if (!node) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setInView(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "-15% 0px -15% 0px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={frameRef} className="w-full overflow-hidden rounded-xl p-[5%]" style={{ aspectRatio: embed.ratio ?? "16 / 10", backgroundColor: "#18191D" }}>
+      {inView ? (
+        <iframe src={embed.src} title={embed.title} className="block h-full w-full rounded-lg border-0" allow="autoplay" />
+      ) : (
+        <div className="h-full w-full rounded-lg" aria-hidden="true" />
+      )}
+    </div>
   );
 }
