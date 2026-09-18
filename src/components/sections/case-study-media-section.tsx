@@ -76,6 +76,9 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
   );
 }
 
+/** How long the embed waits, after settling into view, before it starts. */
+const START_DELAY_MS = 700;
+
 /**
  * MSDO fork: an embed that only mounts its iframe once it scrolls into view,
  * so a self-playing demo does not run while it is still off screen.
@@ -91,17 +94,29 @@ function LazyEmbed({ embed }: { embed: CaseStudyMediaEmbed }) {
       setInView(true);
       return;
     }
+    // Wait a beat after the frame settles into view, so the demo starts once
+    // the reader has arrived rather than mid-scroll. Leaving view cancels it.
+    let timer: ReturnType<typeof setTimeout> | undefined;
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          setInView(true);
-          observer.disconnect();
+        const visible = entries.some((entry) => entry.isIntersecting);
+        if (visible && timer === undefined) {
+          timer = setTimeout(() => {
+            setInView(true);
+            observer.disconnect();
+          }, START_DELAY_MS);
+        } else if (!visible && timer !== undefined) {
+          clearTimeout(timer);
+          timer = undefined;
         }
       },
       { rootMargin: "-15% 0px -15% 0px" },
     );
     observer.observe(node);
-    return () => observer.disconnect();
+    return () => {
+      if (timer !== undefined) clearTimeout(timer);
+      observer.disconnect();
+    };
   }, []);
 
   return (
