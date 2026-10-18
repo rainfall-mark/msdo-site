@@ -18,7 +18,7 @@ interface LabSectionProps {
   projects?: LabProject[];
 }
 
-export default function LabSection({ eyebrow = "Lab", heading = "Built with AI", note = "More coming soon", projects = LAB_PROJECTS }: LabSectionProps) {
+export default function LabSection({ eyebrow = "Lab", heading = "AI-driven projects", note = "More coming soon", projects = LAB_PROJECTS }: LabSectionProps) {
   if (!projects.length) return null;
 
   return (

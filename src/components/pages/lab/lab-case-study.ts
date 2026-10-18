@@ -33,7 +33,7 @@ export function buildLabCaseStudy(input: LabCaseStudyInput): ProjectCaseStudyCon
   const isExternal = /^https?:\/\//.test(project.demoHref);
 
   return {
-    eyebrow: "Lab · Built with AI",
+    eyebrow: "Lab · AI-driven project",
     title: project.name,
     summary: input.summary,
     heroImage: asset("hero.webp"),

@@ -26,11 +26,11 @@ const CONTENT = buildLabCaseStudy({
       "It runs as an ongoing agent rather than a one-off report: skips and swaps get logged in chat, and a weekly sync refreshes the dashboard.",
     ],
   },
-  demoCaption: "A guided tour with a sample stack: today's protocol, a dosing flag, recommendations, and the product timeline.",
+  demoCaption: "A guided tour with a sample stack: today's protocol, a dosing flag, recommendations, the timeline views, costs, and dark mode.",
   screens: [
-    { heading: "Dosing Safety", caption: "Nutrient totals across every product, checked against upper limits." },
-    { heading: "Recommendations", caption: "What to keep, adjust, add, or trim, and why." },
-    { heading: "Stack History", caption: "Every product and ingredient over the years, by product or by ingredient." },
+    { heading: "Safety, Then the Plan", caption: "Totals across every product are checked against upper limits, so magnesium at 97% gets flagged, and the keep, adjust, add, and trim plan follows from it." },
+    { heading: "Stack History", caption: "Every product taken since 2021, expandable to its ingredients, or flipped to an ingredient view to see where nutrients overlap." },
+    { heading: "Cost, in Dark Mode", caption: "Monthly cost by product, and what trimming the review items would save." },
   ],
 });
 
