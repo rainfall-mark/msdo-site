@@ -5,7 +5,9 @@ import { Reveal } from "@/components/ui/reveal";
 // Rainfall Studio case study to show the working Ask The Two Robbies app.
 export interface CaseStudyMediaEmbed { src: string; title: string; ratio?: string; }
 export interface CaseStudyMediaLink { href: string; label: string; }
-export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; }
+// MSDO fork: a looping, muted screen recording (used by the Lab case studies).
+export interface CaseStudyMediaVideo { src: string; poster?: string; title: string; width?: number; height?: number; }
+export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; video?: CaseStudyMediaVideo; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
 interface CaseStudyMediaSectionProps { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
 
@@ -24,9 +26,11 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
   const renderItems = (mediaItems: CaseStudyMediaItem[]) => (
     <div className="space-y-12 sm:space-y-16 lg:space-y-20">
       {mediaItems.map((item, index) => (
-        <Reveal key={`${item.src ?? item.embed?.src}-${index}`}>
+        <Reveal key={`${item.src ?? item.embed?.src ?? item.video?.src}-${index}`}>
           <figure>
-            {item.embed ? (
+            {item.video ? (
+              <LoopVideo video={item.video} />
+            ) : item.embed ? (
               <LazyEmbed embed={item.embed} />
             ) : (
               <img src={item.src} alt={item.alt} width={item.width} height={item.height} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
@@ -127,5 +131,58 @@ function LazyEmbed({ embed }: { embed: CaseStudyMediaEmbed }) {
         <div className="h-full w-full rounded-lg" aria-hidden="true" />
       )}
     </div>
+  );
+}
+
+/**
+ * MSDO fork: a muted, looping screen recording that only plays while on screen,
+ * so it costs nothing until the reader reaches it. Respects reduced motion by
+ * showing the poster with controls instead of autoplaying.
+ */
+function LoopVideo({ video }: { video: CaseStudyMediaVideo }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const prefersReduced = typeof window.matchMedia === "function" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      queueMicrotask(() => setReducedMotion(true));
+      return;
+    }
+    if (typeof IntersectionObserver === "undefined") {
+      node.play().catch(() => undefined);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) node.play().catch(() => undefined);
+          else node.pause();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={video.src}
+      poster={video.poster}
+      width={video.width}
+      height={video.height}
+      title={video.title}
+      aria-label={video.title}
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      controls={reducedMotion}
+      className="block h-auto w-full rounded-xl border border-ploy-border-primary bg-ploy-background-secondary"
+    />
   );
 }

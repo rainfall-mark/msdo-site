@@ -30,6 +30,8 @@ export interface ProjectCaseStudyContent {
   meta: CaseStudyMeta[];
   chapters: ProjectCaseStudyChapter[];
   relatedProjects: RelatedProject[];
+  /** MSDO fork: Lab case studies relabel the related row and point "All" back to the Lab. */
+  related?: { label?: string; indexLabel?: string; indexHref?: string };
 }
 
 /**
@@ -56,7 +58,7 @@ export default function ProjectCaseStudyTemplate({ content }: { content: Project
               {chapter.media && <CaseStudyMediaSection id={chapter.media.id} label={chapter.media.label} heading={chapter.media.heading} items={chapter.media.items} groups={chapter.media.groups} />}
             </div>
           ))}
-          <NextProjectSection projects={content.relatedProjects} />
+          <NextProjectSection projects={content.relatedProjects} label={content.related?.label} indexLabel={content.related?.indexLabel} indexHref={content.related?.indexHref} />
           <ContactCtaSection />
         </main>
         <Footer aboutHref="/#about" />

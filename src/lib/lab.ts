@@ -1,71 +1,41 @@
 /**
- * MSDO Lab: recent AI-driven builds shown on the homepage between Work and About.
+ * MSDO Lab: AI-driven builds shown as a row of cards on the homepage (between
+ * Work and About), each linking to its own case-study page under /lab/.
  *
- * To add or edit a project, change this array only. Each entry needs:
- * - image: a screenshot in public/images/lab/<slug>/ (16:10 crops best). Leave it
- *   undefined and the card shows a neutral placeholder until the screenshot lands.
- * - demo: where "Try the demo" goes. Either a page hosted with the site
- *   (public/lab/<slug>/index.html, served at /lab/<slug>/) or a public link
- *   such as a shared Claude artifact. Leave it undefined to hide the button.
+ * To add a project:
+ * 1. Add an entry here (image is the 16:10 card thumbnail).
+ * 2. Put its assets in public/images/lab/<slug>/ (thumb, hero, screens, demo.mp4).
+ * 3. Put the working demo in public/demos/<slug>/index.html, or link out to a
+ *    shared Claude artifact.
+ * 4. Copy one of src/components/pages/lab/*.tsx and add a route in src/pages/lab/.
  */
-export interface LabDemo {
+export interface LabProject {
+  name: string;
+  slug: string;
   href: string;
-  label?: string;
+  tags: string[];
+  image: string;
+  /** Where "Try the live demo" goes: a page hosted with the site or a public artifact link. */
+  demoHref: string;
 }
 
-export interface LabProject {
-  slug: string;
-  name: string;
-  tags: string[];
-  image?: string;
-  imageAlt?: string;
-  challenge: string;
-  solution: string;
-  aiRole: string;
-  demo?: LabDemo;
-}
+export const LAB_HREF = "/#lab";
+
+const lab = (slug: string) => ({
+  slug,
+  href: `/lab/${slug}`,
+  image: `/images/lab/${slug}/thumb.webp`,
+  demoHref: `/demos/${slug}/`,
+});
 
 export const LAB_PROJECTS: LabProject[] = [
-  {
-    slug: "healthwiser",
-    name: "Healthwiser",
-    tags: ["Claude Plugin", "Precision Health", "Dashboard"],
-    image: undefined,
-    imageAlt: "Healthwiser dashboard with biomarker trends and advisor notes",
-    challenge:
-      "Lab results arrive as PDFs from different vendors, in different units, months apart. Seeing the trend, and knowing what to ask your doctor, is left to you.",
-    solution:
-      "A personal health advisor that reads your lab PDFs, normalizes every biomarker into one profile, tracks changes across panels, and keeps a living dashboard with labs, advisor notes, and new research.",
-    aiRole:
-      "Claude extracts and normalizes the biomarkers, then reviews them through a panel of nine expert lenses. Packaged as a Claude plugin, so setup, new labs, and the monthly research report are each one request, and the data stays on your machine.",
-    demo: undefined,
-  },
-  {
-    slug: "mri-explorer-shoulder",
-    name: "MRI Explorer (Shoulder)",
-    tags: ["Claude Plugin", "Medical Imaging", "3D"],
-    image: undefined,
-    imageAlt: "MRI Explorer showing a shoulder scan with report findings ringed on the image",
-    challenge:
-      "A radiology report is written for other doctors. Patients get a disc of images they can't open and a page of terms they can't place on their own body, then walk into the appointment unprepared.",
-    solution:
-      "An interactive viewer that pairs the scan with the report: every series side by side, each finding ringed on the slice the radiologist cited and explained in plain English, a 3D model you can cut through, symptom pins, and a PDF summary for the doctor.",
-    aiRole:
-      "Claude processes the DICOM files, reads the report, places each finding on the right image, writes the explanations, and builds the viewer. One rule holds throughout: explain what the radiologist wrote, never diagnose.",
-    demo: undefined,
-  },
-  {
-    slug: "supplements",
-    name: "Supplements",
-    tags: ["Health", "Dashboard", "Ongoing Agent"],
-    image: undefined,
-    imageAlt: "Supplement dashboard showing the daily protocol, safety flags, and stack history",
-    challenge:
-      "A supplement stack grows one recommendation at a time. Years later, nutrients overlap, some exceed safe limits, and nothing connects back to your labs or goals.",
-    solution:
-      "One dashboard for the whole stack: today's protocol by time of day, nutrient totals against upper limits, safety flags, keep / adjust / trim recommendations, and a summary ready for a nutritionist to review.",
-    aiRole:
-      "Claude keeps the ledger from label photos, totals every ingredient across products, flags overlaps, ties recommendations to lab results, and refreshes the dashboard on a weekly sync.",
-    demo: undefined,
-  },
+  { name: "Healthwise", tags: ["AI Advisor", "Precision Health"], ...lab("healthwise") },
+  { name: "Supplement Stack", tags: ["AI Agent", "Dashboard"], ...lab("supplement-stack") },
+  { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], ...lab("mri-explorer") },
 ];
+
+/** Asset folder for a Lab project's case-study media. */
+export const labAsset = (slug: string, file: string) => `/images/lab/${slug}/${file}`;
+
+/** The other Lab projects, for the "More from the Lab" row on each case study. */
+export const otherLabProjects = (slug: string) => LAB_PROJECTS.filter((project) => project.slug !== slug);

@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../../layouts/CaseStudyRouteLayout.astro";
+import MriExplorerPage from "../../components/pages/lab/mri-explorer";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="MRI Explorer: Understand Your MRI in Plain English | MSDO Lab"
+  description="How MSDO built MRI Explorer, a Claude-powered viewer that rings each radiology finding on the scan, explains it in plain English, and adds a 3D model."
+  image="https://www.msdo.us/images/lab/mri-explorer/hero.webp"
+  name="MRI Explorer: Interactive MRI and Report Viewer"
+  about="Concept, product design, and AI build of a patient-facing MRI viewer"
+  dateCreated="2026-10-01"
+  keywords="MRI viewer, radiology report explained, medical imaging UX, 3D MRI, Claude plugin"
+  path="/lab/mri-explorer"
+>
+  <MriExplorerPage client:load />
+</CaseStudyRouteLayout>
