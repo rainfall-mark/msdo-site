@@ -6,7 +6,7 @@ import { Reveal } from "@/components/ui/reveal";
 export interface CaseStudyMediaEmbed { src: string; title: string; ratio?: string; }
 export interface CaseStudyMediaLink { href: string; label: string; }
 // MSDO fork: a looping, muted screen recording (used by the Lab case studies).
-export interface CaseStudyMediaVideo { src: string; poster?: string; title: string; width?: number; height?: number; }
+export interface CaseStudyMediaVideo { src: string; /** Optional WebM fallback for browsers without H.264. */ webm?: string; poster?: string; title: string; width?: number; height?: number; }
 export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; video?: CaseStudyMediaVideo; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
 interface CaseStudyMediaSectionProps { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
@@ -171,7 +171,6 @@ function LoopVideo({ video }: { video: CaseStudyMediaVideo }) {
   return (
     <video
       ref={ref}
-      src={video.src}
       poster={video.poster}
       width={video.width}
       height={video.height}
@@ -183,6 +182,9 @@ function LoopVideo({ video }: { video: CaseStudyMediaVideo }) {
       preload="metadata"
       controls={reducedMotion}
       className="block h-auto w-full rounded-xl border border-ploy-border-primary bg-ploy-background-secondary"
-    />
+    >
+      <source src={video.src} type="video/mp4" />
+      {video.webm && <source src={video.webm} type="video/webm" />}
+    </video>
   );
 }

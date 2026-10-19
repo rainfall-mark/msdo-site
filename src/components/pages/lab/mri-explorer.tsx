@@ -16,7 +16,7 @@ const CONTENT = buildLabCaseStudy({
     lead: "See what the radiologist saw.",
     paragraphs: [
       "MRI Explorer opens every series side by side, rings each finding on the slice the radiologist cited, and explains it in plain English. A 3D view combines the series with a cut plane and an explodable bone and muscle model.",
-      "Symptoms can be pinned to the body, questions collected, and everything exported as a PDF to bring to the doctor. Tuned for shoulder, knee, hip, and spine. The demo uses a sample shoulder case.",
+      "Symptoms can be pinned to the body, questions collected, and everything exported as a PDF to bring to the doctor. Tuned for shoulder, knee, hip, and spine. The demo pairs a real, anonymized shoulder scan with sample findings.",
     ],
   },
   ai: {
@@ -26,11 +26,11 @@ const CONTENT = buildLabCaseStudy({
       "It ships as a Claude plugin, so anyone can point it at their own scan folder and report. Patient identifiers are stripped from the image data on the way in.",
     ],
   },
-  demoCaption: "A guided tour with a sample shoulder study: the series grid, a finding explained, slice controls, and the 3D model.",
+  demoCaption: "A guided tour of an anonymized shoulder scan with sample findings: picking findings across the series grid, scrolling slices and adjusting brightness, the 3D volume and model, a symptom pin, and the PDF summary.",
   screens: [
-    { heading: "Findings on the Scan", caption: "Each finding ringed on the slice it was cited on, with a plain-English explanation." },
-    { heading: "3D View", caption: "All series combined into one volume, with a cut plane and an explodable bone and muscle model." },
-    { heading: "Ready for the Appointment", caption: "Symptoms, questions, and a PDF summary to bring to the doctor." },
+    { heading: "Findings on the Scan", caption: "One slice up close, with fluid highlighted and a ring on the finding, so you can see exactly what the report describes." },
+    { heading: "3D View", caption: "The slices stack into a volume, with each finding pinned where it sits in the shoulder." },
+    { heading: "Where It Hurts", caption: "An explodable anatomy model with color-coded muscles, and symptom pins that carry into the PDF summary for the doctor." },
   ],
 });
 

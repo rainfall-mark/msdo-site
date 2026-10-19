@@ -71,7 +71,7 @@ export function buildLabCaseStudy(input: LabCaseStudyInput): ProjectCaseStudyCon
               description: input.demoCaption,
               items: [
                 {
-                  video: { src: asset("demo.mp4"), poster: asset("demo-poster.webp"), title: `${project.name} demo recording`, width: 1440, height: 900 },
+                  video: { src: asset("demo.mp4"), webm: asset("demo.webm"), poster: asset("demo-poster.webp"), title: `${project.name} demo recording`, width: 1440, height: 900 },
                   caption: "Recorded from the live demo, which runs on sample data.",
                   link: { href: project.demoHref, label: "Open the live demo" },
                 },
