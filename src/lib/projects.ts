@@ -22,6 +22,13 @@ export const PROJECTS: Project[] = [
     image: `${ASSET_BASE}/d297aa17-rainfall-website.webp`,
   },
   {
+    name: "Rainfall Brand",
+    href: "/rainfall-brand",
+    tags: ["Brand", "Positioning", "AI"],
+    // MSDO fork: served from public/images rather than Ploy storage.
+    image: "/images/rainfall-brand/thumb.webp",
+  },
+  {
     name: "Rainfall Studio",
     href: "/rainfall-studio",
     tags: ["Web App", "AI", "Agents"],
@@ -51,6 +58,13 @@ export const PROJECTS: Project[] = [
     href: "/truvalue-website",
     tags: ["Web", "AI", "Finance"],
     image: `${ASSET_BASE}/48350719-truvalue-website.webp`,
+  },
+  {
+    name: "Truvalue Brand",
+    href: "/truvalue-brand",
+    tags: ["Brand", "Go-to-Market", "Finance"],
+    // MSDO fork: served from public/images rather than Ploy storage.
+    image: "/images/truvalue-brand/thumb.webp",
   },
   {
     name: "Truvalue Platform",
@@ -84,7 +98,9 @@ export const PROJECTS: Project[] = [
   },
 ];
 
-const HIDDEN_PROJECT_NAMES = new Set(["Rainfall Website", "Truvalue Website"]);
+// Draft brand / go-to-market pages stay out of the grid until reviewed; remove
+// them from this set to publish their cards.
+const HIDDEN_PROJECT_NAMES = new Set(["Rainfall Website", "Truvalue Website", "Rainfall Brand", "Truvalue Brand"]);
 
 /** Projects currently shown in portfolio grids and related-work sections. */
 export const VISIBLE_PROJECTS = PROJECTS.filter(

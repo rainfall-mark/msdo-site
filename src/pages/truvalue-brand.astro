@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../layouts/CaseStudyRouteLayout.astro";
+import TruvalueBrandPage from "../components/pages/truvalue-brand";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="Truvalue Labs Brand & Go-to-Market | MSDO Case Study"
+  description="How MSDO positioned Truvalue Labs for institutional investors through brand strategy, messaging, product marketing, thought leadership, and a solutions-led website."
+  image="https://www.msdo.us/images/truvalue-brand/hero.webp"
+  name="Truvalue Labs Brand & Go-to-Market"
+  about="Brand strategy, positioning, product marketing, creative direction, and development oversight for Truvalue Labs"
+  dateCreated="2020"
+  keywords="B2B go-to-market, fintech branding, AI positioning, ESG data marketing, product marketing, financial services website"
+  path="/truvalue-brand"
+>
+  <TruvalueBrandPage client:load />
+</CaseStudyRouteLayout>

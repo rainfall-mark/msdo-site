@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../layouts/CaseStudyRouteLayout.astro";
+import RainfallBrandPage from "../components/pages/rainfall-brand";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="Rainfall Brand & Positioning | MSDO Case Study"
+  description="How MSDO defined AI Coherence as a new category for Rainfall and built the brand, narrative, and website to carry it to users, developers, and investors."
+  image="https://www.msdo.us/images/rainfall-brand/hero.webp"
+  name="Rainfall Brand & Positioning"
+  about="Branding, positioning, design, and development oversight for Rainfall"
+  dateCreated="2025"
+  keywords="AI category design, AI positioning, brand strategy, agentic AI, AI coherence, self-sovereign AI, Web3 branding"
+  path="/rainfall-brand"
+>
+  <RainfallBrandPage client:load />
+</CaseStudyRouteLayout>
