@@ -1,4 +1,4 @@
-import { LAB_HREF, LAB_PROJECTS, labAsset, otherLabProjects } from "@/lib/lab";
+import { ALL_LAB_PROJECTS, LAB_HREF, labAsset, otherLabProjects } from "@/lib/lab";
 import type { ProjectCaseStudyContent } from "../project-case-study";
 
 interface Story { lead: string; paragraphs: string[] }
@@ -27,7 +27,7 @@ const HERO_H = 1800;
  * live version, feature screens, and the other Lab projects.
  */
 export function buildLabCaseStudy(input: LabCaseStudyInput): ProjectCaseStudyContent {
-  const project = LAB_PROJECTS.find((item) => item.slug === input.slug);
+  const project = ALL_LAB_PROJECTS.find((item) => item.slug === input.slug);
   if (!project) throw new Error(`Unknown Lab project: ${input.slug}`);
   const asset = (file: string) => labAsset(input.slug, file);
   const isExternal = /^https?:\/\//.test(project.demoHref);
@@ -114,7 +114,7 @@ const GRID_H = 1818;
  * Phones get a tap-to-open preview instead of the cramped embed.
  */
 export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyContent {
-  const project = LAB_PROJECTS.find((item) => item.slug === input.slug);
+  const project = ALL_LAB_PROJECTS.find((item) => item.slug === input.slug);
   if (!project) throw new Error(`Unknown Lab project: ${input.slug}`);
   const asset = (file: string) => labAsset(input.slug, file);
 
