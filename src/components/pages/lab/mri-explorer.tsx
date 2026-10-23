@@ -23,7 +23,7 @@ const CONTENT = buildLabExperiment({
       "Claude does the heavy lifting: it processes the scan files, reads the report, writes the plain-language explanations, places each finding on the images, and builds the viewer. It explains what the radiologist wrote and never diagnoses. The demo runs on my own shoulder MRI.",
     ],
   },
-  demoIntro: "The full viewer, running on my own shoulder MRI. Pick a finding to see it ringed across every series, scroll through slices, or switch to the 3D view.",
+  demoIntro: "A walkthrough of the full viewer on my own shoulder MRI: findings across every series, scrolling the slices, the 3D model, symptoms and questions, and the PDF to take to the doctor.",
 });
 
 /**
@@ -31,7 +31,7 @@ const CONTENT = buildLabExperiment({
  * @ployComponentId lab-mri-explorer-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription MRI Explorer Lab experiment page: 2x2 screenshot-grid hero, challenge and solution (with how AI was used), and the working demo embedded with an open-in-new-tab option.
+ * @ployComponentDescription MRI Explorer Lab experiment page: 2x2 screenshot-grid hero, challenge and solution (with how AI was used), a recorded walkthrough, and a prominent call to action that opens the live app in a new tab.
  * @ployComponentTags lab experiment mri medical-imaging ai editorial
  * @ployComponentStatus stable
  */

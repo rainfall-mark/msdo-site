@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 
 // MSDO fork: media items can also be a live embed (iframe), used by the
@@ -12,8 +13,10 @@ export interface CaseStudyMediaEmbed {
 }
 export interface CaseStudyMediaLink { href: string; label: string; }
 // MSDO fork: a looping, muted screen recording (used by the Lab case studies).
-export interface CaseStudyMediaVideo { src: string; /** Optional WebM fallback for browsers without H.264. */ webm?: string; poster?: string; title: string; width?: number; height?: number; }
-export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; video?: CaseStudyMediaVideo; }
+export interface CaseStudyMediaVideo { src: string; /** Optional WebM fallback for browsers without H.264. */ webm?: string; poster?: string; title: string; width?: number; height?: number; /** Always show playback controls (for longer walkthroughs viewers may want to scrub). */ controls?: boolean; }
+/** MSDO fork: a prominent call to action under a media item, e.g. "Try the live app". */
+export interface CaseStudyMediaCta { href: string; label: string; note?: string; }
+export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; video?: CaseStudyMediaVideo; cta?: CaseStudyMediaCta; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
 interface CaseStudyMediaSectionProps { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
 
@@ -51,6 +54,16 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
                   </>
                 )}
               </figcaption>
+            )}
+            {item.cta && (
+              <div className="mt-8 flex flex-col items-start gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-5">
+                <a href={item.cta.href} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ploy-button-primary-background px-6 text-base font-medium text-ploy-button-primary-text transition-transform duration-300 hover:scale-[1.03] sm:min-h-14 sm:px-8 sm:text-lg">
+                  {item.cta.label}
+                  <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+                  <span className="sr-only">(opens in a new tab)</span>
+                </a>
+                {item.cta.note && <span className="text-sm text-ploy-text-secondary">{item.cta.note}</span>}
+              </div>
             )}
           </figure>
         </Reveal>
@@ -195,7 +208,7 @@ function LoopVideo({ video }: { video: CaseStudyMediaVideo }) {
       loop
       playsInline
       preload="metadata"
-      controls={reducedMotion}
+      controls={reducedMotion || video.controls}
       className="block h-auto w-full rounded-xl border border-ploy-border-primary bg-ploy-background-secondary"
     >
       <source src={video.src} type="video/mp4" />

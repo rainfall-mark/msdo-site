@@ -109,9 +109,9 @@ const GRID_H = 1818;
 
 /**
  * Lighter Lab page for an experiment: a 2x2 screenshot grid as the hero,
- * Challenge + Solution (with the AI story folded into Solution), then the
- * working demo embedded in the page with an option to open it in a new tab.
- * Phones get a tap-to-open preview instead of the cramped embed.
+ * Challenge + Solution (with the AI story folded into Solution), then a
+ * recorded walkthrough of the app with a prominent call to action that opens
+ * the live app in a new tab.
  */
 export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyContent {
   const project = ALL_LAB_PROJECTS.find((item) => item.slug === input.slug);
@@ -146,17 +146,21 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
           id: "demo",
           groups: [
             {
-              heading: "Try It",
+              heading: "See It in Action",
               description: input.demoIntro,
               items: [
                 {
-                  embed: {
-                    src: project.demoHref,
-                    title: `${project.name}, live demo`,
-                    ratio: "3 / 2",
-                    mobileFallback: { image: asset("thumb.webp"), alt: `${project.name} preview`, label: "Open the demo in a new tab" },
+                  video: {
+                    src: asset("walkthrough.mp4"),
+                    webm: asset("walkthrough.webm"),
+                    poster: asset("walkthrough-poster.webp"),
+                    title: `${project.name} walkthrough`,
+                    width: 1440,
+                    height: 900,
+                    controls: true,
                   },
-                  link: { href: project.demoHref, label: "Open in a new tab ↗" },
+                  caption: "A walkthrough recorded from the live app.",
+                  cta: { href: project.demoHref, label: `Try ${project.name}`, note: "Opens the live app in a new tab" },
                 },
               ],
             },
