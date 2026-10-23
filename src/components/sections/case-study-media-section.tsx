@@ -3,7 +3,13 @@ import { Reveal } from "@/components/ui/reveal";
 
 // MSDO fork: media items can also be a live embed (iframe), used by the
 // Rainfall Studio case study to show the working Ask The Two Robbies app.
-export interface CaseStudyMediaEmbed { src: string; title: string; ratio?: string; }
+export interface CaseStudyMediaEmbed {
+  src: string;
+  title: string;
+  ratio?: string;
+  /** MSDO fork: below md, show this image as a tap-to-open link instead of a cramped iframe. */
+  mobileFallback?: { image: string; alt: string; label?: string };
+}
 export interface CaseStudyMediaLink { href: string; label: string; }
 // MSDO fork: a looping, muted screen recording (used by the Lab case studies).
 export interface CaseStudyMediaVideo { src: string; /** Optional WebM fallback for browsers without H.264. */ webm?: string; poster?: string; title: string; width?: number; height?: number; }
@@ -123,14 +129,23 @@ function LazyEmbed({ embed }: { embed: CaseStudyMediaEmbed }) {
     };
   }, []);
 
+  const fallback = embed.mobileFallback;
+
   return (
-    <div ref={frameRef} className="w-full overflow-hidden rounded-xl p-[5%]" style={{ aspectRatio: embed.ratio ?? "16 / 10", backgroundColor: "#18191D" }}>
+    <>
+    {fallback && (
+      <a href={embed.src} target="_blank" rel="noreferrer" aria-label={fallback.label ?? "Open the demo in a new tab"} className="group block md:hidden">
+        <img src={fallback.image} alt={fallback.alt} loading="lazy" decoding="async" className="block h-auto w-full rounded-xl" />
+      </a>
+    )}
+    <div ref={frameRef} className={`w-full overflow-hidden rounded-xl p-[5%] ${fallback ? "hidden md:block" : ""}`} style={{ aspectRatio: embed.ratio ?? "16 / 10", backgroundColor: "#18191D" }}>
       {inView ? (
         <iframe src={embed.src} title={embed.title} className="block h-full w-full rounded-lg border-0" allow="autoplay" />
       ) : (
         <div className="h-full w-full rounded-lg" aria-hidden="true" />
       )}
     </div>
+    </>
   );
 }
 

@@ -90,3 +90,81 @@ export function buildLabCaseStudy(input: LabCaseStudyInput): ProjectCaseStudyCon
     related: { label: "More from the Lab", indexLabel: "All Lab projects", indexHref: LAB_HREF },
   };
 }
+
+export interface LabExperimentInput {
+  slug: string;
+  summary: string;
+  role?: string;
+  builtWith: string;
+  platform: string;
+  challenge: Story;
+  /** The solution, including how AI was used to build and power it. */
+  solution: Story;
+  /** One or two sentences above the embedded demo. */
+  demoIntro: string;
+}
+
+const GRID_W = 2880;
+const GRID_H = 1818;
+
+/**
+ * Lighter Lab page for an experiment: a 2x2 screenshot grid as the hero,
+ * Challenge + Solution (with the AI story folded into Solution), then the
+ * working demo embedded in the page with an option to open it in a new tab.
+ * Phones get a tap-to-open preview instead of the cramped embed.
+ */
+export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyContent {
+  const project = LAB_PROJECTS.find((item) => item.slug === input.slug);
+  if (!project) throw new Error(`Unknown Lab project: ${input.slug}`);
+  const asset = (file: string) => labAsset(input.slug, file);
+
+  return {
+    eyebrow: "Lab · AI-native experiment",
+    title: project.name,
+    summary: input.summary,
+    heroImage: asset("hero-grid.webp"),
+    naturalHero: true,
+    heroWidth: GRID_W,
+    heroHeight: GRID_H,
+    meta: [
+      { label: "Role", value: input.role ?? "Concept, Product Design, AI Build" },
+      { label: "Built with", value: input.builtWith },
+      { label: "Platform", value: input.platform },
+      { label: "Live demo", value: "Open in a new tab", href: project.demoHref },
+    ],
+    chapters: [
+      {
+        label: "Challenge + Solution",
+        blocks: [
+          { heading: "Challenge", ...input.challenge },
+          { heading: "Solution", ...input.solution },
+        ],
+      },
+      {
+        label: "Demo",
+        media: {
+          id: "demo",
+          groups: [
+            {
+              heading: "Try It",
+              description: input.demoIntro,
+              items: [
+                {
+                  embed: {
+                    src: project.demoHref,
+                    title: `${project.name}, live demo`,
+                    ratio: "3 / 2",
+                    mobileFallback: { image: asset("thumb.webp"), alt: `${project.name} preview`, label: "Open the demo in a new tab" },
+                  },
+                  link: { href: project.demoHref, label: "Open in a new tab ↗" },
+                },
+              ],
+            },
+          ],
+        },
+      },
+    ],
+    relatedProjects: otherLabProjects(input.slug),
+    related: { label: "More from the Lab", indexLabel: "All Lab projects", indexHref: LAB_HREF },
+  };
+}

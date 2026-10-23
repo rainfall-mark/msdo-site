@@ -1,7 +1,7 @@
 import ProjectCaseStudyTemplate from "../project-case-study";
-import { buildLabCaseStudy } from "./lab-case-study";
+import { buildLabExperiment } from "./lab-case-study";
 
-const CONTENT = buildLabCaseStudy({
+const CONTENT = buildLabExperiment({
   slug: "mri-explorer",
   summary: "An interactive viewer that pairs an MRI with its radiology report, rings each finding on the scan in plain English, and sends you into the appointment prepared.",
   builtWith: "Claude · Claude plugin",
@@ -13,25 +13,14 @@ const CONTENT = buildLabCaseStudy({
     ],
   },
   solution: {
-    lead: "See what the radiologist saw.",
+    lead: "See what the radiologist saw, explained by AI.",
     paragraphs: [
-      "MRI Explorer opens every series side by side, rings each finding on the slice the radiologist cited, and explains it in plain English. A 3D view combines the series with a cut plane and an explodable bone and muscle model.",
-      "Symptoms can be pinned to the body, questions collected, and everything exported as a PDF to bring to the doctor. Tuned for shoulder, knee, hip, and spine. The demo pairs a real, anonymized shoulder scan with sample findings.",
+      "MRI Explorer opens every series side by side, rings each finding on the slice the radiologist cited, and explains it in plain English. A 3D view stacks the slices into a volume with an explodable bone and muscle model. Symptoms can be pinned to the body, questions collected, and everything exported as a PDF for the doctor.",
+      "Claude does the heavy lifting: it processes the DICOM files, reads the report, places each finding on the right image, writes the explanations, and builds the viewer itself. One rule holds throughout: explain what the radiologist wrote, never diagnose.",
+      "It ships as a Claude plugin, so anyone can point it at their own scan and report. The demo runs on my own shoulder MRI.",
     ],
   },
-  ai: {
-    lead: "Claude reads the scan and the report together.",
-    paragraphs: [
-      "Claude processes the DICOM files, reads the report, places each finding on the right image, writes the explanations, and builds the viewer. One rule holds throughout: explain what the radiologist wrote, never diagnose.",
-      "It ships as a Claude plugin, so anyone can point it at their own scan folder and report. Patient identifiers are stripped from the image data on the way in.",
-    ],
-  },
-  demoCaption: "A guided tour of an anonymized shoulder scan with sample findings: picking findings across the series grid, scrolling slices and adjusting brightness, the 3D volume and model, a symptom pin, and the PDF summary.",
-  screens: [
-    { heading: "Findings on the Scan", caption: "One slice up close, with fluid highlighted and a ring on the finding, so you can see exactly what the report describes." },
-    { heading: "3D View", caption: "The slices stack into a volume, with each finding pinned where it sits in the shoulder." },
-    { heading: "Where It Hurts", caption: "An explodable anatomy model with color-coded muscles, and symptom pins that carry into the PDF summary for the doctor." },
-  ],
+  demoIntro: "The full viewer, running on my own shoulder MRI. Pick a finding to see it ringed across every series, scroll through slices, or switch to the 3D view.",
 });
 
 /**
@@ -39,8 +28,8 @@ const CONTENT = buildLabCaseStudy({
  * @ployComponentId lab-mri-explorer-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription MRI Explorer Lab case study on the shared project template: hero capture, challenge and solution, how AI helped, a recorded demo with a link to the live sample-case version, and feature screens.
- * @ployComponentTags lab case-study mri medical-imaging ai editorial
+ * @ployComponentDescription MRI Explorer Lab experiment page: 2x2 screenshot-grid hero, challenge and solution (with how AI was used), and the working demo embedded with an open-in-new-tab option.
+ * @ployComponentTags lab experiment mri medical-imaging ai editorial
  * @ployComponentStatus stable
  */
 export default function MriExplorerPage() {
