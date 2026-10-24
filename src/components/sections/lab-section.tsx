@@ -56,7 +56,7 @@ export default function LabSection({
           {comingSoon && (
             <Reveal delay={projects.length * 0.06} className="lab__soon">
               <div className="flex aspect-[16/10] items-center justify-center rounded-xl border border-dashed border-ploy-border-primary p-6">
-                <p className="font-heading text-xl font-semibold tracking-[-0.025em] text-ploy-text-secondary/60 sm:text-2xl">{comingSoon}</p>
+                <p className="text-base font-bold text-ploy-text-secondary/60">{comingSoon}</p>
               </div>
             </Reveal>
           )}
