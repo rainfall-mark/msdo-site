@@ -24,6 +24,7 @@ const CONTENT = buildLabExperiment({
   },
   demoIntro: "A walkthrough of the live demo on a fictional Function member's results: the dashboard and marker charts, every lab over time, an expert review, and a Research conversation with a follow-up.",
   demoCaption: "Recorded from the live demo. The results, reviews and briefs are pre-written samples, not real data or live AI.",
+  showCta: false,
 });
 
 /**
@@ -31,7 +32,7 @@ const CONTENT = buildLabExperiment({
  * @ployComponentId lab-healthwise-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Healthwise for Function Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Labs, Advisor, Research), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and a prominent call to action that opens the live app in a new tab.
+ * @ployComponentDescription Healthwise for Function Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Labs, Advisor, Research), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo.
  * @ployComponentTags lab experiment healthwise health ai editorial
  * @ployComponentStatus stable
  */
