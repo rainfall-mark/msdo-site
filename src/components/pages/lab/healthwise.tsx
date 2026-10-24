@@ -22,7 +22,7 @@ const CONTENT = buildLabExperiment({
       "Claude reads your results live through its Function Health connector and writes every review and brief. There's no database, so nothing is stored. The free edition reads with three experts, and full Healthwise unlocks all nine plus Research.",
     ],
   },
-  demoIntro: "A walkthrough of the live demo on a fictional Function member's results: connecting to Function, the dashboard and marker charts, every lab over time, an expert review, and research briefs.",
+  demoIntro: "A walkthrough of the live demo on a fictional Function member's results: the dashboard and marker charts, every lab over time, an expert review, and a Research conversation with a follow-up.",
   demoCaption: "Recorded from the live demo. The results, reviews and briefs are pre-written samples, not real data or live AI.",
 });
 

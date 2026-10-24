@@ -530,11 +530,10 @@ body:has(#view-research) #chat-input-bar { padding-bottom: 46px; } /* keep the c
 
   const result = () => ({ payload: JSON.parse(JSON.stringify(FIXTURE)), cache: { storedAt: Date.now() } });
   const mcp = {
-    async callTool() { await wait(window.__demoConnectMs || 900); return result(); },
+    async callTool() { await wait(window.__demoConnectMs || 500); return result(); },
     watchTool(server, tool, input, cb) { const t = setTimeout(() => cb({ type: 'data', result: result() }), 450); return () => clearTimeout(t); }
   };
-  // The demo opens on the Connect step, like the real app does the first time.
-  const permissions = { async state() { return 'prompt'; }, async manage() {} };
+  const permissions = { async state() { return 'granted'; }, async manage() {} };
   window.claude = { use: async cap => ({ mcp, permissions, sample })[cap] || null };
 })();
 </script>
@@ -780,6 +779,20 @@ body:has(#view-research) #chat-input-bar { padding-bottom: 46px; } /* keep the c
     return f ? { f, t0 } : null;
   }
   const markColor = st => st === 'high' ? 'var(--high-mark)' : st === 'low' ? 'var(--low-mark)' : st === 'ok' ? 'var(--ok-mark)' : 'var(--neutral-mark)';
+  // Trend segments: green while the trend is inside the range, high/low color where it leaves it.
+  // Each run shares its end point with the next so the line stays continuous.
+  function trendRuns(m, samples) {
+    const ranged = m.state !== 'other' && (m.rmin != null || m.rmax != null);
+    const stOf = v => !ranged ? m.state : (m.rmax != null && v > m.rmax) ? 'high' : (m.rmin != null && v < m.rmin) ? 'low' : 'ok';
+    const runs = [];
+    samples.forEach(p => {
+      const st = stOf(p.v), last = runs[runs.length - 1];
+      if (last && last.st === st) last.pts.push(p);
+      else { if (last) last.pts.push(p); runs.push({ st, pts: [p] }); }
+    });
+    return runs.filter(r => r.pts.length > 1);
+  }
+  const trendPolylines = (runs, X, Y, width) => runs.map(r => `<polyline points="${r.pts.map(p => `${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join(' ')}" fill="none" stroke="${markColor(r.st)}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
 
   // ── SVG pieces ───────────────────────────────────────────────────────
   function sparkline(m, w = 96, h = 28) {
@@ -793,8 +806,8 @@ body:has(#view-research) #chat-input-bar { padding-bottom: 46px; } /* keep the c
     let trend = '';
     const tr = trendFor(m);
     if (tr) {
-      const pts = []; for (let k = 0; k <= 40; k++) { const t = t0 + (t1 - t0) * k / 40; pts.push(`${X(t).toFixed(1)},${Y(tr.f((t - tr.t0) / 864e5)).toFixed(1)}`); }
-      trend = `<polyline points="${pts.join(' ')}" fill="none" stroke="${markColor(m.state)}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`;
+      const samples = []; for (let k = 0; k <= 40; k++) { const t = t0 + (t1 - t0) * k / 40; samples.push({ t, v: tr.f((t - tr.t0) / 864e5) }); }
+      trend = trendPolylines(trendRuns(m, samples), X, Y, 1.6);
     }
     const last = num[num.length - 1];
     return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${line}" fill="none" stroke="var(--reading)" stroke-width="1.1" stroke-dasharray="1.5 3" stroke-linecap="round"/>${trend}${num.map(p => `<circle cx="${X(p.t).toFixed(1)}" cy="${Y(p.v).toFixed(1)}" r="${p === last ? 3 : 1.7}" fill="${p === last ? markColor(m.pointState(p)) : 'var(--reading)'}"/>`).join('')}</svg>`;
@@ -852,8 +865,8 @@ body:has(#view-research) #chat-input-bar { padding-bottom: 46px; } /* keep the c
     // trend (solid)
     const tr = trendFor(m);
     if (tr) {
-      const pts = []; for (let k = 0; k <= 120; k++) { const t = t0 + (t1 - t0) * k / 120; pts.push(`${X(t).toFixed(1)},${Y(tr.f((t - tr.t0) / 864e5)).toFixed(1)}`); }
-      svg += `<polyline points="${pts.join(' ')}" fill="none" stroke="${markColor(m.state)}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>`;
+      const samples = []; for (let k = 0; k <= 120; k++) { const t = t0 + (t1 - t0) * k / 120; samples.push({ t, v: tr.f((t - tr.t0) / 864e5) }); }
+      svg += trendPolylines(trendRuns(m, samples), X, Y, 2.4);
     }
     // dots + labels
     num.forEach((p, i) => {
@@ -1214,7 +1227,7 @@ To see more, open a sample conversation in the history, or start a new conversat
     rsConv('s-focus', '2026-09-30', RS_SAMPLES[3].q),
     rsConv('s-insulin', '2026-09-26', RS_SAMPLES[4].q)
   ];
-  const RS = { convs: RS_SEED(), activeId: 's-apob', details: null, busy: false };
+  const RS = { convs: RS_SEED(), activeId: null, details: null, busy: false };
   const rsActive = () => RS.convs.find(c => c.id === RS.activeId) || null;
   const rsSuggestions = () => RS_SAMPLES.filter(x => !x.followUp).map(x => x.q);
   // Follow-ups: a sample marked followUp belongs to the sample before it. Offer it once its question has been answered.
@@ -1335,7 +1348,7 @@ To see more, open a sample conversation in the history, or start a new conversat
     let chart;
     const numCount = m.pts.filter(p => p.v != null).length;
     if (m.numeric && numCount >= 2) {
-      chart = `<div class="chart-box" id="chart-box"></div><div class="chart-legend"><span><svg width="22" height="6" aria-hidden="true"><line x1="1" y1="3" x2="21" y2="3" stroke="var(--reading)" stroke-width="1.6" stroke-dasharray="2 3.5" stroke-linecap="round"/></svg>Readings</span>${trendFor(m) ? `<span><svg width="22" height="6" aria-hidden="true"><line x1="1" y1="3" x2="21" y2="3" stroke="${markColor(st)}" stroke-width="2.4" stroke-linecap="round"/></svg>Trend</span>` : ''}${m.rmin != null || m.rmax != null ? `<span><svg width="14" height="10" aria-hidden="true"><rect width="14" height="10" rx="2" fill="var(--ok-band)"/></svg>Function range</span>` : ''}</div>`;
+      chart = `<div class="chart-box" id="chart-box"></div><div class="chart-legend"><span><svg width="22" height="6" aria-hidden="true"><line x1="1" y1="3" x2="21" y2="3" stroke="var(--reading)" stroke-width="1.6" stroke-dasharray="2 3.5" stroke-linecap="round"/></svg>Readings</span>${trendFor(m) ? `<span><svg width="22" height="6" aria-hidden="true">${st === 'high' || st === 'low' ? `<line x1="1" y1="3" x2="11" y2="3" stroke="var(--ok-mark)" stroke-width="2.4" stroke-linecap="round"/><line x1="11" y1="3" x2="21" y2="3" stroke="${markColor(st)}" stroke-width="2.4" stroke-linecap="round"/>` : `<line x1="1" y1="3" x2="21" y2="3" stroke="${markColor(st)}" stroke-width="2.4" stroke-linecap="round"/>`}</svg>Trend</span>` : ''}${m.rmin != null || m.rmax != null ? `<span><svg width="14" height="10" aria-hidden="true"><rect width="14" height="10" rx="2" fill="var(--ok-band)"/></svg>Function range</span>` : ''}</div>`;
     } else {
       chart = `<div class="qual-list num">${m.pts.slice().reverse().map(p => `<div><span class="c-muted">${esc(fmtDate(p.t))}</span><b class="c-${m.pointState(p) === 'other' ? 'muted' : m.pointState(p)}">${esc(p.raw)}</b></div>`).join('')}</div>`;
     }

@@ -32,7 +32,7 @@ const sec = s => Math.round(s * FPS);
     window.__demoStreamSteps = 48; window.__demoStreamMs = 170; window.__demoConnectMs = 1400;
   });
   await p.goto('file://' + demo + '#home');
-  await p.waitForSelector('#connect-btn');
+  await p.waitForSelector('.tile');
   await p.evaluate(() => document.fonts.ready);
   await p.addStyleTag({ content: '#demo-note{display:none!important} html{scroll-behavior:auto!important} *{caret-color:transparent!important}' });
   await p.evaluate(c => document.body.insertAdjacentHTML('beforeend', c), CURSOR);
@@ -80,14 +80,10 @@ const sec = s => Math.round(s * FPS);
   const closeDialog = async () => { await click('#chart-dlg[open] #dlg-close', { after: 0.5 }); await p.waitForSelector('#chart-dlg[open]', { state: 'detached' }).catch(() => {}); };
   const waitWhileFraming = async (pred, max = 20) => { for (let i = 0; i < sec(max); i++) { if (await p.evaluate(pred)) return; await frame(); } };
 
-  // 1. Connect
-  await hold(1.8);
-  await click('#connect-btn', { after: 0.2 });
-  await waitWhileFraming(() => !!document.querySelector('.tile'));
-  // 2. Dashboard
-  await hold(0.4);
+  // 1-2. Open on the loaded Dashboard
+  await hold(1.2);
   await moveTo(W * 0.5, H * 0.5, 0.5);
-  await hold(2.2);
+  await hold(2.0);
   // 3. First out-of-range tile
   await click('.tiles .tile', { after: 0.4 });
   await p.waitForSelector('#chart-dlg[open] svg');
@@ -134,8 +130,7 @@ const sec = s => Math.round(s * FPS);
   await scrollTo(0, 1.6);
   await hold(0.8);
   // 9. Research: new conversation, pick a suggested question, read the answer
-  await click('.nav-btn[data-view="research"]', { after: 0.9 });
-  await click('#rs-history [data-rs-new]', { after: 0.6 });
+  await click('.nav-btn[data-view="research"]', { after: 1.2 });
   await click('#rs-chips .rs-chip', { after: 0.2 });
   await moveTo(W * 0.82, H * 0.5, 0.5);
   await waitWhileFraming(() => !!document.querySelector('.rs-followups'), 30);
@@ -145,10 +140,10 @@ const sec = s => Math.round(s * FPS);
   await moveTo(W * 0.82, H * 0.5, 0.5);
   await waitWhileFraming(() => document.querySelectorAll('.chat-msg.assistant').length === 2 && !document.querySelector('#chat-send[disabled]'), 30);
   await hold(2.2);
-  // 11. Home, then settle on the dashboard before the loop back to the opening frame
+  // 11. Home: the dashboard is the opening frame, so settle the cursor back where it started
   await click('.nav-btn[data-view="home"]', { after: 0.6 });
-  await moveTo(W * 0.62, H * 0.72, 0.6);
-  await hold(1.2);
+  await moveTo(W * 0.62, H * 0.72, 0.8);
+  await hold(0.6);
 
   fs.writeFileSync(path.join(out, 'meta.json'), JSON.stringify({ frames: n, fps: FPS, errors: errs }));
   console.log('frames', n, 'errors', errs);
