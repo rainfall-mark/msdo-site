@@ -22,9 +22,8 @@ const CONTENT = buildLabExperiment({
       "Claude reads your results live through its Function Health connector and writes every review and brief. There's no database, so nothing is stored. The free edition reads with three experts, and full Healthwise unlocks all nine plus Research.",
     ],
   },
-  demoIntro: "The live demo runs on a fictional Function member's results with all four views unlocked: the dashboard, every lab over time, expert reviews, and research briefs.",
-  walkthrough: false,
-  demoCaption: "Captured from the live demo. The results, reviews and briefs are pre-written samples, not real data or live AI.",
+  demoIntro: "A walkthrough of the live demo on a fictional Function member's results: connecting to Function, the dashboard and marker charts, every lab over time, an expert review, and research briefs.",
+  demoCaption: "Recorded from the live demo. The results, reviews and briefs are pre-written samples, not real data or live AI.",
 });
 
 /**
@@ -32,7 +31,7 @@ const CONTENT = buildLabExperiment({
  * @ployComponentId lab-healthwise-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Healthwise for Function Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Labs, Advisor, Research), challenge and solution (with how AI was used), a capture of the live sample-data demo, and a prominent call to action that opens the live app in a new tab.
+ * @ployComponentDescription Healthwise for Function Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Labs, Advisor, Research), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and a prominent call to action that opens the live app in a new tab.
  * @ployComponentTags lab experiment healthwise health ai editorial
  * @ployComponentStatus stable
  */
