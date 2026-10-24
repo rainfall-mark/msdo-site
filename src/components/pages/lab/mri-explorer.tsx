@@ -14,7 +14,7 @@ const CONTENT = buildLabExperiment({
     ],
   },
   solution: {
-    lead: "One simple view of your scan, your findings, and what to ask.",
+    lead: "All-in-one view of your scans, the findings and what to ask your doctor.",
     paragraphs: [
       "Explore your scan as 2D slices and a 3D model built from them, in one simple interface with nothing to install. You can even fly through it.",
       "Understand the findings in plain language, with each one pinned on the 2D and 3D views so you see what it is and where.",
