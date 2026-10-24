@@ -19,7 +19,7 @@ const CONTENT = buildLabExperiment({
       "Explore your scan as 2D slices and a 3D model built from them, in one simple interface with nothing to install. You can even fly through it.",
       "Understand the findings in plain language, with each one pinned on the 2D and 3D views so you see what it is and where.",
       "Prepare for your visit with background, findings, symptoms, and suggested questions in one view, plus a PDF to bring along. Doctors spend less time on data, more on care.",
-      "Claude processes the scan, translates the report, and builds the viewer. It explains, never diagnoses.",
+      "AI processes all the information to construct an immersive viewer which you can actually use. It explains, never diagnoses.",
     ],
   },
   demoIntro: "A walkthrough of the full viewer on my own shoulder MRI: findings across every series, scrolling the slices, the 3D model, symptoms and questions, and the PDF to take to the doctor.",
