@@ -7,7 +7,7 @@ const CONTENT = buildLabExperiment({
   builtWith: "Claude · Claude plugin",
   platform: "Web viewer, 2D + 3D",
   challenge: {
-    lead: "Your MRI is built for doctors, not for you.",
+    lead: "You need to be a doctor to read your MRI.",
     paragraphs: [
       "MRI software is made for medical professionals. It usually needs to be installed, assumes clinical training, and isn't easy to use. It was never designed for everyday people.",
       "The radiologist's findings have the same problem: they're written for your doctor, not for you. So you're left with a DVD of images you can't easily view and a report you can't really understand.",
