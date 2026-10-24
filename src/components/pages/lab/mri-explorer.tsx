@@ -16,11 +16,10 @@ const CONTENT = buildLabExperiment({
   solution: {
     lead: "One simple view of your scan, your findings, and what to ask.",
     paragraphs: [
-      "Explore your scan. One easy, all-in-one interface with nothing to install shows your MRI as 2D slices and as a 3D model built from those same slices, so you can explore, even fly through, your own data.",
-      "Understand the findings. The radiologist's report is translated into simple language, and each issue is pinned in context on the 2D slices and the 3D model, so you can see what it is and where it is.",
-      "Prepare for your visit. Background, findings, and any ongoing symptoms come together in one view, with suggested questions for your doctor and a downloadable PDF to take into your next appointment.",
-      "You walk in prepared, with everything in one place, clear visuals, and targeted questions to guide the conversation. Doctors benefit too: less time handling MRI data, more time on patient care.",
-      "Claude does the heavy lifting: it processes the scan files, reads the report, writes the plain-language explanations, places each finding on the images, and builds the viewer. It explains what the radiologist wrote and never diagnoses. The demo runs on my own shoulder MRI.",
+      "Explore your scan as 2D slices and a 3D model built from them, in one simple interface with nothing to install. You can even fly through it.",
+      "Understand the findings in plain language, with each one pinned on the 2D and 3D views so you see what it is and where.",
+      "Prepare for your visit with background, findings, symptoms, and suggested questions in one view, plus a PDF to bring along. Doctors spend less time on data, more on care.",
+      "Claude processes the scan, translates the report, and builds the viewer. It explains, never diagnoses.",
     ],
   },
   demoIntro: "A walkthrough of the full viewer on my own shoulder MRI: findings across every series, scrolling the slices, the 3D model, symptoms and questions, and the PDF to take to the doctor.",
