@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -3064,9 +3064,8 @@ function toggleTheme() {
 (function initTheme() {
   let saved = null;
   try { saved = localStorage.getItem('hw_theme'); } catch (e) {}
-  if (!saved) {
-    saved = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
-  }
+  // Lab demo opens in the light view (matching the case-study captures); the toggle still switches.
+  if (saved !== 'light' && saved !== 'dark') saved = 'light';
   document.documentElement.setAttribute('data-theme', saved);
 })();
 // Theme/task code above. Startup:

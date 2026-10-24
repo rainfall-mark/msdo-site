@@ -1,5 +1,6 @@
 import { ALL_LAB_PROJECTS, LAB_HREF, labAsset, otherLabProjects } from "@/lib/lab";
 import type { ProjectCaseStudyContent } from "../project-case-study";
+import type { CaseStudyMediaItem } from "@/components/sections/case-study-media-section";
 
 interface Story { lead: string; paragraphs: string[] }
 
@@ -100,8 +101,16 @@ export interface LabExperimentInput {
   challenge: Story;
   /** The solution, including how AI was used to build and power it. */
   solution: Story;
-  /** One or two sentences above the embedded demo. */
+  /** One or two sentences above the demo. */
   demoIntro: string;
+  /**
+   * Show the recorded walkthrough (walkthrough.mp4/.webm + poster). Until one is
+   * recorded, set false: the demo section shows demo-still.webp, a capture of
+   * the live app, with the same call to action.
+   */
+  walkthrough?: boolean;
+  /** Line under the demo media. */
+  demoCaption?: string;
 }
 
 const GRID_W = 2880;
@@ -117,6 +126,29 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
   const project = ALL_LAB_PROJECTS.find((item) => item.slug === input.slug);
   if (!project) throw new Error(`Unknown Lab project: ${input.slug}`);
   const asset = (file: string) => labAsset(input.slug, file);
+
+  const cta = { href: project.demoHref, label: `Try ${project.name}`, note: "Opens the live app in a new tab" };
+  const walkthroughItem: CaseStudyMediaItem = {
+    video: {
+      src: asset("walkthrough.mp4"),
+      webm: asset("walkthrough.webm"),
+      poster: asset("walkthrough-poster.webp"),
+      title: `${project.name} walkthrough`,
+      width: 1440,
+      height: 900,
+      controls: true,
+    },
+    caption: input.demoCaption ?? "A walkthrough recorded from the live app.",
+    cta,
+  };
+  const stillItem: CaseStudyMediaItem = {
+    src: asset("demo-still.webp"),
+    alt: `${project.name}, captured from the live demo`,
+    width: 2880,
+    height: 1800,
+    caption: input.demoCaption ?? "Captured from the live app.",
+    cta,
+  };
 
   return {
     eyebrow: "Lab · AI-native experiment",
@@ -146,23 +178,9 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
           id: "demo",
           groups: [
             {
-              heading: "See It in Action",
+              heading: input.walkthrough === false ? "Try It" : "See It in Action",
               description: input.demoIntro,
-              items: [
-                {
-                  video: {
-                    src: asset("walkthrough.mp4"),
-                    webm: asset("walkthrough.webm"),
-                    poster: asset("walkthrough-poster.webp"),
-                    title: `${project.name} walkthrough`,
-                    width: 1440,
-                    height: 900,
-                    controls: true,
-                  },
-                  caption: "A walkthrough recorded from the live app.",
-                  cta: { href: project.demoHref, label: `Try ${project.name}`, note: "Opens the live app in a new tab" },
-                },
-              ],
+              items: [input.walkthrough === false ? stillItem : walkthroughItem],
             },
           ],
         },

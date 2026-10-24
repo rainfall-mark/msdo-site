@@ -114,7 +114,7 @@ function LazyEmbed({ embed }: { embed: CaseStudyMediaEmbed }) {
     const node = frameRef.current;
     if (!node) return;
     if (typeof IntersectionObserver === "undefined") {
-      setInView(true);
+      queueMicrotask(() => setInView(true));
       return;
     }
     // Wait a beat after the frame settles into view, so the demo starts once
