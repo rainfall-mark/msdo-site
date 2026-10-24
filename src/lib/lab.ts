@@ -9,7 +9,7 @@
  *    shared Claude artifact.
  * 4. Copy one of src/components/pages/lab/*.tsx and add a route in src/pages/lab/.
  *
- * Unpublished drafts (Supplement Stack) keep their page components
+ * Unpublished drafts (Healthwise, Supplement Stack) keep their page components
  * here but have no route, and their demos and images wait in lab-drafts/ at the
  * repo root (outside public/, so they are not deployed). To publish one: move
  * its folders back into public/, restore its route from git history, and set
@@ -39,7 +39,7 @@ const lab = (slug: string) => ({
 /** Every Lab project, drafts included. */
 export const ALL_LAB_PROJECTS: LabProject[] = [
   { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], published: true, ...lab("mri-explorer") },
-  { name: "Healthwise", tags: ["AI Advisor", "Precision Health"], published: true, ...lab("healthwise") },
+  { name: "Healthwise", tags: ["AI Advisor", "Precision Health"], published: false, ...lab("healthwise") },
   { name: "Supplement Stack", tags: ["AI Agent", "Dashboard"], published: false, ...lab("supplement-stack") },
 ];
 
