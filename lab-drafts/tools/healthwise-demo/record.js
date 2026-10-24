@@ -30,6 +30,7 @@ const sec = s => Math.round(s * FPS);
   await p.addInitScript(() => {
     try { localStorage.setItem('hwf.experts', '[]'); localStorage.setItem('hwf.theme', '"light"'); } catch {}
     window.__demoStreamSteps = 48; window.__demoStreamMs = 170; window.__demoConnectMs = 1400;
+    window.__demoClean = true; // real model panel, no sample callouts
   });
   await p.goto('file://' + demo + '#home');
   await p.waitForSelector('.tile');

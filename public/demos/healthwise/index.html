@@ -1069,7 +1069,7 @@ body:has(#view-research) #chat-input-bar { padding-bottom: 46px; } /* keep the c
               <label class="note" for="focus-sel">Focus</label>
               <select class="focus" id="focus-sel">${[['whole', 'Whole picture'], ['heart', 'Heart and metabolic'], ['brain', 'Brain and cognition'], ['longevity', 'Longevity and aging']].map(([v, l]) => `<option value="${v}" ${S.focus === v ? 'selected' : ''}>${l}</option>`).join('')}</select>
               <button class="btn primary" type="button" id="review-btn" ${chosen.length && !(r && r.status === 'thinking') ? '' : 'disabled'}>${r && r.status === 'done' ? 'Review again' : 'Review my results'}</button>
-              <span class="note">Demo: pre-written sample</span>
+              <span class="note">${CLEAN ? 'Uses your Claude account' : 'Demo: pre-written sample'}</span>
             </div>
           </section>
           ${results}
@@ -1228,6 +1228,7 @@ To see more, open a sample conversation in the history, or start a new conversat
     rsConv('s-insulin', '2026-09-26', RS_SAMPLES[4].q)
   ];
   const RS = { convs: RS_SEED(), activeId: null, details: null, busy: false };
+  const CLEAN = !!window.__demoClean; // walkthrough recording: show the real model panel, no sample callouts
   const rsActive = () => RS.convs.find(c => c.id === RS.activeId) || null;
   const rsSuggestions = () => RS_SAMPLES.filter(x => !x.followUp).map(x => x.q);
   // Follow-ups: a sample marked followUp belongs to the sample before it. Offer it once its question has been answered.
@@ -1257,21 +1258,21 @@ To see more, open a sample conversation in the history, or start a new conversat
   }
   function rsMessage(m, i) {
     if (m.role === 'user') return `<div class="chat-msg user"><div class="chat-bubble">${esc(m.content).split('\n').map(l => `<p>${l}</p>`).join('')}</div></div>`;
-    return `<div class="chat-msg assistant" data-idx="${i}"><div class="chat-avatar assistant">AI</div><div class="chat-bubble">${m.pending ? '<div class="rs-think"><div class="chat-thinking"><span></span><span></span><span></span></div>Reading your results…</div>' : formatReply(m.content)}${!m.pending && m.content ? `<div class="rs-msg-actions"><span class="rs-msg-meta">${m.canned ? 'Demo · no live answers' : 'Demo: pre-written sample · fictional data'}</span></div>` : ''}</div></div>`;
+    return `<div class="chat-msg assistant" data-idx="${i}"><div class="chat-avatar assistant">AI</div><div class="chat-bubble">${m.pending ? '<div class="rs-think"><div class="chat-thinking"><span></span><span></span><span></span></div>Reading your results…</div>' : formatReply(m.content)}${!m.pending && m.content ? `<div class="rs-msg-actions"><span class="rs-msg-meta">${CLEAN ? '' : m.canned ? 'Demo · no live answers' : 'Demo: pre-written sample · fictional data'}</span></div>` : ''}</div></div>`;
   }
   function researchUnlockedView() {
     const conv = rsActive();
     const hist = RS.convs.length ? RS.convs.map(c => `<button class="chat-hist-item ${c.id === RS.activeId ? 'active' : ''}" type="button" data-rs-open="${c.id}"><span class="chat-hist-content"><span class="chat-hist-title">${esc(c.title)}</span><span class="chat-hist-date">${esc(fmtDate(c.at))}</span></span></button>`).join('') : '<div class="rs-hist-empty">No conversations yet. Pick a suggested question to start one. Conversations last while this page is open; nothing is stored.</div>';
-    const thread = conv && conv.messages.length ? conv.messages.map(rsMessage).join('') : `<div id="chat-empty"><div class="rs-orb"></div><h3>Ask anything about your health</h3><p>In Healthwise, Research reads your Function results and the frameworks of the experts you follow, and answers any question. This demo has pre-written answers to the questions below.</p></div>`;
+    const thread = conv && conv.messages.length ? conv.messages.map(rsMessage).join('') : `<div id="chat-empty"><div class="rs-orb"></div><h3>Ask anything about your health</h3><p>In Healthwise, Research reads your Function results and the frameworks of the experts you follow, and answers any question.${CLEAN ? '' : ' This demo has pre-written answers to the questions below.'}</p></div>`;
     const details = RS.details ? `<aside id="rs-details"><div class="rs-det-card"><div class="rs-det-hdr"><div id="rs-det-title">${esc(RS.details.title)}</div><button class="rs-det-close" type="button" data-rs-details-close aria-label="Close details"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4l8 8M12 4l-8 8"/></svg></button></div><div id="rs-det-body">${RS.details.html}</div></div></aside>` : '';
     const newIcon = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>';
     return `<div id="view-research" class="${RS.details ? 'details-open' : ''}">
       <aside id="rs-history" aria-label="Research history">
-        <div class="rs-hist-hdr"><h2>Research <small>Demo</small></h2><button class="rs-new-btn" type="button" data-rs-new title="New conversation" aria-label="New conversation">${newIcon}</button></div>
+        <div class="rs-hist-hdr"><h2>Research ${CLEAN ? '' : '<small>Demo</small>'}</h2><button class="rs-new-btn" type="button" data-rs-new title="New conversation" aria-label="New conversation">${newIcon}</button></div>
         <div id="chat-history-list">${hist}</div>
         <div class="rs-hist-foot">
-          <div class="rkb-inner"><div class="rkb-header"><span class="rkb-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><span class="rkb-label">Model</span><span class="rkb-status">Offline demo</span></div>
-          <div class="rkb-body"><select id="rs-model" aria-label="Research model" disabled><option selected>Pre-written samples</option></select><div class="rkb-note">This demo answers from pre-written samples. Healthwise runs Research on Apple Intelligence on your Mac, or on your Claude account.</div></div></div>
+          <div class="rkb-inner"><div class="rkb-header"><span class="rkb-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span><span class="rkb-label">Model</span><span class="rkb-status">${CLEAN ? 'Your Claude' : 'Offline demo'}</span></div>
+          <div class="rkb-body">${CLEAN ? `<select id="rs-model" aria-label="Research model"><optgroup label="On this Mac"><option value="apple-local">Apple Intelligence (on-device, private)</option></optgroup><optgroup label="Claude"><option value="default" selected>Claude (balanced)</option><option value="complex">Claude (deepest reasoning)</option></optgroup></select><div class="rkb-note">Runs on your Claude account. Apple Intelligence on-device is part of full Healthwise on your Mac.</div></div>` : `<select id="rs-model" aria-label="Research model" disabled><option selected>Pre-written samples</option></select><div class="rkb-note">This demo answers from pre-written samples. Healthwise runs Research on Apple Intelligence on your Mac, or on your Claude account.</div></div>`}</div>
           <button class="rs-clear-all" type="button" data-rs-clear>Clear all conversations</button>
         </div>
       </aside>
@@ -1279,7 +1280,7 @@ To see more, open a sample conversation in the history, or start a new conversat
         <div class="rs-thread-top"><div id="rs-thread-title">${esc(conv ? conv.title : 'New conversation')}</div><button class="rs-top-btn rs-new-narrow" type="button" data-rs-new title="New conversation" aria-label="New conversation">${newIcon.replace(/17/g, '14')}</button><button class="rs-top-btn ${RS.details && RS.details.kind === 'ctx' ? 'on' : ''}" type="button" data-rs-ctx title="The Function data Research draws on"><svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg>Your data in context</button></div>
         <div id="chat-messages">${thread}</div>
         ${conv && conv.messages.length ? (rsFollowUps(conv).length ? `<div id="rs-chips" class="rs-followups"><span class="rs-chips-label">Follow up</span>${rsFollowUps(conv).map(q => `<button class="rs-chip" type="button" data-rs-suggest><span>${esc(q)}</span></button>`).join('')}</div>` : '') : `<div id="rs-chips">${rsSuggestions().map(q => `<button class="rs-chip" type="button" data-rs-suggest><span>${esc(q)}</span></button>`).join('')}</div>`}
-        <div id="chat-input-bar"><div id="chat-input-wrap"><textarea id="chat-textarea" placeholder="Ask a medical research question…" rows="2" aria-label="Your question"></textarea><button id="chat-send" type="button" title="Send" aria-label="Send" ${RS.busy ? 'disabled' : ''}><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 14L14 8 2 2v5l8 1-8 1v5z"/></svg></button></div><div id="chat-disclaimer">Not medical advice. Always consult your physician. Demo answers are pre-written for fictional data.</div></div>
+        <div id="chat-input-bar"><div id="chat-input-wrap"><textarea id="chat-textarea" placeholder="Ask a medical research question…" rows="2" aria-label="Your question"></textarea><button id="chat-send" type="button" title="Send" aria-label="Send" ${RS.busy ? 'disabled' : ''}><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M2 14L14 8 2 2v5l8 1-8 1v5z"/></svg></button></div><div id="chat-disclaimer">Not medical advice. Always consult your physician.${CLEAN ? '' : ' Demo answers are pre-written for fictional data.'}</div></div>
       </section>
       ${details}
     </div>`;
