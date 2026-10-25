@@ -92,15 +92,9 @@ const sec = s => Math.round(s * FPS);
   await hold(3.0);
   await closeDialog();
   await hold(0.4);
-  // 4. Biggest mover
+  // 4. Scroll down to the movers and the systems (no mover chart, to keep it short)
   await scrollIntoView('.dash-mid', 110, 1.0);
-  await hold(0.6);
-  await click('.dash-mid .movers .mover', { after: 0.4 });
-  await p.waitForSelector('#chart-dlg[open] svg');
-  await moveTo(cx + 40, cy + 60, 0.4);
-  await hold(3.0);
-  await closeDialog();
-  await hold(0.4);
+  await hold(0.8);
   // 5. By system: Heart -> Labs
   await click('.dash-mid [data-go="labs"][data-cat="Heart"]', { after: 0.3 });
   await p.waitForSelector('#lab-sections');
