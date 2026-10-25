@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../../layouts/CaseStudyRouteLayout.astro";
+import HealthwisePage from "../../components/pages/lab/healthwise";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="Healthwise for Function: Your Function Health Results, Read Clearly | MSDO Lab"
+  description="Healthwise for Function, an MSDO Lab experiment: reads Function Health results through Claude, charts every biomarker over time, and explains them through the experts you choose. Try the live demo with sample data."
+  image="https://www.msdo.us/images/lab/healthwise/hero-grid.webp"
+  name="Healthwise for Function"
+  about="Concept, product design, and AI build of a Function Health results viewer and expert advisor"
+  dateCreated="2026-10-01"
+  keywords="Function Health, AI health advisor, biomarker dashboard, precision health, Claude connector"
+  path="/lab/healthwise"
+>
+  <HealthwisePage client:load />
+</CaseStudyRouteLayout>

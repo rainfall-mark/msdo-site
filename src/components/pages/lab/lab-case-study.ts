@@ -111,6 +111,8 @@ export interface LabExperimentInput {
   walkthrough?: boolean;
   /** Line under the demo media. */
   demoCaption?: string;
+  /** Show the "Try <name>" button under the demo media (default true). */
+  showCta?: boolean;
 }
 
 const GRID_W = 2880;
@@ -127,7 +129,7 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
   if (!project) throw new Error(`Unknown Lab project: ${input.slug}`);
   const asset = (file: string) => labAsset(input.slug, file);
 
-  const cta = { href: project.demoHref, label: `Try ${project.name}`, note: "Opens the live app in a new tab" };
+  const cta = input.showCta === false ? undefined : { href: project.demoHref, label: `Try ${project.name}`, note: "Opens the live app in a new tab" };
   const walkthroughItem: CaseStudyMediaItem = {
     video: {
       src: asset("walkthrough.mp4"),

@@ -6,7 +6,7 @@ Unpublished MSDO Lab experiments, kept out of `public/` so GitHub Pages doesn't 
 |---|---|---|---|
 | Supplement Stack | `demos/supplement-stack/` | `images/supplement-stack/` | `src/components/pages/lab/supplement-stack.tsx` |
 
-Supplement Stack uses fictional sample data ("Sam Avery"). Healthwise is published; `images/healthwise/` keeps its older captures and demo recording for reference.
+Supplement Stack uses fictional sample data ("Sam Avery"). Healthwise is published as the Function edition (public/demos/healthwise/). The earlier full-version demo and its captures are kept here for reference: `demos/healthwise-full/` and `images/healthwise/`.
 
 To publish one:
 1. `git mv lab-drafts/demos/<slug> public/demos/<slug>` and `git mv lab-drafts/images/<slug> public/images/lab/<slug>`
