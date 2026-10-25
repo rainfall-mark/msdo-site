@@ -7,7 +7,7 @@ const CONTENT = buildLabExperiment({
   builtWith: "Claude · Function Health connector",
   platform: "Claude artifact, live Function data",
   challenge: {
-    lead: "Function Health shows you a snapshot. Your health is a journey.",
+    lead: "Your health is not just a snapshot, it's a journey.",
     paragraphs: [
       "Function Health gives you a deep panel of biomarkers, but it emphasizes your most recent results. It doesn't chart how each marker has moved over time, how fast it's changing, or whether the changes you've made are working.",
       "And reading all of it the way an expert would, across every draw and every system, takes more time and knowledge than most of us have.",
