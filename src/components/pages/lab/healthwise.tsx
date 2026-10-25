@@ -18,8 +18,8 @@ const CONTENT = buildLabExperiment({
     paragraphs: [
       "Time-series charts of your biomarkers, so you can see what's moving and whether your efforts are paying off.",
       "Personalized health advice from your favorite health experts. AI builds each advisor from the expert's published work and matches it to your health concerns, then keeps it current as their thinking evolves, so you don't have to.",
-      "Health information you can understand, at your fingertips: what a marker measures, what the evidence says, and where each expert's targets come from.",
       "AI does the reading, the charting, and the explaining. The result: you understand your own health, you walk into your doctor's visit prepared, and you become your own best health advocate. It never replaces your doctor.",
+      "Finally, health information you can understand, at your fingertips, with experts that you trust.",
     ],
   },
   demoIntro: "A walkthrough of the live demo on a fictional Function member's results: the dashboard and marker charts, every lab over time, an expert review, and a Research conversation with a follow-up.",
