@@ -10,16 +10,16 @@ const CONTENT = buildLabExperiment({
     lead: "Function Health shows you a snapshot. Your health is a journey.",
     paragraphs: [
       "Function Health gives you a deep panel of biomarkers, but it emphasizes your most recent results. It doesn't chart how each marker has moved over time, how fast it's changing, or whether the changes you've made are working.",
-      "Without that, it's hard to connect the diet, training, and sleep changes you make to the numbers that follow, or to know what to ask about next.",
+      "And reading all of it the way an expert would, across every draw and every system, takes more time and knowledge than most of us have.",
     ],
   },
   solution: {
     lead: "Your results over time, interpreted by the health experts you respect.",
     paragraphs: [
-      "See every biomarker charted across all your draws, with the rate of change and Function Health's range, so you can tell what's moving and whether your efforts are paying off.",
-      "Choose personalized health advisors: AI agents built on the published frameworks of health experts you respect, matched to your own health concerns. Each one reads your results through its lens, explains what matters, and ends with a question to bring to your doctor.",
-      "Go deeper on any marker with a research brief: what it measures, what the evidence says, and where each expert's targets come from, so you keep learning as your health journey unfolds.",
-      "None of this replaces your doctor. It strengthens the relationship: you arrive prepared, with better questions and a clear picture of your trends. You are your best advocate.",
+      "Time-series charts of your biomarkers, so you can see what's moving and whether your efforts are paying off.",
+      "Personalized health advice from your favorite health experts. AI builds each advisor from the expert's published work and matches it to your health concerns, then keeps it current as their thinking evolves, so you don't have to.",
+      "Health information you can understand, at your fingertips: what a marker measures, what the evidence says, and where each expert's targets come from.",
+      "AI does the reading, the charting, and the explaining. The result: you understand your own health, you walk into your doctor's visit prepared, and you become your own best health advocate. It never replaces your doctor.",
     ],
   },
   demoIntro: "A walkthrough of the live demo on a fictional Function member's results: the dashboard and marker charts, every lab over time, an expert review, and a Research conversation with a follow-up.",
