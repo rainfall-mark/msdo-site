@@ -5,7 +5,7 @@ const CONTENT = buildLabExperiment({
   slug: "healthwise",
   summary: "AI that charts your Function Health results over time and brings in expert perspectives to explain what your numbers mean, so you understand your own health and know what to ask next.",
   builtWith: "Claude · Function Health connector",
-  platform: "Claude artifact, live Function data",
+  platform: "Claude artifact, live Function Health data",
   challenge: {
     lead: "Your health is not just a snapshot, it's a journey.",
     paragraphs: [
