@@ -14,7 +14,7 @@ const CONTENT = buildLabExperiment({
     ],
   },
   solution: {
-    lead: "Your results over time, read by the health experts you respect.",
+    lead: "Your results over time, interpreted by the health experts you respect.",
     paragraphs: [
       "See every biomarker charted across all your draws, with the rate of change and Function Health's range, so you can tell what's moving and whether your efforts are paying off.",
       "Choose personalized health advisors: AI agents built on the published frameworks of health experts you respect, matched to your own health concerns. Each one reads your results through its lens, explains what matters, and ends with a question to bring to your doctor.",
