@@ -7,19 +7,19 @@ const CONTENT = buildLabExperiment({
   builtWith: "Claude · Function Health connector",
   platform: "Claude artifact, live Function data",
   challenge: {
-    lead: "Function gives you a lot of lab results. Making sense of them is still up to you.",
+    lead: "Function Health shows you a snapshot. Your health is a story.",
     paragraphs: [
-      "Each draw arrives as a long list of markers and ranges. It's hard to see what's moving, what matters most, and how one marker relates to another.",
-      "And the best-known longevity and health experts read the same numbers differently, through frameworks most people never see side by side.",
+      "Function Health gives you a deep panel of biomarkers, but it emphasizes your most recent results. It doesn't chart how each marker has moved over time, how fast it's changing, or whether the changes you've made are working.",
+      "Without that, it's hard to connect the diet, training, and sleep changes you make to the numbers that follow, or to know what to ask about next.",
     ],
   },
   solution: {
-    lead: "Your Function results, read clearly and through the experts you follow.",
+    lead: "Your results over time, read by the health experts you respect.",
     paragraphs: [
-      "See every biomarker charted across all your draws, with a trend line, Function's range, and what moved since last time.",
-      "Understand what your numbers mean through the published frameworks of nine longevity and health experts. Each one reads your results through its own lens and ends with a question to take to your doctor.",
-      "Go deeper with a research brief on any marker: what it measures, what the evidence says, and where each expert's target comes from.",
-      "Claude reads your results live through its Function Health connector and writes every review and brief. There's no database, so nothing is stored. The free edition reads with three experts, and full Healthwise unlocks all nine plus Research.",
+      "See every biomarker charted across all your draws, with the rate of change and Function Health's range, so you can tell what's moving and whether your efforts are paying off.",
+      "Choose personalized health advisors: AI agents built on the published frameworks of health experts you respect, matched to your own health concerns. Each one reads your results through its lens, explains what matters, and ends with a question to bring to your doctor.",
+      "Go deeper on any marker with a research brief: what it measures, what the evidence says, and where each expert's targets come from, so you keep learning as your health journey unfolds.",
+      "None of this replaces your doctor. It strengthens the relationship: you arrive prepared, with better questions and a clear picture of your trends. You are your best advocate.",
     ],
   },
   demoIntro: "A walkthrough of the live demo on a fictional Function member's results: the dashboard and marker charts, every lab over time, an expert review, and a Research conversation with a follow-up.",
