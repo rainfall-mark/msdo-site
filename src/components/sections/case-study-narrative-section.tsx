@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/reveal";
 export interface CaseStudyNarrativeBlock { heading: string; lead?: string; paragraphs?: readonly string[]; }
 // MSDO fork: an optional callout under the blocks, used by Rainfall Studio to
 // point at the example app the product produced.
-export interface CaseStudyNarrativeFootnote { label: string; lead: string; description?: string; link?: { href: string; label: string }; }
+export interface CaseStudyNarrativeFootnote { label: string; lead: string; description?: string; link?: { href: string; label: string }; /** MSDO fork: "end" sets the footnote in the right-hand column, under the last block. */ placement?: "start" | "end"; }
 interface CaseStudyNarrativeSectionProps { label?: string; lead?: string; paragraphs?: readonly string[]; blocks?: CaseStudyNarrativeBlock[]; highlights?: string[]; highlightsLabel?: string; footnote?: CaseStudyNarrativeFootnote; }
 
 /**
@@ -49,9 +49,10 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
             </div>
           )}
           {footnote && (
-            <div className="mt-14 border-t border-ploy-border-primary pt-6 sm:mt-16">
+            <div className={`mt-14 sm:mt-16 ${footnote.placement === "end" ? "grid md:grid-cols-2 md:gap-10 lg:gap-14" : ""}`}>
+             <div className={`border-t border-ploy-border-primary pt-6 ${footnote.placement === "end" ? "md:col-start-2" : ""}`}>
               <p className="text-sm font-medium text-ploy-text-primary">{footnote.label}</p>
-              <div className="mt-5 grid gap-5 md:grid-cols-2 md:items-start md:gap-10 lg:gap-14">
+              <div className={`mt-5 grid gap-5 md:items-start md:gap-10 lg:gap-14 ${footnote.placement === "end" ? "" : "md:grid-cols-2"}`}>
                 <div>
                   <p className="font-heading text-2xl font-semibold leading-[1.08] tracking-[-0.035em] text-ploy-text-primary sm:text-3xl">{footnote.lead}</p>
                   {footnote.description && <p className="mt-4 text-base leading-relaxed text-ploy-text-secondary">{footnote.description}</p>}
@@ -62,6 +63,7 @@ export default function CaseStudyNarrativeSection({ label = "Challenge", lead, p
                   </a>
                 )}
               </div>
+             </div>
             </div>
           )}
         </div>
