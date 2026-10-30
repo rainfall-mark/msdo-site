@@ -13,6 +13,7 @@ export default [
 			".wrangler/",
 			"node_modules/",
 			"worker-configuration.d.ts",
+			"lab-drafts/",
 		],
 	},
 	js.configs.recommended,
