@@ -111,8 +111,8 @@ export interface LabExperimentInput {
   walkthrough?: boolean;
   /** Line under the demo media. */
   demoCaption?: string;
-  /** Show the "Try <name>" button under the demo media (default true). */
-  showCta?: boolean;
+  /** Lead capture under the demo media (default on): "Want to try it for yourself?" + "I'm interested". */
+  interest?: boolean;
 }
 
 const GRID_W = 2880;
@@ -121,15 +121,15 @@ const GRID_H = 1818;
 /**
  * Lighter Lab page for an experiment: a 2x2 screenshot grid as the hero,
  * Challenge + Solution (with the AI story folded into Solution), then a
- * recorded walkthrough of the app with a prominent call to action that opens
- * the live app in a new tab.
+ * recorded walkthrough of the app with a lead-capture call to action
+ * ("Want to try it for yourself?" / "I'm interested").
  */
 export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyContent {
   const project = ALL_LAB_PROJECTS.find((item) => item.slug === input.slug);
   if (!project) throw new Error(`Unknown Lab project: ${input.slug}`);
   const asset = (file: string) => labAsset(input.slug, file);
 
-  const cta = input.showCta === false ? undefined : { href: project.demoHref, label: `Try ${project.name}`, note: "Opens the live app in a new tab" };
+  const interest = input.interest === false ? undefined : { project: project.name };
   const walkthroughItem: CaseStudyMediaItem = {
     video: {
       src: asset("walkthrough.mp4"),
@@ -141,7 +141,7 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
       controls: true,
     },
     caption: input.demoCaption ?? "A walkthrough recorded from the live app.",
-    cta,
+    interest,
   };
   const stillItem: CaseStudyMediaItem = {
     src: asset("demo-still.webp"),
@@ -149,7 +149,7 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
     width: 2880,
     height: 1800,
     caption: input.demoCaption ?? "Captured from the live app.",
-    cta,
+    interest,
   };
 
   return {

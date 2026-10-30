@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
+import { InterestDialog } from "@/components/ui/interest-dialog";
 
 // MSDO fork: media items can also be a live embed (iframe), used by the
 // Rainfall Studio case study to show the working Ask The Two Robbies app.
@@ -16,7 +17,9 @@ export interface CaseStudyMediaLink { href: string; label: string; }
 export interface CaseStudyMediaVideo { src: string; /** Optional WebM fallback for browsers without H.264. */ webm?: string; poster?: string; title: string; width?: number; height?: number; /** Always show playback controls (for longer walkthroughs viewers may want to scrub). */ controls?: boolean; }
 /** MSDO fork: a prominent call to action under a media item, e.g. "Try the live app". */
 export interface CaseStudyMediaCta { href: string; label: string; note?: string; }
-export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; video?: CaseStudyMediaVideo; cta?: CaseStudyMediaCta; }
+/** MSDO fork: lead capture under a media item ("Want to try it for yourself?" + name/email dialog). */
+export interface CaseStudyMediaInterest { project: string; heading?: string; buttonLabel?: string; intro?: string; }
+export interface CaseStudyMediaItem { src?: string; alt?: string; caption?: string; width?: number; height?: number; link?: CaseStudyMediaLink; embed?: CaseStudyMediaEmbed; video?: CaseStudyMediaVideo; cta?: CaseStudyMediaCta; interest?: CaseStudyMediaInterest; }
 export interface CaseStudyMediaGroup { heading: string; description?: string; items: CaseStudyMediaItem[]; }
 interface CaseStudyMediaSectionProps { id?: string; label?: string; heading?: string; items?: CaseStudyMediaItem[]; groups?: CaseStudyMediaGroup[]; }
 
@@ -65,6 +68,7 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
                 {item.cta.note && <span className="text-sm text-ploy-text-secondary">{item.cta.note}</span>}
               </div>
             )}
+            {item.interest && <InterestDialog {...item.interest} />}
           </figure>
         </Reveal>
       ))}

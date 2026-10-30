@@ -24,7 +24,6 @@ const CONTENT = buildLabExperiment({
   },
   demoIntro: "A walkthrough of the live demo on a fictional Function member's results: the dashboard and marker charts, every lab over time, an expert review, and a Research conversation with a follow-up.",
   demoCaption: "Recorded from the live demo. The results, reviews and briefs are pre-written samples, not real data or live AI.",
-  showCta: false,
 });
 
 /**

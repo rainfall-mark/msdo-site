@@ -31,7 +31,7 @@ const CONTENT = buildLabExperiment({
  * @ployComponentId lab-supplement-stack-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Supplement Stack Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Safety and Recommendations, Timeline with a dose popover, Cost), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and a Try it button.
+ * @ployComponentDescription Supplement Stack Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Safety and Recommendations, Timeline with a dose popover, Cost), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and an "I'm interested" lead form.
  * @ployComponentTags lab experiment supplements dashboard ai editorial
  * @ployComponentStatus stable
  */
