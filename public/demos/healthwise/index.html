@@ -243,7 +243,7 @@ dialog::backdrop { background: var(--scrim); }
 .qual-list div { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 6px 0; }
 
 /* ── Advisor ── */
-.adv-layout { grid-template-columns: minmax(0, 1fr) 300px; align-items: start; }
+.advisor-layout { grid-template-columns: minmax(0, 1fr) 300px; align-items: start; }
 .experts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 @media (max-width: 900px) { .experts { grid-template-columns: minmax(0, 1fr); } }
 .expert { text-align: left; border: 1px solid var(--line); background: var(--inner); border-radius: 12px; padding: 13px; cursor: pointer; display: grid; grid-template-columns: 34px 1fr 18px; gap: 10px; align-items: start; transition: border-color .15s, background .15s; }
@@ -258,7 +258,7 @@ dialog::backdrop { background: var(--scrim); }
 .expert[aria-pressed="true"] .av { background: var(--accent); color: var(--accent-ink); }
 .expert[aria-pressed="true"] .ck { background: var(--accent); border-color: var(--accent); }
 .expert[aria-pressed="true"] .ck svg { opacity: 1; }
-.adv-bar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 16px; }
+.review-bar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-top: 16px; }
 select.focus { border: 1px solid var(--line-strong); background: var(--inner); color: var(--text); border-radius: 999px; padding: 7px 12px; font: inherit; font-size: 12px; }
 .finding { background: var(--inner); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
 .finding .who { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); }
@@ -391,7 +391,7 @@ select.focus { border: 1px solid var(--line-strong); background: var(--inner); c
 @media (max-width: 1100px) {
   .dash-top { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .dash-top > :first-child { grid-column: 1 / -1; }
-  .dash-mid, .adv-layout { grid-template-columns: minmax(0, 1fr); }
+  .dash-mid, .advisor-layout { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 720px) {
   body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
@@ -1059,13 +1059,13 @@ body:has(#view-research) #chat-input-bar { padding-bottom: 46px; } /* keep the c
       results = renderReview(r.result, r.expertIds);
     }
     return `${head('Advisor', UNLOCKED ? 'Choose any experts. Each one reads your Function results through their own framework.' : 'Choose up to three experts. Each one reads your Function results through their own framework.')}
-      <div class="grid adv-layout">
+      <div class="grid advisor-layout">
         <div class="stack">
           <section class="module">
             <div class="mod-head"><div class="eyebrow">Your experts <span class="count-pill num">${chosen.length} of ${FREE_EXPERTS}</span>${UNLOCKED ? '<span class="count-pill">Full access</span>' : ''}</div><span class="note" id="expert-hint"></span></div>
             <div class="grid experts" role="group" aria-label="Experts">${EXPERTS.map(e => `<button class="expert" type="button" data-expert="${e.id}" aria-pressed="${S.experts.includes(e.id)}">
               <span class="av">${esc(e.initials)}</span><span><span class="nm">${esc(e.name)}</span><span class="lens" style="display:block">${esc(e.lens)}</span><span class="bl" style="display:block">${esc(e.blurb)}</span></span><span class="ck">${icon.check}</span></button>`).join('')}</div>
-            <div class="adv-bar">
+            <div class="review-bar">
               <label class="note" for="focus-sel">Focus</label>
               <select class="focus" id="focus-sel">${[['whole', 'Whole picture'], ['heart', 'Heart and metabolic'], ['brain', 'Brain and cognition'], ['longevity', 'Longevity and aging']].map(([v, l]) => `<option value="${v}" ${S.focus === v ? 'selected' : ''}>${l}</option>`).join('')}</select>
               <button class="btn primary" type="button" id="review-btn" ${chosen.length && !(r && r.status === 'thinking') ? '' : 'disabled'}>${r && r.status === 'done' ? 'Review again' : 'Review my results'}</button>
@@ -1540,7 +1540,7 @@ To see more, open a sample conversation in the history, or start a new conversat
     if (!S.data || !S.experts.length) return;
     if (!sampleFn) { S.review = { status: 'error', error: 'Expert reviews need Claude, which isn\'t available in this view. Open the page in Claude while signed in.' }; return render(); }
     const chosen = EXPERTS.filter(e => S.experts.includes(e.id));
-    if (chosen.length > 5) { S.review = { status: 'error', error: 'Choose up to five experts per review so each one gets a full read. Run a second review for the rest.' }; return render(); }
+    if (CLEAN && chosen.length > 5) { S.review = { status: 'error', error: 'Choose up to five experts per review so each one gets a full read. Run a second review for the rest.' }; return render(); }
     const prompt = [
       'You are the analysis engine inside Healthwise, a health-data app. The user has chosen health experts whose PUBLISHED frameworks they want applied to their own lab results from Function Health.',
       '',
