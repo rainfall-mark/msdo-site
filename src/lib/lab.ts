@@ -38,8 +38,8 @@ const lab = (slug: string) => ({
 
 /** Every Lab project, drafts included. */
 export const ALL_LAB_PROJECTS: LabProject[] = [
-  { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], published: true, ...lab("mri-explorer") },
   { name: "Healthwise", tags: ["AI Advisor", "Function Health"], published: true, ...lab("healthwise") },
+  { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], published: true, ...lab("mri-explorer") },
   { name: "Supplement Stack", tags: ["AI Agent", "Dashboard"], published: false, ...lab("supplement-stack") },
 ];
 
