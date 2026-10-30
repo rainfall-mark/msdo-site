@@ -26,6 +26,8 @@ export default function LabSection({
   projects = LAB_PROJECTS,
 }: LabSectionProps) {
   if (!projects.length && !comingSoon) return null;
+  // The placeholder only fills a gap in the row; it never starts a row of its own.
+  const showSoon = Boolean(comingSoon) && projects.length % 3 !== 0;
 
   return (
     <section id="lab" className="lab scroll-mt-20 bg-ploy-background-primary px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
@@ -53,7 +55,7 @@ export default function LabSection({
             </Reveal>
           ))}
 
-          {comingSoon && (
+          {showSoon && (
             <Reveal delay={projects.length * 0.06} className="lab__soon">
               <div className="flex aspect-[16/10] items-center justify-center rounded-xl border border-dashed border-ploy-border-primary p-6">
                 <p className="text-sm font-bold text-ploy-text-secondary/60">{comingSoon}</p>

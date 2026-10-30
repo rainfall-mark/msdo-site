@@ -1,15 +1,12 @@
 # Lab drafts (not deployed)
 
-Unpublished MSDO Lab experiments, kept out of `public/` so GitHub Pages doesn't serve them.
+Unpublished MSDO Lab material, kept out of `public/` so it isn't served.
 
-| Project | Demo | Images | Page component |
-|---|---|---|---|
-| Supplement Stack | `demos/supplement-stack/` | `images/supplement-stack/` | `src/components/pages/lab/supplement-stack.tsx` |
+Published projects: Healthwise (Function edition, `public/demos/healthwise/`), MRI Explorer, and Supplement Stack (`public/demos/supplement-stack/`, fictional "Sam Avery" sample data).
 
-Supplement Stack uses fictional sample data ("Sam Avery"). Healthwise is published as the Function edition (public/demos/healthwise/). The earlier full-version demo and its captures are kept here for reference: `demos/healthwise-full/` and `images/healthwise/`.
+Kept here for reference: the earlier full-version Healthwise demo and captures (`demos/healthwise-full/`, `images/healthwise/`), and the build tools for each demo in `tools/`.
 
-To publish one:
-1. `git mv lab-drafts/demos/<slug> public/demos/<slug>` and `git mv lab-drafts/images/<slug> public/images/lab/<slug>`
-2. Restore `src/pages/lab/<slug>.astro` from git history.
+To publish a new draft:
+1. Move its demo to `public/demos/<slug>/` and its images to `public/images/lab/<slug>/`.
+2. Add `src/pages/lab/<slug>.astro`.
 3. Set `published: true` in `src/lib/lab.ts`.
-4. Optionally switch the page to the simpler `buildLabExperiment` layout used by MRI Explorer.

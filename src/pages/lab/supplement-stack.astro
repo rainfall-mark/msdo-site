@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../../layouts/CaseStudyRouteLayout.astro";
+import SupplementStackPage from "../../components/pages/lab/supplement-stack";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="Supplement Stack: Your Whole Supplement Routine, Checked and Kept Current | MSDO Lab"
+  description="Supplement Stack, an MSDO Lab experiment: AI reads your labels, totals every nutrient against safe limits, and keeps a plan, timeline, and cost view current. Try the live demo with sample data."
+  image="https://www.msdo.us/images/lab/supplement-stack/hero-grid.webp"
+  name="Supplement Stack"
+  about="Concept, product design, and AI build of a supplement stack dashboard and agent workflow"
+  dateCreated="2026-06-27"
+  keywords="supplement tracker, supplement stack, upper limits, AI agent, nutrient totals, dashboard"
+  path="/lab/supplement-stack"
+>
+  <SupplementStackPage client:load />
+</CaseStudyRouteLayout>

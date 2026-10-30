@@ -1,37 +1,29 @@
 import ProjectCaseStudyTemplate from "../project-case-study";
-import { buildLabCaseStudy } from "./lab-case-study";
+import { buildLabExperiment } from "./lab-case-study";
 
-const CONTENT = buildLabCaseStudy({
+const CONTENT = buildLabExperiment({
   slug: "supplement-stack",
-  summary: "An always-current dashboard for a growing supplement stack: what to take and when, where products overlap, what runs over the limit, and what to keep, trim, or add.",
-  builtWith: "Claude · Artifacts",
-  platform: "Web dashboard",
+  summary: "AI that keeps your whole supplement routine in one place: what to take and when, where products overlap, what runs past safe limits, what it costs, and what to keep, trim, or add.",
+  builtWith: "Claude · multi-agent workflow",
+  platform: "Web dashboard, sample data",
   challenge: {
-    lead: "Stacks grow one recommendation at a time.",
+    lead: "Supplement stacks grow one recommendation at a time.",
     paragraphs: [
-      "A few years in, a routine can span a dozen products from different brands. The same nutrients hide in several labels, some totals creep past safe upper limits, and nothing connects back to lab results or goals.",
+      "A podcast here, a doctor's suggestion there, and a few years in you're taking a dozen products from different brands. The same nutrients hide in several labels, some totals creep past safe upper limits, and nothing connects back to your labs or goals.",
+      "Staying on top of it means reading every label, adding up every ingredient, and remembering what you changed and why. Almost no one does.",
     ],
   },
   solution: {
-    lead: "One view of the whole stack, kept current.",
+    lead: "Your whole stack, checked and kept current by AI.",
     paragraphs: [
-      "The dashboard shows today's protocol by time of day, nutrient totals against upper limits, safety flags, and keep, adjust, add, or trim recommendations tied to goals.",
-      "A timeline traces every product and ingredient over the years, and a summary is ready to review with a nutritionist.",
+      "Snap photos of your labels. AI reads every ingredient, totals each nutrient across products, and checks it against upper limits and target ranges, so overlaps and risks surface on their own.",
+      "A small team of AI agents researches the evidence for each ingredient and brand, reviews the stack against your labs and goals, and recommends what to keep, adjust, add, or trim. It keeps running: tell it what you skipped or swapped, and a weekly sync updates the plan.",
+      "The dashboard shows today's protocol by time of day, a timeline of everything you've taken over the years, and what it all costs each month.",
+      "The result: a simpler, safer stack you can review with your doctor or nutritionist. It never replaces their advice.",
     ],
   },
-  ai: {
-    lead: "Claude keeps the ledger.",
-    paragraphs: [
-      "Claude reads product labels from photos, totals every ingredient across products, flags overlaps and upper limits, and ties each recommendation back to labs and goals.",
-      "It runs as an ongoing agent rather than a one-off report: skips and swaps get logged in chat, and a weekly sync refreshes the dashboard.",
-    ],
-  },
-  demoCaption: "A guided tour with a sample stack: today's protocol, a dosing flag, recommendations, the timeline views, costs, and dark mode.",
-  screens: [
-    { heading: "Safety, Then the Plan", caption: "Totals across every product are checked against upper limits, so magnesium at 97% gets flagged, and the keep, adjust, add, and trim plan follows from it." },
-    { heading: "Stack History", caption: "Every product taken since 2021, expandable to its ingredients, or flipped to an ingredient view to see where nutrients overlap." },
-    { heading: "Cost, in Dark Mode", caption: "Monthly cost by product, and what trimming the review items would save." },
-  ],
+  demoIntro: "A walkthrough of the live demo on a fictional person's stack: today's protocol, the safety flags and plan, the timeline with dose details, cost, and dark mode.",
+  demoCaption: "Recorded from the live demo. Sam Avery is fictional, and every product, dose, and price is sample data.",
 });
 
 /**
@@ -39,8 +31,8 @@ const CONTENT = buildLabCaseStudy({
  * @ployComponentId lab-supplement-stack-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Supplement Stack Lab case study on the shared project template: hero capture, challenge and solution, how AI helped, a recorded demo with a link to the live sample-data version, and feature screens.
- * @ployComponentTags lab case-study supplements dashboard ai editorial
+ * @ployComponentDescription Supplement Stack Lab experiment page: 2x2 screenshot-grid hero (Dashboard, Safety and Recommendations, Timeline with a dose popover, Cost), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and a Try it button.
+ * @ployComponentTags lab experiment supplements dashboard ai editorial
  * @ployComponentStatus stable
  */
 export default function SupplementStackPage() {
