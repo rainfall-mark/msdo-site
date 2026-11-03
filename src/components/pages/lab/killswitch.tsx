@@ -31,7 +31,7 @@ const CONTENT = buildLabExperiment({
  * @ployComponentId lab-killswitch-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Killswitch Lab experiment page: 2x2 screenshot-grid hero (Dashboard with the agent overview, the agent working a cancel, the go-ahead screen, the verified cancellation), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and an "I'm interested" lead form.
+ * @ployComponentDescription Killswitch Lab experiment page: 2x2 screenshot-grid hero (Dashboard with the agent column hidden, one subscription open with the agent column, the go-ahead screen, the confirmed cancellation), challenge and solution (with how AI was used), a recorded walkthrough of the live sample-data demo, and an "I'm interested" lead form.
  * @ployComponentTags lab experiment subscriptions agent browser ai editorial
  * @ployComponentStatus stable
  */

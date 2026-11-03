@@ -340,6 +340,9 @@ body.kw-panel-open .content,body.kw-panel-open .global-stats,body.kw-panel-open 
 .kwa-send:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
 .kwa-send[disabled]{opacity:.35;cursor:not-allowed;}
 .kwa-box:has(textarea:placeholder-shown) .kwa-send:not([disabled]){opacity:.35;}
+/* Main area uses the same paper color as the header and agent column */
+body{background:var(--paper) !important;}
+.merchant-row.kw-sel,.merchant-row.kw-sel:hover{background:var(--kw-tint, rgba(60,45,20,.045)) !important;}
 .kwa-empty{padding:24px 18px;font-size:13px;color:var(--ink-soft);display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
 .kwa-empty p{margin:0;}
 .kw-link{background:none;border:none;padding:0;font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);cursor:pointer;margin-left:8px;}
