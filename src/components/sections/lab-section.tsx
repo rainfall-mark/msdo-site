@@ -7,27 +7,22 @@ import { Reveal } from "@/components/ui/reveal";
  * @ployComponentId lab-section
  * @ployComponentType section
  * @ployComponentPattern editorial-project-grid
- * @ployComponentDescription MSDO Lab: a single row of AI-native experiments with uniform 16:10 thumbnails, matching the Work grid's card treatment, followed by a quiet, non-interactive "More coming soon..." placeholder the same size as a project thumbnail. Each card links to the experiment's page. Sits between Work and About on the homepage.
+ * @ployComponentDescription MSDO Lab: a grid of AI-native experiments, three per row, with uniform 16:10 thumbnails, matching the Work grid's card treatment, Each card links to the experiment's page. Sits between Work and About on the homepage.
  * @ployComponentTags lab experiments ai portfolio light editorial
  * @ployComponentStatus stable
  */
 interface LabSectionProps {
   eyebrow?: string;
   heading?: string;
-  /** Placeholder card after the projects, same size as a project card. Null hides it. */
-  comingSoon?: string | null;
   projects?: LabProject[];
 }
 
 export default function LabSection({
   eyebrow = "Lab",
   heading = "AI-native experiments",
-  comingSoon = "More coming soon...",
   projects = LAB_PROJECTS,
 }: LabSectionProps) {
-  if (!projects.length && !comingSoon) return null;
-  // The placeholder only fills a gap in the row; it never starts a row of its own.
-  const showSoon = Boolean(comingSoon) && projects.length % 3 !== 0;
+  if (!projects.length) return null;
 
   return (
     <section id="lab" className="lab scroll-mt-20 bg-ploy-background-primary px-5 py-24 sm:px-8 sm:py-32 lg:px-10 lg:py-40">
@@ -54,14 +49,6 @@ export default function LabSection({
               </a>
             </Reveal>
           ))}
-
-          {showSoon && (
-            <Reveal delay={projects.length * 0.06} className="lab__soon">
-              <div className="flex aspect-[16/10] items-center justify-center rounded-xl border border-dashed border-ploy-border-primary p-6">
-                <p className="text-sm font-bold text-ploy-text-secondary/60">{comingSoon}</p>
-              </div>
-            </Reveal>
-          )}
         </div>
       </div>
     </section>
