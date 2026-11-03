@@ -5,8 +5,8 @@
  * To add a project:
  * 1. Add an entry here (image is the 16:10 card thumbnail).
  * 2. Put its assets in public/images/lab/<slug>/ (thumb, hero, screens, demo.mp4).
- * 3. Put the working demo in public/demos/<slug>/index.html, or link out to a
- *    shared Claude artifact.
+ * 3. Keep the working demo in lab-drafts/demos/<slug>/ (not deployed). The
+ *    page shows the recorded walkthrough and an "I'm interested" form instead.
  * 4. Copy one of src/components/pages/lab/*.tsx and add a route in src/pages/lab/.
  *
  * Unpublished drafts keep their page components here but have no route, and
@@ -20,7 +20,7 @@ export interface LabProject {
   href: string;
   tags: string[];
   image: string;
-  /** Where "Try the live demo" goes: a page hosted with the site or a public artifact link. */
+  /** Legacy: only the long-form buildLabCaseStudy layout links here; Lab demos are no longer deployed. */
   demoHref: string;
   /** Only published projects appear on the homepage and in "More from the Lab". */
   published: boolean;

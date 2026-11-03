@@ -1,12 +1,14 @@
 # Lab drafts (not deployed)
 
-Unpublished MSDO Lab material, kept out of `public/` so it isn't served.
+Lab material kept out of `public/`, so none of it is served on msdo.us.
 
-Published projects: Healthwise (Function edition, `public/demos/healthwise/`), MRI Explorer, and Supplement Stack (`public/demos/supplement-stack/`, fictional "Sam Avery" sample data).
+The working demos for all three published Lab projects live here, not on the site: visitors see the recorded walkthroughs and an "I'm interested" form instead. Keep them for re-recording walkthroughs and captures:
 
-Kept here for reference: the earlier full-version Healthwise demo and captures (`demos/healthwise-full/`, `images/healthwise/`), and the build tools for each demo in `tools/`.
+- `demos/healthwise/`: Healthwise for Function, fictional sample data
+- `demos/mri-explorer/`: MRI Explorer
+- `demos/supplement-stack/`: Supplement Stack, fictional "Sam Avery" sample data
+- `demos/healthwise-full/` and `images/healthwise/`: the earlier full-version Healthwise demo and captures, for reference
 
-To publish a new draft:
-1. Move its demo to `public/demos/<slug>/` and its images to `public/images/lab/<slug>/`.
-2. Add `src/pages/lab/<slug>.astro`.
-3. Set `published: true` in `src/lib/lab.ts`.
+Build and recording tools for each demo are in `tools/`.
+
+To add a new Lab project: put its images in `public/images/lab/<slug>/`, its demo here in `demos/<slug>/`, add `src/pages/lab/<slug>.astro`, and set `published: true` in `src/lib/lab.ts`.
