@@ -18,7 +18,12 @@ const sec = s => Math.round(s * FPS);
   const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 2, reducedMotion: 'reduce' });
   const p = await ctx.newPage();
   const errs = []; p.on('pageerror', e => errs.push(e.message));
-  await p.addInitScript(() => { window.KS_SLOW = 2.5; }); await p.goto(url); await p.addStyleTag({ content: CSS }); await p.evaluate(() => document.fonts.ready);
+  await p.addInitScript(() => {
+    window.KS_SLOW = 2.5;
+    window.scroller = () => { const m = document.getElementById('kwMain'); return m && m.scrollHeight > m.clientHeight + 4 ? m : document.scrollingElement; };
+    // Record where a jump would land, so the recorder can animate the scroll itself.
+    Element.prototype.scrollIntoView = function(){ const sc = window.scroller(), r = this.getBoundingClientRect(), top = sc === document.scrollingElement ? 0 : sc.getBoundingClientRect().top, h = sc === document.scrollingElement ? innerHeight : sc.clientHeight; window.__sivTop = sc.scrollTop + r.top - top - (h - r.height) / 2; };
+  }); await p.goto(url); await p.addStyleTag({ content: CSS }); await p.evaluate(() => document.fonts.ready);
   await p.evaluate(c => document.body.insertAdjacentHTML('beforeend', c), CURSOR);
   await p.waitForTimeout(1200);
   let n = 0, cx = W * 0.56, cy = H * 0.62, rip = -1;
@@ -42,67 +47,62 @@ const sec = s => Math.round(s * FPS);
     if (process.env.DBG) console.log(sel, cx, cy, await p.evaluate(([x,y]) => { const e = document.elementFromPoint(x,y); return e ? e.outerHTML.slice(0,120) : null; }, [cx, cy]));
     await p.mouse.click(cx, cy); await hold(opts.after ?? 0.5);
   };
-  const scrollMain = async (y, s = 0.9) => {
-    const y0 = await p.evaluate(() => document.getElementById('kwMain').scrollTop), k = sec(s);
-    for (let i = 1; i <= k; i++) { await p.evaluate(v => { document.getElementById('kwMain').scrollTop = v; }, y0 + (y - y0) * ease(i / k)); await frame(); }
-  };
-  const rowTop = name => p.evaluate(nm => { const i = M.findIndex(m => m.name === nm), r = document.getElementById('row-' + i), main = document.getElementById('kwMain'); return main.scrollTop + r.getBoundingClientRect().top - main.getBoundingClientRect().top; }, name);
   const feedLen = slug => p.evaluate(s => ((KWL.kills[s] || {}).feed || []).length, slug);
-  const base = {}; const mark = async slug => { base[slug] = await feedLen(slug); };
-  const nextLine = async (slug, s = 1.5) => { base[slug] += 1; await p.waitForFunction(([s, n]) => ((KWL.kills[s] || {}).feed || []).length >= n, [slug, base[slug]], {timeout: 60000}); await p.waitForTimeout(120); await hold(s); };
   const typeIn = async (sel, text) => { await p.focus(sel); for (const ch of text) { await p.keyboard.type(ch); await frame(2); } };
-  const CW = 'crunchwise-meal-kits', MY = 'mystchg-svc-8885550123';
+  const CW = 'crunchwise-meal-kits';
+  const animateTo = async (y, s = 0.9) => {
+    const y0 = await p.evaluate(() => scroller().scrollTop), k = sec(s);
+    for (let i = 1; i <= k; i++) { await p.evaluate(v => { scroller().scrollTop = v; }, y0 + (y - y0) * ease(i / k)); await frame(); }
+  };
+  const waitFeed = async (slug, re, s = 1.4) => {
+    await p.waitForFunction(([s, src]) => { const r = new RegExp(src); return ((KWL.kills[s] || {}).feed || []).some(f => r.test(f.text)); }, [slug, re.source], {timeout: 60000});
+    await p.waitForTimeout(120); await hold(s);
+  };
 
-  // 1. Opening frame: dashboard and the agent's overview
-  await hold(2.4);
-  await moveTo(1240, 420, 0.8); await hold(1.0);
-  // 2. Priority actions: go to Crunchwise
-  await click('#kwTop >> text=/Go to it/i', { after: 1.4 });
-  // 3. Why?
-  const i = await p.evaluate(() => M.findIndex(m => m.name === 'Crunchwise Meal Kits'));
-  await click(`#row-${i} .why-btn`, { after: 2.6 });
-  await click('#dpTakeAction', { after: 1.0 });
-  // 4. Start kill and watch the agent work
-  await mark(CW); await click('#kwAgent >> text=/Start kill/i', { after: 0.3 }); base[CW] += 1;
-  await moveTo(1180, 640, 0.6);
-  await nextLine(CW, 1.4);   // picked up
-  await nextLine(CW, 1.4);   // signed in
-  await nextLine(CW, 1.6);   // declined the offer
-  await p.waitForFunction(s => kwState(KWL.kills[s]) === 'ready_to_commit', CW, {timeout: 60000}); await p.waitForTimeout(150);
-  await hold(1.4);
-  // 5. Your go-ahead
-  await moveTo(1240, 560, 0.7); await hold(2.4);
-  await mark(CW); await click('#kwAgent >> text=/^Yes, click/i', { after: 0.3 });
-  await moveTo(1180, 520, 0.5);
-  await nextLine(CW, 1.0); await nextLine(CW, 1.0);
-  await p.waitForFunction(s => kwState(KWL.kills[s]) === 'verified_live', CW, {timeout: 60000}); await p.waitForTimeout(200);
+  // 1. Opening frame: the dashboard alone, agent column closed
   await hold(2.6);
-  // 6. Savings up top
-  await scrollMain(0, 1.0); await moveTo(380, 140, 0.7); await hold(2.2);
-  // 7. A charge nobody recognizes
-  const yMy = await rowTop('MYSTCHG*SVC 8885550123');
-  await scrollMain(yMy - 260, 1.2); await hold(0.4);
-  const im = await p.evaluate(() => M.findIndex(m => m.name.startsWith('MYSTCHG')));
-  await click(`#row-${im} .m-name`, { after: 1.4 });
-  await mark(MY); await click('#kwAgent >> text=/Help me identify it/i', { after: 0.3 }); base[MY] += 1;
-  await moveTo(1180, 560, 0.5);
-  await nextLine(MY, 1.2); await nextLine(MY, 1.2);
-  await p.waitForFunction(s => !(KWL.kills[s] || {}).hold, MY, {timeout: 60000}); await p.waitForTimeout(200);
-  await hold(3.2);
-  // 8. Tell it things: keep a Review item
-  const yPP = await rowTop('PixelPerfect Design');
-  await scrollMain(yPP - 300, 1.2);
-  const ip = await p.evaluate(() => M.findIndex(m => m.name === 'PixelPerfect Design'));
-  await click(`#row-${ip} .m-name`, { after: 1.0 });
+  await moveTo(1040, 330, 0.9); await hold(0.6);
+  // 2. A top priority action: jump down the page to it
+  await click('#kwTop >> text=/Go to it/i', { after: 0 });
+  await animateTo(await p.evaluate(() => window.__sivTop || 0), 1.1); await hold(1.2);
+  // 3. Why? explains why to cancel it
+  const i = await p.evaluate(() => M.findIndex(m => m.name === 'Crunchwise Meal Kits'));
+  await click(`#row-${i} .why-btn`, { after: 3.4 });
+  await click('.dp-close', { after: 0.6 });
+  // 4. Details: the row opens and the agent column slides in
+  await click(`#expbtn-${i}`, { after: 0.3 });
+  await hold(0.5);
+  await animateTo(await p.evaluate(nm => { const i = M.findIndex(m => m.name === nm), r = document.getElementById('row-' + i), sc = scroller(); return sc.scrollTop + r.getBoundingClientRect().top - 300; }, 'Crunchwise Meal Kits'), 0.7);
+  await hold(1.6);
+  // 5. Cancel subscription: the agent works, then gets stuck on a Pause-only page
+  await click('#kwAgent >> text=/Cancel subscription/i', { after: 0.3 });
+  await moveTo(1200, 600, 0.6);
+  await waitFeed(CW, /Picked this up/, 1.3);
+  await waitFeed(CW, /Signed in as/, 1.3);
+  await waitFeed(CW, /Stuck here/, 2.6);
+  // 6. Ask the agent to figure it out
   await click('#kwaInput', { after: 0.2 });
-  await typeIn('#kwaInput', 'I still use it for client work. Keep it.');
-  await hold(0.4); await p.keyboard.press('Enter');
-  await p.waitForFunction(() => !KWL.panel.thinking, null, {timeout: 60000}).catch(()=>{});
-  await hold(0.1);
-  await p.waitForFunction(() => M.find(m => m.name === 'PixelPerfect Design').priority === 'Keep', null, {timeout: 60000});
+  await typeIn('#kwaInput', 'Can you figure it out? I want it canceled, not paused.');
+  await hold(0.4); await p.keyboard.press('Enter'); await frame(4);
+  await p.waitForFunction(() => !KWL.panel.thinking, null, {timeout: 60000}); await p.waitForTimeout(150);
+  await hold(2.6);
+  await waitFeed(CW, /Looking through/, 1.4);
+  await waitFeed(CW, /Found it/, 1.8);
+  await waitFeed(CW, /offered/, 1.4);
+  await p.waitForFunction(s => kwState(KWL.kills[s]) === 'ready_to_commit', CW, {timeout: 60000}); await p.waitForTimeout(150);
+  await hold(1.0);
+  // 7. Your go-ahead, then canceled and verified
+  await moveTo(1240, 600, 0.7); await hold(2.2);
+  await click('#kwAgent >> text=/^Yes, click/i', { after: 0.3 });
+  await moveTo(1190, 520, 0.5);
+  await waitFeed(CW, /^Clicked/, 1.0);
+  await p.waitForFunction(s => kwState(KWL.kills[s]) === 'verified_live', CW, {timeout: 60000}); await p.waitForTimeout(200);
   await hold(2.8);
-  // 9. Back to the top
-  await scrollMain(0, 1.3); await moveTo(W * 0.56, H * 0.62, 0.7); await hold(0.6);
+  // 8. Saved so far goes up
+  await animateTo(0, 1.1); await moveTo(330, 140, 0.7); await hold(2.6);
+  // 9. Close the agent column, back to the opening view
+  await click('#kwAgent .kwa-x', { after: 1.0 });
+  await moveTo(W * 0.56, H * 0.62, 0.6); await hold(0.6);
   fs.writeFileSync(path.join(out, 'meta.json'), JSON.stringify({ frames: n }));
   console.log('frames', n, (n/FPS).toFixed(1)+'s', 'errors', errs);
   await b.close();

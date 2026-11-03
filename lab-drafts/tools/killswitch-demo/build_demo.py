@@ -9,9 +9,12 @@ t = open(os.path.join(here, 'Dashboard_Template.html'), encoding='utf-8').read()
 i = t.index('const M = ['); j = t.index('\n];', i) + 3
 lit = 'const M = ' + json.dumps(M, indent=1, ensure_ascii=False).replace('</', '<\\/') + ';'
 t = t[:i] + lit + t[j:]
+# Header label in the same words as the rest of the UI (Cancel subscription, cancel list)
+assert t.count('<div class="gstat-label">To Kill</div>') == 1
+t = t.replace('<div class="gstat-label">To Kill</div>', '<div class="gstat-label">To Cancel</div>')
 # Header stats the plugin fills on a scan
 stats = [('Annual Spend', None, 'From Jan to Oct 2026 statements'),
-         ('Saved So Far', None, 'Kills confirmed by the agent'),
+         ('Saved So Far', None, 'Cancellations confirmed by the agent'),
          ('Under Review', None, 'Decisions pending'),
          ('To Kill', None, 'In your queue')]
 notes = re.findall(r'<div class="gstat-savings-note">(.*?)</div>', t)
