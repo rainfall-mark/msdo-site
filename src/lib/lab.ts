@@ -40,6 +40,7 @@ export const ALL_LAB_PROJECTS: LabProject[] = [
   { name: "Healthwise", tags: ["AI Advisor", "Function Health"], published: true, ...lab("healthwise") },
   { name: "Supplement Stack", tags: ["AI Agent", "Dashboard"], published: true, ...lab("supplement-stack") },
   { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], published: true, ...lab("mri-explorer") },
+  { name: "Killswitch", tags: ["AI Agent", "Subscriptions"], published: true, ...lab("killswitch") },
 ];
 
 /** Projects shown on the site. */
