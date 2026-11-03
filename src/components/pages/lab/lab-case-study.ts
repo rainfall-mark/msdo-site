@@ -164,7 +164,7 @@ export function buildLabExperiment(input: LabExperimentInput): ProjectCaseStudyC
       { label: "Role", value: input.role ?? "Concept, Product Design, AI Build" },
       { label: "Built with", value: input.builtWith },
       { label: "Platform", value: input.platform },
-      { label: "Live demo", value: "Open in a new tab", href: project.demoHref },
+      { label: "Live demo", value: "Want to try it?", interest: project.name },
     ],
     chapters: [
       {

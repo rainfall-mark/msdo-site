@@ -1,4 +1,7 @@
-export interface CaseStudyMeta { label: string; value: string; href?: string; }
+import { InterestDialog } from "@/components/ui/interest-dialog";
+
+/** MSDO fork: `interest` (a project name) makes the value a link that opens the Lab "I'm interested" form. */
+export interface CaseStudyMeta { label: string; value: string; href?: string; interest?: string; }
 interface CaseStudyHeroSectionProps { eyebrow?: string; title?: string; summary?: string; backgroundImage?: string; meta?: CaseStudyMeta[]; variant?: "dark" | "editorial"; prominentCover?: boolean; naturalCover?: boolean; coverWidth?: number; coverHeight?: number; }
 
 /**
@@ -28,7 +31,7 @@ export default function CaseStudyHeroSection({ eyebrow = "Case study", title = "
         {summary && <p className={`cs-hero__summary mt-8 leading-relaxed text-ploy-text-secondary ${editorial ? "w-full max-w-none text-xl sm:text-2xl" : "max-w-2xl text-lg"}`}>{summary}</p>}
         {meta.length > 0 && (
           <dl className="cs-hero__meta mt-12 grid border-t border-ploy-border-primary text-left sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-12">
-            {meta.map((item) => <div key={item.label} className="cs-hero__meta-item border-b border-ploy-border-primary py-5"><dt className="text-xs text-ploy-text-secondary">{item.label}</dt><dd className="mt-2 text-base font-medium text-ploy-text-primary">{item.href ? <a href={item.href} target="_blank" rel="noreferrer" className="hover:text-ploy-text-secondary">{item.value} ↗</a> : item.value}</dd></div>)}
+            {meta.map((item) => <div key={item.label} className="cs-hero__meta-item border-b border-ploy-border-primary py-5"><dt className="text-xs text-ploy-text-secondary">{item.label}</dt><dd className="mt-2 text-base font-medium text-ploy-text-primary">{item.interest ? <InterestDialog project={item.interest} variant="link" buttonLabel={item.value} /> : item.href ? <a href={item.href} target="_blank" rel="noreferrer" className="hover:text-ploy-text-secondary">{item.value} ↗</a> : item.value}</dd></div>)}
           </dl>
         )}
 

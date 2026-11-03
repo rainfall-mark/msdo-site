@@ -1,4 +1,4 @@
-import { useRef, useState, type FormEvent } from "react";
+import { useId, useRef, useState, type FormEvent } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 import { submitForm } from "@/lib/ploy-forms/submit-form";
 
@@ -11,6 +11,8 @@ export interface InterestDialogProps {
   buttonLabel?: string;
   /** Short line in the dialog above the fields. */
   intro?: string;
+  /** "block": heading + pill button (under the walkthrough). "link": just an inline text link, e.g. in the page's meta row. */
+  variant?: "block" | "link";
 }
 
 /**
@@ -23,8 +25,10 @@ export function InterestDialog({
   heading = "Want to try it for yourself?",
   buttonLabel = "I'm interested",
   intro,
+  variant = "block",
 }: InterestDialogProps) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
   const [status, setStatus] = useState<Status>("idle");
 
   const open = () => {
@@ -55,17 +59,10 @@ export function InterestDialog({
 
   const inputClass = "mt-3 w-full border-0 border-b border-ploy-border-primary bg-transparent px-0 pb-3 text-lg text-ploy-text-primary outline-none transition-colors placeholder:text-ploy-text-secondary/60 focus:border-ploy-text-primary";
 
-  return (
-    <div className="interest mt-8 flex flex-col items-start gap-4 sm:mt-10 sm:flex-row sm:items-center sm:gap-6">
-      <p className="font-heading text-xl font-semibold tracking-[-0.025em] text-ploy-text-primary sm:text-2xl">{heading}</p>
-      <button type="button" onClick={open} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ploy-button-primary-background px-6 text-base font-medium text-ploy-button-primary-text transition-transform duration-300 hover:scale-[1.03] sm:min-h-14 sm:px-8 sm:text-lg">
-        {buttonLabel}
-        <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-      </button>
-
+  const dialogEl = (
       <dialog
         ref={dialog}
-        aria-labelledby="interest-title"
+        aria-labelledby={titleId}
         onClick={(e) => { if (e.target === dialog.current) close(); }}
         className="interest__dialog m-auto w-[calc(100%-2.5rem)] max-w-lg rounded-xl bg-ploy-background-secondary p-0 text-ploy-text-primary backdrop:bg-ploy-background-inverse/50"
       >
@@ -77,13 +74,13 @@ export function InterestDialog({
           {status === "success" ? (
             <div role="status" className="pr-8">
               <p className="text-sm text-ploy-text-secondary">{project}</p>
-              <h2 id="interest-title" className="mt-3 font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-4xl">Thanks. I'll be in touch.</h2>
+              <h2 id={titleId} className="mt-3 font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-4xl">Thanks. I'll be in touch.</h2>
               <button type="button" onClick={close} className="mt-8 text-sm font-medium underline underline-offset-6">Close</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit}>
               <p className="text-sm text-ploy-text-secondary">{project}</p>
-              <h2 id="interest-title" className="mt-3 pr-8 font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-4xl">{heading}</h2>
+              <h2 id={titleId} className="mt-3 pr-8 font-heading text-3xl font-semibold leading-[1.05] tracking-[-0.04em] sm:text-4xl">{heading}</h2>
               <p className="mt-4 text-base leading-relaxed text-ploy-text-secondary">{intro ?? `Leave your name and email and I'll reach out about trying ${project}.`}</p>
               <label className="mt-8 block text-sm text-ploy-text-secondary">Name
                 <input name="name" type="text" autoComplete="name" required placeholder="Your name" className={inputClass} />
@@ -103,6 +100,25 @@ export function InterestDialog({
           )}
         </div>
       </dialog>
+  );
+
+  if (variant === "link") {
+    return (
+      <>
+        <button type="button" onClick={open} className="interest__link text-left font-medium text-ploy-text-primary hover:text-ploy-text-secondary">{buttonLabel} ↗</button>
+        {dialogEl}
+      </>
+    );
+  }
+
+  return (
+    <div className="interest mt-8 flex flex-col items-start gap-4 sm:mt-10 sm:flex-row sm:items-center sm:gap-6">
+      <p className="font-heading text-xl font-semibold tracking-[-0.025em] text-ploy-text-primary sm:text-2xl">{heading}</p>
+      <button type="button" onClick={open} className="inline-flex min-h-12 items-center gap-2 rounded-full bg-ploy-button-primary-background px-6 text-base font-medium text-ploy-button-primary-text transition-transform duration-300 hover:scale-[1.03] sm:min-h-14 sm:px-8 sm:text-lg">
+        {buttonLabel}
+        <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+      </button>
+      {dialogEl}
     </div>
   );
 }
