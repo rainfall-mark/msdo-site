@@ -332,7 +332,7 @@ body.kw-panel-open .content,body.kw-panel-open .global-stats,body.kw-panel-open 
 /* Composer: one full-width box, round send arrow inside (Claude-style) */
 .kwa-compose{display:block !important;}
 .kwa-box{display:flex;align-items:flex-end;gap:8px;width:100%;border:1px solid var(--rule);background:var(--bg);padding:8px 8px 8px 12px;transition:border-color .12s;}
-.kwa-box:focus-within{border-color:var(--ink);}
+.kwa-box:focus-within{border-color:color-mix(in srgb,var(--rule) 65%,var(--muted));}
 .kwa-compose .kwa-box textarea{flex:1;min-width:0;border:none;background:none;padding:2px 0;min-height:42px;}
 .kwa-compose .kwa-box textarea:focus{border:none;}
 .kwa-send{flex-shrink:0;width:30px;height:30px;border-radius:50%;border:none;background:var(--ink);color:var(--paper);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:opacity .12s,background .12s;}
@@ -343,6 +343,47 @@ body.kw-panel-open .content,body.kw-panel-open .global-stats,body.kw-panel-open 
 /* Main area uses the same paper color as the header and agent column */
 body{background:var(--paper) !important;}
 .merchant-row.kw-sel,.merchant-row.kw-sel:hover{background:var(--kw-tint, rgba(60,45,20,.045)) !important;}
+/* Chat: your messages in a light grey bubble, Claude's as plain text; lighter input */
+:root{--kw-you-bg:#ecebe7;--kw-input-bg:#ffffff;}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--kw-you-bg:#34322e;--kw-input-bg:#272622;}}
+:root[data-theme="dark"]{--kw-you-bg:#34322e;--kw-input-bg:#272622;}
+.kwa-msg.you p{background:var(--kw-you-bg) !important;color:var(--ink) !important;border-color:transparent !important;}
+.kwa-msg:not(.you) p{background:none !important;border:none !important;padding:0 !important;}
+.kwa-msg:not(.you){gap:4px;}
+.kwa-box{background:var(--kw-input-bg) !important;}
+.kwa-compose .kwa-box textarea::placeholder{color:var(--muted);opacity:.65;}
+.nav-title{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);cursor:default;}
+/* Add a subscription: no outer border, white fields with light grey borders */
+.kw-add{border:none !important;box-shadow:0 12px 40px rgba(0,0,0,.14),0 0 0 1px rgba(0,0,0,.04) !important;}
+.kw-drop{background:var(--paper) !important;transition:background .12s,border-color .12s;}
+.kw-drop:hover,.kw-drop.over{background:var(--kw-input-bg) !important;border-color:var(--muted) !important;}
+.kw-add-text{background:var(--kw-input-bg) !important;border-color:var(--rule) !important;}
+.kw-add-text:focus{border-color:color-mix(in srgb,var(--rule) 65%,var(--muted)) !important;}
+/* Add a subscription, review step: labeled stack, underline-only fields */
+.kw-add{gap:16px !important;padding:22px 24px 22px !important;}
+.kw-add-item{border:none !important;background:none !important;padding:0 !important;gap:16px !important;position:relative;}
+.kw-add-item + .kw-add-item{border-top:1px solid var(--rule-soft) !important;padding-top:20px !important;}
+.kw-add-item.skip .kw-af{opacity:.45;}
+.kw-af{display:flex;flex-direction:column;gap:4px;min-width:0;}
+.kw-al{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.kw-req{color:var(--amber);font-weight:400;}
+.kw-ag{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}
+.kw-ai{font-family:var(--sans);font-size:14px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid var(--rule);border-radius:0;padding:6px 0;width:100%;min-width:0;outline:none;transition:border-color .12s;}
+.kw-ai:focus,.kw-aw:focus-within{border-bottom-color:var(--ink);}
+.kw-ai::placeholder{color:var(--muted);opacity:.6;}
+.kw-ai.name{font-family:var(--serif);font-size:18px;}
+.kw-ai.sel{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:18px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M1 1l4 4 4-4' fill='none' stroke='%23888' stroke-width='1.4'/></svg>");background-repeat:no-repeat;background-position:right 2px center;}
+.kw-ai.sel option{color:#1a1a1a;}
+.kw-aw{display:flex;align-items:baseline;gap:6px;border-bottom:1px solid var(--rule);transition:border-color .12s;}
+.kw-aw .kw-ai.bare{border-bottom:none;font-variant-numeric:tabular-nums;}
+.kw-acur{color:var(--muted);font-size:14px;}
+.kw-add-help{font-size:12px;color:var(--muted);margin-top:2px;}
+.kw-add-skip{position:absolute;top:0;right:0;background:none;border:none;padding:0;cursor:pointer;font-family:var(--sans);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:underline;text-underline-offset:3px;z-index:1;}
+.kw-add-item + .kw-add-item .kw-add-skip{top:20px;}
+.kw-add-skip:hover{color:var(--ink);}
+.kw-add-note{font-size:12px;color:var(--muted);}
+.kw-add-act{margin-top:6px;}
+.kw-add-dup input[type=radio]{accent-color:var(--ink);}
 .kwa-empty{padding:24px 18px;font-size:13px;color:var(--ink-soft);display:flex;flex-direction:column;gap:10px;align-items:flex-start;}
 .kwa-empty p{margin:0;}
 .kw-link{background:none;border:none;padding:0;font-family:var(--sans);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);cursor:pointer;margin-left:8px;}
@@ -629,7 +670,7 @@ body{background:var(--paper) !important;}
 
 <nav class="top-nav">
   <div class="nav-brand">Killswitch</div>
-  <div class="nav-center"><span class="nav-btn accent" aria-current="page">Dashboard</span></div><div class="nav-right"><button class="kw-agent-btn" id="kwNavAgent" aria-pressed="false" aria-controls="kwAgent" onclick="kwToggleAgent()"><span class="kwa-dot" id="kwNavDot" aria-hidden="true"></span>Killswitch agent<span class="kw-switch-b" id="kwNavBadge"></span></button></div>
+  <div class="nav-center"><span class="nav-title">Dashboard</span></div><div class="nav-right"><button class="kw-agent-btn" id="kwNavAgent" aria-pressed="false" aria-controls="kwAgent" onclick="kwToggleAgent()"><span class="kwa-dot" id="kwNavDot" aria-hidden="true"></span>Killswitch agent<span class="kw-switch-b" id="kwNavBadge"></span></button></div>
 </nav>
 
 <div class="kw-main" id="kwMain">
@@ -2797,21 +2838,31 @@ function kwAddRender(){
   const prOpts = sel => ['Review','Keep','Essential','Reduce','Cancel'].map(c => `<option ${c===sel?'selected':''}>${c}</option>`).join('');
   let h = `<div class="kw-add-h"><span>Add a subscription</span><button class="kwa-x" onclick="kwAddToggle(false)" aria-label="Close">×</button></div>`;
   if (A.items){
-    h += `<p class="kw-add-p">${A.items.length ? 'Check these, then add them. Edit anything that looks off.' : 'Nothing to add.'}</p>`;
+    h += `<p class="kw-add-p">${!A.items.length ? 'Nothing to add.' : A.items.length > 1 ? `Found ${A.items.length}. Check the details, then add them.` : 'Check the details, then add it.'}</p>`;
     h += A.items.map((it, i) => { const dup = kwFindDup(it.name); if (dup && it.mode === undefined) it.mode = 'update'; if (!dup) it.mode = 'new';
+      const multi = KWL.add.items.length > 1, pr = it.priority || 'Review';
+      const help = ({Review:'Review means you\u2019ll decide later.', Keep:'Stays as is. No action.', Essential:'You can\u2019t do without it. No action.', Reduce:'Goes on the cancel list to downgrade the plan.', Cancel:'Goes on the cancel list.'})[pr] || '';
       return `<div class="kw-add-item${it.skip?' skip':''}">
-      <label class="kw-add-chk"><input type="checkbox" ${it.skip?'':'checked'} onchange="KWL.add.items[${i}].skip=!this.checked;kwAddRender()"> Add</label>
-      <input class="kw-add-in name" value="${kwEsc(it.name||'')}" placeholder="Service name" oninput="KWL.add.items[${i}].name=this.value">
-      <div class="kw-add-row"><span class="kw-add-cur">$</span><input class="kw-add-in amt" inputmode="decimal" value="${kwEsc(it.amount ?? '')}" placeholder="0.00" oninput="KWL.add.items[${i}].amount=this.value">
-        <select class="kw-add-in" onchange="KWL.add.items[${i}].frequency=this.value">${freqOpts(it.frequency||'Monthly')}</select></div>
-      <div class="kw-add-row"><select class="kw-add-in" onchange="KWL.add.items[${i}].category=this.value">${catOpts(CATS.includes(it.category)?it.category:'Other')}</select>
-        <select class="kw-add-in" onchange="KWL.add.items[${i}].priority=this.value">${prOpts(it.priority||'Review')}</select></div>
+      ${multi ? `<button type="button" class="kw-add-skip" onclick="KWL.add.items[${i}].skip=!KWL.add.items[${i}].skip;kwAddRender()">${it.skip?'Include':'Skip'}</button>` : ''}
+      <label class="kw-af"><span class="kw-al">Service <span class="kw-req" aria-hidden="true">*</span></span>
+        <input class="kw-ai name" value="${kwEsc(it.name||'')}" placeholder="Netflix, Calm, iCloud…" required oninput="KWL.add.items[${i}].name=this.value" onchange="kwAddRender()"></label>
+      <div class="kw-ag">
+        <label class="kw-af"><span class="kw-al">Price <span class="kw-req" aria-hidden="true">*</span></span>
+          <span class="kw-aw"><span class="kw-acur">$</span><input class="kw-ai bare" inputmode="decimal" value="${kwEsc(it.amount ?? '')}" placeholder="0.00" required oninput="KWL.add.items[${i}].amount=this.value"></span></label>
+        <label class="kw-af"><span class="kw-al">Billed</span>
+          <select class="kw-ai sel" onchange="KWL.add.items[${i}].frequency=this.value">${freqOpts(it.frequency||'Monthly')}</select></label>
+      </div>
+      <label class="kw-af"><span class="kw-al">Category</span>
+        <select class="kw-ai sel" onchange="KWL.add.items[${i}].category=this.value">${catOpts(CATS.includes(it.category)?it.category:'Other')}</select></label>
+      <label class="kw-af"><span class="kw-al">Your call</span>
+        <select class="kw-ai sel" onchange="KWL.add.items[${i}].priority=this.value;kwAddRender()">${prOpts(pr)}</select>
+        <span class="kw-add-help">${help}</span></label>
       ${it.notes ? `<div class="kw-add-note">${kwEsc(it.notes)}</div>` : ''}${dup ? `<div class="kw-add-dup"><div class="kw-add-warn">Looks like ${kwEsc(dup.name)}, already on your dashboard (${kwEsc(dup.freq||'')}, ${kwMoney(Math.round(dup.ann||0))}/yr).</div>
         <label><input type="radio" name="kwdup${i}" ${it.mode==='update'?'checked':''} onchange="KWL.add.items[${i}].mode='update';kwAddRender()"> Update ${kwEsc(dup.name)} with these details</label>
         <label><input type="radio" name="kwdup${i}" ${it.mode==='new'?'checked':''} onchange="KWL.add.items[${i}].mode='new';kwAddRender()"> It's a different subscription, add it</label></div>` : ''}
     </div>`; }).join('');
     const n = A.items.filter(x => !x.skip).length, nu = A.items.filter(x => !x.skip && x.mode === 'update').length, na = n - nu;
-    const lbl = nu && na ? `Add ${na}, update ${nu}` : nu ? (nu > 1 ? `Update ${nu}` : 'Update it') : `Add ${na} to dashboard`;
+    const lbl = nu && na ? `Add ${na}, update ${nu}` : nu ? (nu > 1 ? `Update ${nu}` : 'Update it') : na > 1 ? `Add ${na} to dashboard` : 'Add to dashboard';
     h += `<div class="kw-add-act"><button class="kw-btn go" ${n&&!A.busy?'':'disabled'} onclick="kwAddSave()">${A.busy?'Saving…':lbl}</button><button class="kw-btn link" onclick="kwAddReset()">Start over</button></div>`;
   } else {
     h += `<label class="kw-drop${A.files.length?' has':''}" id="kwDrop" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="event.preventDefault();this.classList.remove('over');kwAddFiles(event.dataTransfer.files)">
