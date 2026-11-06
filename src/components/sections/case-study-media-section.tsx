@@ -12,7 +12,7 @@ export interface CaseStudyMediaEmbed {
   /** MSDO fork: below md, show this image as a tap-to-open link instead of a cramped iframe. */
   mobileFallback?: { image: string; alt: string; label?: string };
 }
-export interface CaseStudyMediaLink { href: string; label: string; }
+export interface CaseStudyMediaLink { href: string; label: string; /** Text right after the link, e.g. closing punctuation. */ suffix?: string; }
 // MSDO fork: a looping, muted screen recording (used by the Lab case studies).
 export interface CaseStudyMediaVideo { src: string; /** Optional WebM fallback for browsers without H.264. */ webm?: string; poster?: string; title: string; width?: number; height?: number; /** Always show playback controls (for longer walkthroughs viewers may want to scrub). */ controls?: boolean; }
 /** MSDO fork: a prominent call to action under a media item, e.g. "Try the live app". */
@@ -53,7 +53,12 @@ export default function CaseStudyMediaSection({ id, label, heading, items = [], 
                 {item.link && (
                   <>
                     {item.caption ? " " : null}
-                    <a href={item.link.href} target="_blank" rel="noreferrer" className="text-ploy-text-primary underline underline-offset-4">{item.link.label}</a>
+                    {item.link.href.startsWith("#") ? (
+                      <a href={item.link.href} className="text-ploy-text-primary underline underline-offset-4">{item.link.label}</a>
+                    ) : (
+                      <a href={item.link.href} target="_blank" rel="noreferrer" className="text-ploy-text-primary underline underline-offset-4">{item.link.label}</a>
+                    )}
+                    {item.link.suffix}
                   </>
                 )}
               </figcaption>
