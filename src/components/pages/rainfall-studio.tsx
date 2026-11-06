@@ -69,7 +69,7 @@ const CONTENT = {
                   height: 900,
                   controls: true,
                 },
-                caption: "Recorded from the Studio prototype building Ask The Two Robbies. The drafting and Canvas build animations and the added step are simulated for the walkthrough.",
+                caption: "Recorded from the Studio building Ask The Two Robbies chat application, see demo below.",
               },
             ],
           },
