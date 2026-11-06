@@ -116,7 +116,7 @@ const CONTENT = {
                   title: "Ask The Two Robbies — live demo",
                   ratio: "16 / 10",
                 },
-                caption: "A live build of Ask The Two Robbies, published from Rainfall Studio.",
+                caption: "A live build of Ask The Two Robbies chat application, built and published from Rainfall Studio.",
                 link: { href: "https://www.thetworobbies.com/", label: "Visit The Two Robbies" },
               },
             ],
