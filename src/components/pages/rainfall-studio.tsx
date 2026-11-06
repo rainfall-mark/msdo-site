@@ -56,6 +56,24 @@ const CONTENT = {
       media: {
         groups: [
           {
+            heading: "From a Description to a Live App",
+            description: "Studio end to end: describe the app, answer a few questions, and watch Studio draft the requirements and the Design in the Output. Then the Canvas builds the flow module by module; add a step and it is written into the spec. Run pre-flight, sign, approve, publish, and find the app live in Projects alongside the exemplar Library.",
+            items: [
+              {
+                video: {
+                  src: `${RAINFALL_STUDIO_ASSET}/walkthrough.mp4`,
+                  webm: `${RAINFALL_STUDIO_ASSET}/walkthrough.webm`,
+                  poster: `${RAINFALL_STUDIO_ASSET}/walkthrough-poster.webp`,
+                  title: "Rainfall Studio walkthrough",
+                  width: 1440,
+                  height: 900,
+                  controls: true,
+                },
+                caption: "Recorded from the Studio prototype building Ask The Two Robbies. The drafting and Canvas build animations and the added step are simulated for the walkthrough.",
+              },
+            ],
+          },
+          {
             heading: "Describe It, and Studio Designs and Builds It",
             description: "A conversation gathers the requirements, guardrails, and surfaces, then drafts a Design in plain language. Nothing is invented: every section traces back to the inputs that were provided.",
             items: [
@@ -134,7 +152,7 @@ const CONTENT = {
  * @ployComponentId rainfall-studio-case-study-page
  * @ployComponentType page
  * @ployComponentPattern case-study
- * @ployComponentDescription Rainfall Studio instance of the reusable light editorial project template, using the Studio web app screens and an embedded live demo of the app it produced.
+ * @ployComponentDescription Rainfall Studio instance of the reusable light editorial project template, using a recorded Studio walkthrough, the Studio web app screens and an embedded live demo of the app it produced.
  * @ployComponentTags case-study rainfall studio agentic-ai product-design editorial
  * @ployComponentStatus stable
  */
