@@ -69,7 +69,7 @@ const CONTENT = {
                   height: 900,
                   controls: true,
                 },
-                caption: "Recorded from the Studio building Ask The Two Robbies chat application, see demo below.",
+                caption: "Recorded from the Rainfall Studio building Ask The Two Robbies chat application, see demo below.",
               },
             ],
           },
