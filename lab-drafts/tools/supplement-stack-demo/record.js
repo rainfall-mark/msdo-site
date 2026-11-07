@@ -2,30 +2,25 @@
    each frame() call captures one 1/30 s frame. usage: node record.js <demo.html> <framesDir> <fontsRoot> */
 const { chromium } = require(require.resolve('playwright', { paths: ['/home/claude/msdo-site', process.cwd()] }));
 const fs = require('fs'), path = require('path');
+const { routeFonts, launchOpts } = require('./fonts');
 const [demo, out, fontRoot] = process.argv.slice(2);
 const FPS = 30, W = 1440, H = 900;
 fs.mkdirSync(out, { recursive: true });
 
-let css = '';
-for (const w of [400, 500, 600, 700]) css += `@font-face{font-family:'Inter';font-style:normal;font-weight:${w};font-display:block;src:url(https://localfonts.test/@fontsource/inter/files/inter-latin-${w}-normal.woff2) format('woff2');}\n`;
-css += `@font-face{font-family:'Newsreader';font-style:normal;font-weight:200 800;font-display:block;src:url(https://localfonts.test/@fontsource-variable/newsreader/files/newsreader-latin-standard-normal.woff2) format('woff2-variations');}\n`;
 
 const CURSOR = `<div id="__cur" style="position:fixed;left:0;top:0;z-index:2147483647;pointer-events:none;will-change:transform">
-<div id="__rip" style="position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;background:rgba(201,106,74,.45);transform:scale(0);opacity:0"></div>
+<div id="__rip" style="position:absolute;left:-14px;top:-14px;width:28px;height:28px;border-radius:50%;background:rgba(255,86,0,.4);transform:scale(0);opacity:0"></div>
 <svg width="22" height="30" viewBox="0 0 22 30" style="position:absolute;left:-2px;top:-2px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))"><path d="M2 2 L2 23 L7.5 18 L11 27 L15 25.5 L11.5 16.5 L19 16 Z" fill="#fff" stroke="#111" stroke-width="1.6" stroke-linejoin="round"/></svg></div>`;
 
 const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
 const sec = s => Math.round(s * FPS);
 
 (async () => {
-  const b = await chromium.launch();
+  const b = await chromium.launch(launchOpts());
   const ctx = await b.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 2 });
   const p = await ctx.newPage();
   const errs = []; p.on('pageerror', e => errs.push(e.message));
-  await ctx.route(/fonts\.googleapis\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: css }));
-  await ctx.route(/fonts\.gstatic\.com/, r => r.abort());
-  await ctx.route(/localfonts\.test/, r => r.fulfill({ status: 200, contentType: 'font/woff2', body: fs.readFileSync(fontRoot + new URL(r.request().url()).pathname) }));
-  await p.addInitScript(() => { try { localStorage.setItem('ss-theme', 'light'); } catch {} });
+  await routeFonts(ctx, fontRoot);
   await p.goto('file://' + demo);
   await p.evaluate(() => document.fonts.ready);
   await p.addStyleTag({ content: '.demo-banner{display:none!important} html{scroll-behavior:auto!important}' });
@@ -85,15 +80,14 @@ const sec = s => Math.round(s * FPS);
   // 1. Opening frame
   await hold(1.6);
   // 2. Today's protocol
-  await scrollToSel(secSel(2), 40, 1.0); await hold(2.4);
+  await scrollToSel(secSel(1), 16, 1.0); await hold(2.4);
   // 3. Goals, then safety flags
-  await scrollToSel(secSel(3), 40, 0.9); await hold(1.6);
-  await scrollToSel(secSel(4), 40, 0.8); await hold(2.0);
+  await scrollToSel(secSel(2), 16, 0.9); await hold(1.6);
+  await scrollToSel(secSel(3), 16, 0.8); await hold(2.0);
   // 4. Recommendations
-  await scrollToSel(secSel(5), 40, 0.8); await hold(2.2);
-  // 5. Timeline
-  await scrollToSel(secSel(7), 30, 1.1); await hold(1.0);
-  await click('#curBtn', { after: 0.8 });
+  await scrollToSel(secSel(4), 16, 0.8); await hold(2.2);
+  // 5. Timeline (opens on the current stack)
+  await scrollToSel(secSel(6) + ' .viewtoggle', 150, 1.1); await hold(1.2);
   await click('#r-mg td.pname', { dx: -0.2, after: 0.5 });
   await hover('tr.irow.g' + (await p.evaluate(() => document.getElementById('r-mg').dataset.g.slice(1))) + ' td[data-k="Magnesium"]', 0.6);
   await hold(2.8);
@@ -107,11 +101,9 @@ const sec = s => Math.round(s * FPS);
   await hold(2.6);
   await away(W * 0.62, H * 0.6, 0.5);
   // 6. Cost
-  await scrollToSel(secSel(8), 30, 1.1); await hold(2.8);
-  // 7. Dark mode, back to the top, light again
-  await click('.toggle', { after: 1.2 });
-  await scrollTo(0, 1.6); await hold(1.2);
-  await click('.toggle', { after: 0.4 });
+  await scrollToSel(secSel(7), 16, 1.1); await hold(2.8);
+  // 7. Back to the top
+  await scrollTo(0, 1.6);
   await moveTo(W * 0.62, H * 0.72, 0.6);
   await hold(0.6);
 

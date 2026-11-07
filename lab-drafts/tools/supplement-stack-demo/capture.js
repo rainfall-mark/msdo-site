@@ -1,30 +1,36 @@
-const { chromium } = require(require.resolve('playwright', { paths: ['/home/claude/msdo-site'] }));
-const fs = require('fs');
+/* Four hero-grid views and the thumbnail from the demo.
+   usage: CHROME=/path/to/chrome node capture.js <demo.html> <outDir> <node_modules with the fonts> */
+const { chromium } = require(require.resolve('playwright', { paths: ['/home/claude/msdo-site', process.cwd()] }));
+const { routeFonts, launchOpts } = require('./fonts');
 const [demo, out, fontRoot] = process.argv.slice(2);
-let css = '';
-for (const w of [400, 500, 600, 700]) css += `@font-face{font-family:'Inter';font-weight:${w};font-display:block;src:url(https://localfonts.test/@fontsource/inter/files/inter-latin-${w}-normal.woff2) format('woff2');}\n`;
-css += `@font-face{font-family:'Newsreader';font-weight:200 800;font-display:block;src:url(https://localfonts.test/@fontsource-variable/newsreader/files/newsreader-latin-standard-normal.woff2) format('woff2-variations');}\n`;
 (async () => {
-  const b = await chromium.launch();
-  const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
-  await ctx.route(/fonts\.googleapis\.com/, r => r.fulfill({ status: 200, contentType: 'text/css', body: css }));
-  await ctx.route(/fonts\.gstatic\.com/, r => r.abort());
-  await ctx.route(/localfonts\.test/, r => r.fulfill({ status: 200, contentType: 'font/woff2', body: fs.readFileSync(fontRoot + new URL(r.request().url()).pathname) }));
-  const p = await ctx.newPage();
-  await p.addInitScript(() => { try { localStorage.setItem('ss-theme', 'light'); } catch {} });
-  await p.goto('file://' + demo); await p.evaluate(() => document.fonts.ready);
-  await p.addStyleTag({ content: '.demo-banner{display:none!important}' });
+  const b = await chromium.launch(launchOpts());
+  const open = async (w, h, dsf) => {
+    const ctx = await b.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: dsf });
+    await routeFonts(ctx, fontRoot);
+    const p = await ctx.newPage();
+    await p.goto('file://' + demo); await p.evaluate(() => document.fonts.ready);
+    await p.addStyleTag({ content: '.demo-banner{display:none!important}' });
+    return p;
+  };
+  // hero views: each card from its top edge, with the cream page showing above and at the sides
+  const p = await open(1280, 805, 2.25);
+  await p.addStyleTag({ content: '.wrap{padding-left:44px;padding-right:44px}' }); // wider cream margin, like a browser window
   const top = async (sel, off) => p.evaluate(([s, o]) => window.scrollTo(0, document.querySelector(s).getBoundingClientRect().top + scrollY - o), [sel, off]);
   const shot = async name => { await p.waitForTimeout(250); await p.screenshot({ path: `${out}/${name}.png` }); };
-  await shot('a-top');
-  await top('section:nth-of-type(4)', 40); await shot('b-safety');
-  await top('section:nth-of-type(7)', 30);
-  await p.click('#curBtn');
-  const g = await p.evaluate(() => { const r = [...document.querySelectorAll('#vprod tr.prow')].find(e => e.textContent.trim().endsWith('Magnesium Glycinate')); return r.dataset.g; });
+  await shot('a-top');                                   // 1. dashboard header + KPIs
+  await top('section:nth-of-type(4)', 14); await shot('b-recs');   // 2. recommendations
+  // 3. timeline (opens on the current stack): expand one product and hover an ingredient's 2026 cell
+  await top('section:nth-of-type(6)', 14);
+  const PRODUCT = process.env.TL_PRODUCT || 'Beet Root Powder', ING = process.env.TL_ING || 'Vitamin C';
+  const g = await p.evaluate(n => [...document.querySelectorAll('#vprod tr.prow')].find(e => e.textContent.trim().endsWith(n)).dataset.g, PRODUCT);
   await p.click(`#vprod tr.prow[data-g="${g}"] td.pname`);
-  const m = await p.evaluate(gg => { const b = document.querySelector(`tr.irow.${gg} td[data-k="Magnesium"]`).getBoundingClientRect(); return [b.left + b.width * .4, b.top + b.height * .5]; }, g);
+  const m = await p.evaluate(([gg, k]) => { const r = document.querySelector(`tr.irow.${gg} td[data-k="${k}"]`).getBoundingClientRect(); return [r.left + r.width * .4, r.top + r.height * .5]; }, [g, ING]);
   await p.mouse.move(m[0], m[1]); await shot('c-timeline');
   await p.mouse.move(5, 5);
-  await top('section:nth-of-type(8)', 30); await shot('d-cost');
+  await top('section:nth-of-type(7)', 14); await shot('d-cost');           // 4. cost
+  // thumbnail: the header, closer in
+  const t = await open(1280, 800, 1.25);
+  await t.waitForTimeout(250); await t.screenshot({ path: `${out}/thumb-src.png` });
   await b.close();
 })();
