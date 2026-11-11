@@ -1,0 +1,19 @@
+---
+import CaseStudyRouteLayout from "../../layouts/CaseStudyRouteLayout.astro";
+import ClaimBotPage from "../../components/pages/lab/claimbot";
+
+export const prerender = true;
+---
+
+<CaseStudyRouteLayout
+  title="ClaimBot: AI That Files and Tracks Your Health Insurance Claims | MSDO Lab"
+  description="ClaimBot, an MSDO Lab experiment: drop an invoice and receipt, AI fills in the claim, a browser agent submits it in your own Chrome, and every settlement letter and benefit limit is tracked against your policy. Recorded with sample data."
+  image="https://www.msdo.us/images/lab/claimbot/hero-grid.webp"
+  name="ClaimBot"
+  about="Concept, product design, and AI build of a health insurance claims page and submission agent"
+  dateCreated="2026-11-07"
+  keywords="health insurance claims, international health insurance, claim reimbursement, settlement letters, AI agent, browser agent, Claude"
+  path="/lab/claimbot"
+>
+  <ClaimBotPage client:load />
+</CaseStudyRouteLayout>
