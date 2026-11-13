@@ -19,6 +19,8 @@ export interface LabProject {
   slug: string;
   href: string;
   tags: string[];
+  /** One short line shown under the tags on the homepage card. */
+  description: string;
   image: string;
   /** Legacy: only the long-form buildLabCaseStudy layout links here; Lab demos are no longer deployed. */
   demoHref: string;
@@ -37,11 +39,11 @@ const lab = (slug: string) => ({
 
 /** Every Lab project, drafts included. */
 export const ALL_LAB_PROJECTS: LabProject[] = [
-  { name: "Healthwise", tags: ["AI Advisor", "Function Health"], published: true, ...lab("healthwise") },
-  { name: "Supplement Stack", tags: ["AI Agent", "Dashboard"], published: true, ...lab("supplement-stack") },
-  { name: "Killswitch", tags: ["AI Agent", "Subscriptions"], published: true, ...lab("killswitch") },
-  { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], published: true, ...lab("mri-explorer") },
-  { name: "ClaimBot", tags: ["AI Agent", "Health Insurance"], published: true, ...lab("claimbot") },
+  { name: "Healthwise", tags: ["AI Advisor", "Function Health"], description: "Your lab results charted over time, with AI advisors to explain them.", published: true, ...lab("healthwise") },
+  { name: "Supplement Stack", tags: ["AI Agent", "Dashboard"], description: "Your whole supplement routine, checked and kept current by AI.", published: true, ...lab("supplement-stack") },
+  { name: "Killswitch", tags: ["AI Agent", "Subscriptions"], description: "Finds every subscription and cancels the ones you don't need.", published: true, ...lab("killswitch") },
+  { name: "MRI Explorer", tags: ["Medical Imaging", "3D"], description: "Your MRI and its report, explained in plain English.", published: true, ...lab("mri-explorer") },
+  { name: "ClaimBot", tags: ["AI Agent", "Health Insurance"], description: "Files your health insurance claims and tracks every reply.", published: true, ...lab("claimbot") },
 ];
 
 /** Projects shown on the site. */

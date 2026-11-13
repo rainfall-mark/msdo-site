@@ -34,7 +34,7 @@ export default function WorkIndexSection({ heading = "Selected work", projects =
               <Reveal key={`${project.name}-${index}`} className="work__item">
                 <a href={project.href} className="work__card group block">
                   <div className="work__media overflow-hidden rounded-xl bg-ploy-background-secondary">
-                    <img src={project.image} alt={`${project.name} project preview`} className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.025]" loading={index > 2 ? "lazy" : "eager"} />
+                    <img src={project.image} alt={`${project.name} project preview`} width={project.width} height={project.height} className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.025]" loading={index > 2 ? "lazy" : "eager"} />
                   </div>
                   <div className="work__meta mt-4 flex items-start justify-between gap-6">
                     <div>
