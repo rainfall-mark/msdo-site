@@ -43,7 +43,6 @@ export default function LabSection({
                   <div>
                     <h3 className="lab__name font-heading text-xl font-semibold tracking-[-0.025em] text-ploy-text-primary sm:text-2xl">{project.name}</h3>
                     <p className="lab__tags mt-1 text-sm text-ploy-text-secondary">{project.tags.join(" · ")}</p>
-                    {project.description ? <p className="lab__description mt-2 text-sm text-ploy-text-primary">{project.description}</p> : null}
                   </div>
                   <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-ploy-text-secondary transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
                 </div>

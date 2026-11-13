@@ -19,7 +19,7 @@ export interface LabProject {
   slug: string;
   href: string;
   tags: string[];
-  /** One short line shown under the tags on the homepage card. */
+  /** One-line summary. Not shown on the homepage card for now; kept for later use. */
   description: string;
   image: string;
   /** Legacy: only the long-form buildLabCaseStudy layout links here; Lab demos are no longer deployed. */
