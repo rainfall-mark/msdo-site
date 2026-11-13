@@ -4,7 +4,7 @@ import { buildLabExperiment } from "./lab-case-study";
 const CONTENT = buildLabExperiment({
   slug: "mri-explorer",
   summary: "An interactive viewer that pairs an MRI with its radiology report, rings each finding on the scan in plain English, and sends you into the appointment prepared.",
-  builtWith: "Claude · Claude plugin",
+  builtWith: "AI plugin · 3D viewer",
   platform: "Web viewer, 2D + 3D",
   challenge: {
     lead: "You need to be a doctor to read your MRI.",

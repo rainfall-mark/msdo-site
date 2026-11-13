@@ -4,7 +4,7 @@ import { buildLabExperiment } from "./lab-case-study";
 const CONTENT = buildLabExperiment({
   slug: "claimbot",
   summary: "AI that turns an invoice and receipt into a ready-to-submit health insurance claim, files it in your own browser, then tracks every reply, settlement letter and benefit limit so nothing slips.",
-  builtWith: "Claude · browser agent · multi-agent workflow",
+  builtWith: "Browser agent · multi-agent workflow",
   platform: "Live claims page, sample data",
   challenge: {
     lead: "Claims take too long, and you never know what came back.",

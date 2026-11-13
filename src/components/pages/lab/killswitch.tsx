@@ -4,7 +4,7 @@ import { buildLabExperiment } from "./lab-case-study";
 const CONTENT = buildLabExperiment({
   slug: "killswitch",
   summary: "AI that finds every subscription hiding in your statements, tells you what to keep and what to cut, and cancels for you in your own browser, stopping for your yes before the final click.",
-  builtWith: "Claude · multi-agent workflow",
+  builtWith: "Multi-agent workflow · browser agent",
   platform: "Live dashboard, sample data",
   challenge: {
     lead: "Subscriptions are easy to start and hard to stop.",

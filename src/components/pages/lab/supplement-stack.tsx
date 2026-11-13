@@ -4,7 +4,7 @@ import { buildLabExperiment } from "./lab-case-study";
 const CONTENT = buildLabExperiment({
   slug: "supplement-stack",
   summary: "AI that keeps your whole supplement routine in one place: what to take and when, where products overlap, what runs past safe limits, what it costs, and what to keep, trim, or add.",
-  builtWith: "Claude · multi-agent workflow",
+  builtWith: "Multi-agent workflow",
   platform: "Web dashboard, sample data",
   challenge: {
     lead: "Supplement stacks grow one recommendation at a time.",
