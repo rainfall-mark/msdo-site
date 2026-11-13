@@ -36,20 +36,14 @@ export default function LabSection({
           {projects.map((project, index) => (
             <Reveal key={project.slug} delay={index * 0.06} className="lab__item">
               <a href={project.href} className="lab__card group block">
-                <div className="lab__media relative aspect-[16/10] overflow-hidden rounded-xl bg-ploy-background-secondary">
+                <div className="lab__media aspect-[16/10] overflow-hidden rounded-xl bg-ploy-background-secondary">
                   <img src={project.image} alt={`${project.name} preview`} className="block h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]" loading="lazy" decoding="async" />
-                  {project.description ? (
-                    <div className="lab__overlay absolute inset-0 flex items-center justify-center bg-black/70 px-8 text-center opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-focus-visible:opacity-100">
-                      <p className="lab__description max-w-[24ch] font-heading text-lg font-medium leading-snug tracking-[-0.015em] text-white lg:text-xl">{project.description}</p>
-                    </div>
-                  ) : null}
                 </div>
                 <div className="lab__meta mt-4 flex items-start justify-between gap-6">
                   <div>
                     <h3 className="lab__name font-heading text-xl font-semibold tracking-[-0.025em] text-ploy-text-primary sm:text-2xl">{project.name}</h3>
                     <p className="lab__tags mt-1 text-sm text-ploy-text-secondary">{project.tags.join(" · ")}</p>
-                    {/* Touch screens have no hover, so the line stays under the tags there. */}
-                    {project.description ? <p aria-hidden="true" className="lab__description-touch mt-2 hidden text-sm text-ploy-text-primary [@media(hover:none)]:block">{project.description}</p> : null}
+                    {project.description ? <p className="lab__description mt-2 text-sm text-ploy-text-primary">{project.description}</p> : null}
                   </div>
                   <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-ploy-text-secondary transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
                 </div>
