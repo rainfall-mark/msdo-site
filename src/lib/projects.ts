@@ -94,5 +94,5 @@ export const VISIBLE_PROJECTS = PROJECTS.filter(
 /** Primary contact destination, preserved from the original site nav. */
 export const CONTACT_HREF = "/contact";
 export const ABOUT_HREF = "/#about";
-export const TWITTER_HREF = "http://twitter.com/#!/mstrehlow";
-export const LINKEDIN_HREF = "https://www.linkedin.com/in/markstrehlow";
+export const TWITTER_HREF = "https://x.com/msdoconsulting";
+export const LINKEDIN_HREF = "https://www.linkedin.com/company/msdo";
