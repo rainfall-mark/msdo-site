@@ -1,5 +1,6 @@
 /** Biography imported verbatim from https://www.msdo.us/About. */
-export const ABOUT_PORTRAIT = "https://payload.cargocollective.com/1/0/18737/1882725/Mark_900.png";
+// Served from this site (900x710) rather than hotlinked from the old Cargo host.
+export const ABOUT_PORTRAIT = "/images/about/mark-strehlow.jpg";
 export const ABOUT_LINKEDIN = "http://www.linkedin.com/in/markstrehlow";
 export const ABOUT_PARAGRAPHS = [
   "Mark has over 20 years in product, design, and brand across leading digital consultancies, large-scale consumer product organizations, and growth-stage startups.",
